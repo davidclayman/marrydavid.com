@@ -99,6 +99,12 @@ The copy has house rules, and the test suite enforces most of them:
   in the Radius crosslink and the ledger subhead.
 - Every section has a title and a chapter. Every internal link resolves. Every
   image has alt text and its file exists.
+- Every subtopic is deep-linkable: list items, `h3.head-sm` sub-headings,
+  collapsed cards, and `<p><strong>Label.</strong>` paragraphs carry ids
+  (`section-slug`, or `db-*` / `dc-*` / `faq-NN`), with the title as an
+  `a.deep` link or a hover `#` mark. `#budget-promise` opens Budget and scrolls
+  to the paragraph; a target inside a collapsed card opens the card. New items
+  need the same id and link; the tests fail on any without.
 - The contact address never appears in the source of either page.
 - To change the relationship status, move the new stage's `<li>` from the
   pulldown into `ol.now` (and the old one back, with `class="past"`), keep

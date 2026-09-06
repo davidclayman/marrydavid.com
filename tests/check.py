@@ -30,6 +30,9 @@ n_audits = len(re.findall(r'\n      title:', audits_src))
 check('audit count sane', 10 <= n_audits <= 40, f'found {n_audits}')
 
 valid = set(ids) | {f'audit-{i:02d}' for i in range(0, n_audits + 1)} | {'content', 'sealTop', 'sealBottom'}  # 00 is the static meta-audit; content is the skip-link target; the seal ids are SVG textPath targets
+main_src = s.split('<main', 1)[1].split('</main>', 1)[0]
+item_ids = re.findall(r'<li id="([a-z0-9-]+)"', main_src)
+valid |= set(re.findall(r' id="([a-z0-9-]+)"', main_src))  # every id inside main is a deep-link target: the router opens its section and scrolls to it
 hrefs = set(re.findall(r'href="#([a-zA-Z0-9-]+)"', s))
 bad = hrefs - valid
 check('internal links resolve', not bad, f'dangling: {sorted(bad)}')
@@ -61,6 +64,16 @@ db_sec = re.search(r'<section class="topic" id="dealbreakers".*?</section>', s, 
 db_main = db_sec.split('<h3', 1)[0]
 n_db = db_main.count('<span class="k">')
 m = re.search(r'These (\w+) are structural', s)
+all_ids = re.findall(r' id="([^"]+)"', s)
+check('ids unique across the page', len(all_ids) == len(set(all_ids)), str([i for i in set(all_ids) if all_ids.count(i) > 1]))
+check('every list item is deep-linkable', not re.search(r'<li>\s*(<span class="tag">.*?</span>\s*)?<span class="k">', main_src, re.S))
+check('every sub-heading is deep-linkable', '<h3 class="head-sm">' not in main_src)
+check('every collapsed card is deep-linkable', '<details class="audit">\n      <summary><span class="no">' not in main_src)
+check('every labeled paragraph is deep-linkable', not re.search(r'<p><strong>[^<]+</strong>', main_src))
+for sec in ('dealbreakers', 'dontcare'):
+    body = re.search(r'<section class="topic" id="%s".*?</section>' % sec, s, re.S).group(0)
+    n_li = body.count('<li'); n_deep = len(re.findall(r'<li id="[a-z-]+">\s*<span class="k"><a class="deep" href="#[a-z-]+">', body))
+    check(f'every item on {sec} is deep-linkable', n_li == n_deep and n_li > 0, f'{n_deep} of {n_li}')
 check('dealbreaker count matches subhead', m and WORDS.get(m.group(1)) == n_db,
       f'{n_db} items vs "These {m.group(1) if m else "?"}"')
 

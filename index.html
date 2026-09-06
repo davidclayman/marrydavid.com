@@ -185,44 +185,16 @@
   .status .note a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
   @media (max-width: 640px) { .status .lbl { display: none; } }
 
-  .ribbon {
-    position: fixed;
-    right: -70px;
-    bottom: 56px;
-    z-index: 11;
-    transform: rotate(-45deg);
-    width: 330px;
-    padding: 0.5rem 0;
-    text-align: center;
-    background: var(--gold);
-    color: var(--ink);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.66rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 500;
-    text-decoration: none;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
-    transition: opacity 0.2s, transform 0.2s;
+  /* the matchmaker prize seal: fixed in the top-right margin on desktop, in the flow above the footer on narrower screens */
+  .seal { display: block; width: 172px; margin: 3.6rem auto 0; text-decoration: none; transition: transform 0.2s; }
+  .seal svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.45)); }
+  .seal:hover { transform: rotate(-4deg) scale(1.03); }
+  .seal:focus-visible { outline: 2px solid var(--paper); outline-offset: 6px; border-radius: 50%; }
+  @media (min-width: 1180px) {
+    .seal { position: fixed; top: 22px; right: 26px; width: 148px; margin: 0; z-index: 11; transform: rotate(6deg); }
+    .seal:hover { transform: rotate(0deg) scale(1.04); }
   }
-  .ribbon:hover { transform: rotate(-45deg) translateY(-2px); }
-  .ribbon:focus-visible { outline: 2px solid var(--paper); outline-offset: 2px; }
-  .ribbon.hidden { opacity: 0; pointer-events: none; }
-  .ribbon small { display: block; font-size: 0.58rem; letter-spacing: 0.12em; font-weight: 400; opacity: 0.8; }
-  @media (max-width: 640px) {
-    .ribbon {
-      right: 14px;
-      bottom: 14px;
-      width: auto;
-      transform: none;
-      padding: 0.5rem 0.85rem;
-      border-radius: 999px;
-      font-size: 0.6rem;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
-    }
-    .ribbon:hover { transform: translateY(-2px); }
-    .ribbon small { display: none; }
-  }
+  @media (prefers-reduced-motion: reduce) { .seal, .seal:hover { transform: none; transition: none; } }
 
   .nudge {
     position: fixed;
@@ -791,7 +763,6 @@
 </nav>
 
 <aside class="sidenav" id="sideNav" aria-label="Sections"></aside>
-<a class="ribbon hidden" id="ribbon" href="#referrals" aria-label="Amateur Matchmaker Prize: $2,000 for the introduction that leads to a first child. Read the Referrals page.">Amateur Matchmaker Prize<small>$2,000 · Referrals ›</small></a>
 <div class="nudge" id="nudge" role="dialog" aria-label="A reminder to reach out" aria-hidden="true">
   <button class="close" type="button" id="nudgeClose" aria-label="Dismiss">×</button>
   <span class="tag" id="nudgeTag">2 MINUTES IN</span>
@@ -2093,6 +2064,11 @@
       </li>
       <li>
         <span class="tag">2026-09-06</span>
+        <span class="k">The matchmaker prize went from $2,000 to $5,000</span>
+        <span class="v">Still September 2026 dollars, still indexed to the consumer price index, still paid at our first child. The ribbon that used to appear after a second section is now a seal on every page, because the introduction is the outcome this whole site is for and the price should say so.</span>
+      </li>
+      <li>
+        <span class="tag">2026-09-06</span>
         <span class="k">Party loyalty left the dealbreakers</span>
         <span class="v">It was one of eleven. It now sits on Don't Care as Political Party Loyalty/Identification, where it belonged: I'm an independent, I'd happily marry a partisan, and the only thing the old entry filtered was a woman who needs her husband in the jersey, which the conflict rule already covers. Ten dealbreakers remain.</span>
       </li>
@@ -2230,12 +2206,12 @@
   <!-- ============ REFERRALS ============ -->
   <section class="topic" id="referrals" data-title="Referrals" data-chapter="Your turn">
     <h2 class="head">Referrals</h2>
-    <p class="subhead">Most good marriages start with an introduction. Mine will start with a $2,000 finder's fee and a yente. If you know someone, this page is for you.</p>
+    <p class="subhead">Most good marriages start with an introduction. Mine will start with a $5,000 finder's fee and a yente. If you know someone, this page is for you.</p>
     <div class="prose">
-      <p><strong>The ask.</strong> If you have a friend, coworker, sister, or daughter you think I should meet, please reach out. Send her this site, or, with her permission, send me her name and contact information, or just tell me why you thought of her. The Matching page argues that the people who do best in a matching market are the ones who propose rather than wait; a referral is a proposal on someone else's behalf, and I'll treat it with the care that deserves.</p>
-      <p><strong>The matchmaker prize.</strong> I will pay <span class="num">$2,000 USD</span>, in September 2026 dollars and adjusted for inflation by the consumer price index at the time of payout, to whoever connects me with my future spouse. The national index, to be clear, not the South Florida one; if I pegged it to Boca rents and HOA fees, the prize would be a down payment by the time the kid could walk. It pays out after we have or adopt our first child together, not at the wedding, because a child is the real test of whether the marriage is real. Weddings are easy to throw. If the introduction took two of you, it splits. If you're family, it still counts. And you don't have to be a professional matchmaker to collect: amateur yentes are very welcome.</p>
+      <p><strong>The ask.</strong> If you have a friend, coworker, sister, daughter, or granddaughter you think I should meet, please reach out. Send her this site, or, with her permission, send me her name and contact information, or just tell me why you thought of her. The Matching page argues that the people who do best in a matching market are the ones who propose rather than wait; a referral is a proposal on someone else's behalf, and I'll treat it with the care that deserves.</p>
+      <p><strong>The matchmaker prize.</strong> I will pay <span class="num">$5,000 USD</span>, in September 2026 dollars and adjusted for inflation by the consumer price index at the time of payout, to whoever connects me with my future spouse. The national index, to be clear, not the South Florida one; if I pegged it to Boca rents and HOA fees, the prize would be a down payment by the time the kid could walk. It pays out after we have or adopt our first child together, not at the wedding, because a child is the real test of whether the marriage is real. Weddings are easy to throw. If the introduction took two of you, it splits. If you're family, it still counts. And you don't have to be a professional matchmaker to collect: amateur yentes are very welcome.</p>
       <p><strong>Please take it.</strong> I'll encourage you as strongly and as emphatically as I can to accept the prize; you'll have done the most valuable thing anyone ever did for our family. If you're close to my future spouse and keeping it feels awkward, let me pay it to you anyway, so the recognition is real and on the record. Then, if you truly wish and insist, and my bride doesn't refuse it, you can always turn it into a wedding gift to her personally. Or pay it forward: use it to seed a matchmaker prize of your own, for yourself if you're single, or for another single person you're connected to, so the introduction that found us goes on to find someone else. That's your call to make once it's yours. Mine is only to make sure it becomes yours.</p>
-      <p><strong>Why the fee is a no-brainer.</strong> The Budget page caps the whole courtship at ten thousand dollars. A fifth of that, paid only on the outcome that the entire site exists for, and only after that outcome has survived a pregnancy or an adoption, is the best-structured expense I will ever make. Every other line in our family ledger will be a cost. This one is the reason the ledger exists.</p>
+      <p><strong>Why the fee is a no-brainer.</strong> The Budget page caps the whole courtship at ten thousand dollars. Half of that, paid only on the outcome that the entire site exists for, and only after that outcome has survived a pregnancy or an adoption, is the best-structured expense I will ever make. Every other line in our family ledger will be a cost. This one is the reason the ledger exists.</p>
       <p><strong>How to refer.</strong> <a href="#transmission" class="refer" style="color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);">Send a referral</a>, or write to the address on the Transmission page with "Referral" in the subject. Tell me how you know her, what made you think of us, and whether she knows you're writing. She never has to; I'll wait for her to reach out herself if you'd rather stay in the background.</p>
     </div>
 
@@ -2260,8 +2236,8 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     <p class="verdict" id="fitVerdict">Tick what you know. Anything you don't know counts as a question for her, not a mark against her.</p>
 
     <div class="radius clockbox prizebox">
-      <div class="big"><b>$<span id="prizeOut">2,000</span></b> <span>in <span id="prizeYear">2028</span> dollars</span></div>
-      <div class="sub">$2,000 in September 2026 dollars, indexed to the consumer price index at payout; this is an illustration at an assumed rate</div>
+      <div class="big"><b>$<span id="prizeOut">5,000</span></b> <span>in <span id="prizeYear">2028</span> dollars</span></div>
+      <div class="sub">$5,000 in September 2026 dollars, indexed to the consumer price index at payout; this is an illustration at an assumed rate</div>
       <div class="ctl">
         <label>YEARS UNTIL OUR FIRST CHILD ARRIVES: <strong><span id="valPrizeYears">1.5</span> YRS</strong>
           <input type="range" id="sldPrizeYears" min="1.5" max="10" step="0.5" value="1.5" aria-label="Years until the first child arrives">
@@ -2306,6 +2282,21 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     </div>
   </section>
 
+<a class="seal" id="seal" href="#referrals" aria-label="Amateur Matchmaker Prize: $5,000, indexed to inflation, for the introduction that leads to our first child. Read the Referrals page.">
+  <svg viewBox="0 0 160 160" aria-hidden="true" focusable="false">
+    <defs>
+      <path id="sealTop" d="M80,80 m-57,0 a57,57 0 1,1 114,0 a57,57 0 1,1 -114,0"/>
+      <path id="sealBottom" d="M80,80 m-54,0 a54,54 0 1,0 108,0 a54,54 0 1,0 -108,0"/>
+    </defs>
+    <polygon points="80.0,2.0 84.7,8.2 90.2,2.7 94.0,9.4 100.2,4.7 103.1,11.8 109.8,7.9 111.8,15.4 119.0,12.5 120.0,20.1 127.5,18.1 127.5,25.9 135.2,24.8 134.1,32.5 141.9,32.5 139.9,40.0 147.5,41.0 144.6,48.2 152.1,50.2 148.2,56.9 155.3,59.8 150.6,66.0 157.3,69.8 151.8,75.3 158.0,80.0 151.8,84.7 157.3,90.2 150.6,94.0 155.3,100.2 148.2,103.1 152.1,109.8 144.6,111.8 147.5,119.0 139.9,120.0 141.9,127.5 134.1,127.5 135.2,135.2 127.5,134.1 127.5,141.9 120.0,139.9 119.0,147.5 111.8,144.6 109.8,152.1 103.1,148.2 100.2,155.3 94.0,150.6 90.2,157.3 84.7,151.8 80.0,158.0 75.3,151.8 69.8,157.3 66.0,150.6 59.8,155.3 56.9,148.2 50.2,152.1 48.2,144.6 41.0,147.5 40.0,139.9 32.5,141.9 32.5,134.1 24.8,135.2 25.9,127.5 18.1,127.5 20.1,120.0 12.5,119.0 15.4,111.8 7.9,109.8 11.8,103.1 4.7,100.2 9.4,94.0 2.7,90.2 8.2,84.7 2.0,80.0 8.2,75.3 2.7,69.8 9.4,66.0 4.7,59.8 11.8,56.9 7.9,50.2 15.4,48.2 12.5,41.0 20.1,40.0 18.1,32.5 25.9,32.5 24.8,24.8 32.5,25.9 32.5,18.1 40.0,20.1 41.0,12.5 48.2,15.4 50.2,7.9 56.9,11.8 59.8,4.7 66.0,9.4 69.8,2.7 75.3,8.2" fill="#e8b44a"/>
+    <circle cx="80" cy="80" r="64" fill="none" stroke="#0b1026" stroke-width="1.2" opacity="0.7"/>
+    <circle cx="80" cy="80" r="44" fill="none" stroke="#0b1026" stroke-width="0.8" stroke-dasharray="2 3" opacity="0.6"/>
+    <text font-family="IBM Plex Mono, monospace" font-size="9.6" letter-spacing="1.6" font-weight="500" fill="#0b1026"><textPath href="#sealTop" startOffset="25%" text-anchor="middle">AMATEUR MATCHMAKER PRIZE</textPath></text>
+    <text font-family="IBM Plex Mono, monospace" font-size="7.6" letter-spacing="1.4" fill="#0b1026"><textPath href="#sealBottom" startOffset="25%" text-anchor="middle">PAID AT OUR FIRST CHILD</textPath></text>
+    <text x="80" y="82" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="27" fill="#0b1026">$5,000</text>
+    <text x="80" y="97" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7.6" letter-spacing="1.6" font-weight="500" fill="#0b1026">REFERRALS ›</text>
+  </svg>
+</a>
   <footer>N 26°21' W 80°10' · N 41°29' W 81°32' · MOVING TOWARD LEO–CRATER · VERIFY AT YOUR LEISURE · <a href="#privacy" style="color:inherit;text-decoration:none;border-bottom:1px dotted currentColor">PRIVACY</a><span id="lastmod"></span></footer>
   <noscript><p class="nojs">JAVASCRIPT IS OFF, so this page showed every section at once instead of one at a time. The clocks are frozen at their defaults, the Audit Ledger's prompts and the contact address assemble themselves with JavaScript, and the prompts are readable in the page source if you'd rather stay dark. Everything else reads fine as one long scroll.</p></noscript>
 </main>
@@ -2491,7 +2482,7 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     sections.forEach(s => s.classList.toggle('active', s.id === target));
     rail.querySelectorAll('a').forEach(a => { const on = a.dataset.target === target; a.classList.toggle('active', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     if (side) side.querySelectorAll('a').forEach(a => { const on = a.dataset.target === target; a.classList.toggle('active', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
-    if (ribbon) ribbon.classList.toggle('hidden', target === 'referrals' || ribbonDone() || visited(target) < 2);
+    visited(target);
     const act = rail.querySelector('a.active');
     if (act) act.scrollIntoView({ inline: 'center', block: 'nearest' });
     updateNavFades();
@@ -2507,18 +2498,15 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     }
     revealSoon();
   }
-  // the prize ribbon: the referral is for people who already like the site, so it appears only once a
-  // second section has been opened this session, and goes away for the visit once it's clicked
-  const ribbon = document.getElementById('ribbon');
-  let ribbonClicked = false;
-  function ribbonDone() { return ribbonClicked; }
+  // sections visited this session, kept for the nudge card; the prize seal is always visible and tracks its clicks
   function visited(id) {
     let seen = [];
     try { seen = JSON.parse(sessionStorage.getItem('visited') || '[]'); } catch (e) {}
     if (seen.indexOf(id) === -1) { seen.push(id); try { sessionStorage.setItem('visited', JSON.stringify(seen)); } catch (e) {} }
     return seen.length;
   }
-  if (ribbon) ribbon.addEventListener('click', () => { ribbonClicked = true; ribbon.classList.add('hidden'); track('ribbon_click'); });
+  const seal = document.getElementById('seal');
+  if (seal) seal.addEventListener('click', () => track('seal_click'));
 
   // the relationship status bar: five stages, one current; data-stage/data-since on the aside are the edit point
   (function () {
@@ -3466,7 +3454,7 @@ Be honest rather than kind. The author wrote this prompt himself and published i
       const render = (years, rate) => {
         const from2026 = (Date.now() - Date.UTC(2026, 8, 1)) / 31556952000;
         const total = Math.max(0, from2026 + years);
-        out.textContent = Math.round(2000 * Math.pow(1 + rate, total)).toLocaleString('en-US');
+        out.textContent = Math.round(5000 * Math.pow(1 + rate, total)).toLocaleString('en-US');
         yr.textContent = String(new Date(Date.now() + years * 31556952000).getFullYear());
       };
       const step = (now) => {

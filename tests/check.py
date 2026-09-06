@@ -29,7 +29,7 @@ audits_src = s.split('const AUDITS = [', 1)[1].split('\n  ];', 1)[0]
 n_audits = len(re.findall(r'\n      title:', audits_src))
 check('audit count sane', 10 <= n_audits <= 40, f'found {n_audits}')
 
-valid = set(ids) | {f'audit-{i:02d}' for i in range(0, n_audits + 1)} | {'content'}  # 00 is the static meta-audit; content is the skip-link target
+valid = set(ids) | {f'audit-{i:02d}' for i in range(0, n_audits + 1)} | {'content', 'sealTop', 'sealBottom'}  # 00 is the static meta-audit; content is the skip-link target; the seal ids are SVG textPath targets
 hrefs = set(re.findall(r'href="#([a-zA-Z0-9-]+)"', s))
 bad = hrefs - valid
 check('internal links resolve', not bad, f'dangling: {sorted(bad)}')
@@ -79,6 +79,7 @@ check('analytics id present on both pages', 'G-GD340Z2HSF' in s and 'G-GD340Z2HS
 check('analytics injected by script, never a static tag', 'src="https://www.googletagmanager.com' not in s and 'src="https://www.googletagmanager.com' not in n4)
 check('analytics honors the opt-out and Global Privacy Control', "localStorage.getItem('consent')" in s and "=== 'denied'" in s and 'navigator.globalPrivacyControl' in s and "!== 'denied'" in n4 and 'navigator.globalPrivacyControl' in n4)
 check('no consent banner; the switch lives on the Privacy page', 'id="consent"' not in s and 'consentYes' not in s and 'id="consentReset"' in s and 'Why there' in s)
+check('matchmaker prize is $5,000 everywhere, with a seal on every page', '$2,000 USD' not in s and "$2,000 finder" not in s and 'id="seal"' in s and s.count('$5,000') >= 4 and '5000 * Math.pow' in s and 'id="ribbon"' not in s)
 check('fonts self-hosted, no Google Fonts requests', 'fonts.googleapis.com' not in s and 'fonts.gstatic.com' not in s and 'fonts.googleapis.com' not in n4)
 fontfiles = set(re.findall(r"url\('(fonts/[^']+)'\)", s))
 check('font files exist', fontfiles and all(os.path.exists(os.path.join(ROOT, f)) for f in fontfiles), str(sorted(fontfiles)))
@@ -161,6 +162,7 @@ for slug in ('coronacrush', 'shabbat', 'justmatched'):
     check(f'{slug} email never in source', 'david@' not in src and 'mailto:' not in src)
     check(f'{slug} is unlisted', f'href="/{slug}' not in s and f'href="{slug}' not in s and f'/{slug}' not in sm)
     check(f'{slug} analytics honors the opt-out and Global Privacy Control', 'src="https://www.googletagmanager.com' not in src and "localStorage.getItem('consent') !== 'denied'" in src and 'navigator.globalPrivacyControl' in src)
+    check(f'{slug} carries the prize seal', 'id="seal"' in src and 'href="../#referrals"' in src)
     check(f'{slug} greeting is sanitized', "get('for')" in src and 'replace(/[^A-Za-z' in src)
     check(f'{slug} states the current status', stage and (STAGES[stage - 1].upper() in src) and ('SINCE ' + (re.search(r'data-since="([^"]+)"', s).group(1)) in src))
     deep = set(re.findall(r'href="\.\./#([^"]+)"', src))

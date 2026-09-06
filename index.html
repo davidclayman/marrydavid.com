@@ -808,8 +808,8 @@
     </div>
 
     <div class="radius">
-      <div class="big">460 mi <span>by car, or ~8 hours door-to-door by plane</span></div>
-      <div class="sub">= 2 seconds × 230 mi/s (370 km/s, the Sun's velocity w.r.t. the CMB dipole) = 7 hours 4 minutes of driving plus about an hour at fast chargers, 8 hours 4 minutes door to door · a nonstop inside that clock, from South Florida or Cleveland, reaches everything but the Bay Area and the Pacific Northwest, and Seattle from Cleveland</div>
+      <div class="big">~8 hours <span>door-to-door by plane, or 460 mi by car</span></div>
+      <div class="sub">a nonstop inside that clock, from South Florida or Cleveland, reaches everything but the Bay Area and the Pacific Northwest, and Seattle from Cleveland · the clock comes from the drive: 460 mi = 2 seconds × 230 mi/s (370 km/s, the Sun's velocity w.r.t. the CMB dipole) = 7 hours 4 minutes of driving plus about an hour at fast chargers, 8 hours 4 minutes door to door</div>
       <div class="odometer">
         Since you opened this page, we've both traveled
         <strong id="odo">0</strong> miles through the universe.
@@ -2270,6 +2270,14 @@ He's clear about what he wants, which is to marry and raise two or three kids so
       <div class="odometer">The real figure uses the national index on the day it pays out, whatever it says. Move the sliders to see why indexing matters over a wait this long.</div>
     </div>
 
+    <h3 class="head-sm" id="referrals-claim-your-prize"><a class="deep" href="#referrals-claim-your-prize">Claim your prize</a></h3>
+    <p class="subhead">If an introduction of yours has reached a fourth date, or a first child, this is where you say so. I'd rather pay twice than have you feel awkward asking once.</p>
+    <div class="prose">
+      <p id="referrals-to-claim"><strong>How to claim.</strong><a class="pmark" href="#referrals-to-claim" aria-label="Link to this paragraph">#</a> <a href="#transmission" class="claim" style="color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);">Send a claim</a>, which opens an email with the questions already laid out: which prize, who you introduced, roughly when, whether anyone shares the credit, and how you'd like to be paid. I don't need proof; I was there. I'll confirm within a week, and the money moves within thirty days of the trigger: the fourth date on the calendar for the $200, the birth or adoption, the third anniversary, or the adoption decree for the $5,000. If you'd rather turn it into a wedding gift or seed a prize of your own, say so in the email and it's done.</p>
+      <p id="referrals-paid-so-far"><strong>Paid so far.</strong><a class="pmark" href="#referrals-paid-so-far" aria-label="Link to this paragraph">#</a> None yet, as of September 2026. Every payout gets a dated line here and on <a href="#revisions">Revisions</a>, with the amount and nothing about who, unless you'd like the credit in public.</p>
+      <div class="row"><a class="copy claim" href="#transmission">Claim your prize</a></div>
+    </div>
+
     <p class="crosslink">The other way in: <a href="#transmission">Send a Transmission</a>. What the prize helps fund, eventually: <a href="#family">Family</a>.</p>
   </section>
 
@@ -3382,6 +3390,12 @@ Be honest rather than kind. The author wrote this prompt himself and published i
     document.querySelectorAll('a.refer').forEach(b => {
       b.href = 'mailto' + String.fromCharCode(58) + addr + '?subject=' + rSubject + '&body=' + rBody;
       b.addEventListener('click', () => track('referral_click'));
+    });
+    const cSubject = encodeURIComponent('Prize claim');
+    const cBody = encodeURIComponent('Hi David,\n\nI am claiming a matchmaker prize.\n\nWhich prize ($200 third-date, or $5,000 matchmaker): \nWho I introduced you to: \nRoughly when: \nDoes anyone share the credit with me? \nHow I would like to be paid (Zelle, Venmo, PayPal, check, or a wedding gift or a prize of my own): \nMay I be named in public when it is paid? \n');
+    document.querySelectorAll('a.claim').forEach(b => {
+      b.href = 'mailto' + String.fromCharCode(58) + addr + '?subject=' + cSubject + '&body=' + cBody;
+      b.addEventListener('click', () => track('claim_click'));
     });
   })();
 

@@ -32,8 +32,10 @@ documents the rest.
 `404.html` redirects `/family`-style paths to `/#family` and otherwise links
 home. A few unlisted follow-up pages (each in its own folder, `noindex`, never
 linked from the main page or the sitemap) exist for people met in person or
-matched on an app; they take `?for=Name` to personalize the greeting and carry
-no state beyond an optional reading checklist kept in the visitor's browser.
+matched on an app, and `/safeword/` holds the intimacy chapter, shared after a
+first kiss rather than published; they take `?for=Name` to personalize the
+greeting and carry no state beyond an optional reading checklist kept in the
+visitor's browser.
 
 **Two layers.** The first section, Start Here, is the profile: hook, photo,
 introduction, what dating him is like, what he's looking for, the essential

@@ -79,8 +79,9 @@ the current stage lit and marked by `aria-current="step"`, the future steps in a
 `<aside class="status">`. Only the notes behind the stages are scripted.
 
 **Contact.** The email address is assembled at view time and never appears in the
-page source. The video-call booking link is a prefilled `mailto:` built the same
-way.
+page source. "Request a video call" buttons (`a.bookcall`) open a Google Calendar
+appointment schedule (`BOOK_URL` in the script); the three-times email fallback
+(`a.bookmail`) is a prefilled `mailto:` built the same way.
 
 **No JavaScript.** A `<noscript>` block shows every section as one long scroll,
 hides the empty nav rail, and explains that the clocks, the ledger, and the

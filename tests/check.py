@@ -94,6 +94,7 @@ check('analytics honors the opt-out and Global Privacy Control', "localStorage.g
 check('Safeword lives only on its unlisted page', 'id="safeword"' not in s and '#safeword' not in s and 'five-nines' not in s and 'five-nines' in open(os.path.join(ROOT, 'safeword', 'index.html'), encoding='utf-8').read())
 check('no consent banner; the switch lives on the Privacy page', 'id="consent"' not in s and 'consentYes' not in s and 'id="consentReset"' in s and 'Why there' in s)
 check('matchmaker prize is $5,000 everywhere, with a seal on every page', '$2,000 USD' not in s and "$2,000 finder" not in s and 'id="seal"' in s and s.count('$5,000') >= 4 and '5000 * Math.pow' in s and 'id="ribbon"' not in s and 'id="seal2"' in s and s.count('$200') >= 3)
+check('video calls book through Google Calendar, with an email fallback', 'https://calendar.app.google/wQ43VdkT43DQP39E7' in s and "querySelectorAll('a.bookcall')" in s and 'class="bookmail"' in s)
 check('fonts self-hosted, no Google Fonts requests', 'fonts.googleapis.com' not in s and 'fonts.gstatic.com' not in s and 'fonts.googleapis.com' not in n4)
 fontfiles = set(re.findall(r"url\('(fonts/[^']+)'\)", s))
 check('font files exist', fontfiles and all(os.path.exists(os.path.join(ROOT, f)) for f in fontfiles), str(sorted(fontfiles)))

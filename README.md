@@ -24,9 +24,11 @@ says so.
 
 **One static file.** Everything is `index.html`: hand-written CSS, vanilla
 JavaScript, no framework, no build step. The three typefaces are self-hosted
-from `fonts/`. Google Analytics is the only third party, and its script loads
-only after the visitor accepts the consent banner (sections are sent as page
-views, calls to action as events); the Privacy section documents the rest.
+from `fonts/`. Google Analytics is the only third party. It loads by default
+(sections are sent as page views, calls to action as events) and stays off for
+anyone who flipped the switch on the Privacy section or whose browser sends
+Global Privacy Control; there is no consent banner. The Privacy section
+documents the rest.
 `404.html` redirects `/family`-style paths to `/#family` and otherwise links
 home. A few unlisted follow-up pages (each in its own folder, `noindex`, never
 linked from the main page or the sitemap) exist for people met in person or

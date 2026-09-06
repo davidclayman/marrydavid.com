@@ -43,7 +43,7 @@
 <meta name="twitter:description" content="Two astronomical seconds of travel willingness, one audit ledger, zero unstated preferences.">
 <meta name="twitter:image" content="https://marrydavid.com/photos/david-3.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b1026'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23e8b44a' stroke-width='4' stroke-dasharray='6 5'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23eae6d8'/%3E%3C/svg%3E">
-<!-- Google Analytics (G-GD340Z2HSF) loads only after consent; see the Privacy page -->
+<!-- Google Analytics (G-GD340Z2HSF) loads unless the reader switched it off on the Privacy page or the browser sends Global Privacy Control -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -273,27 +273,6 @@
     .nudge.show { transform: translate(0, -50%); }
   }
 
-  .consent {
-    position: fixed;
-    left: 16px;
-    bottom: 16px;
-    z-index: 13;
-    width: min(440px, calc(100vw - 32px));
-    background: var(--plate);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 1rem 1.1rem 0.9rem;
-    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.55);
-    color: #cfd3e6;
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-  .consent .tag { display: block; margin-bottom: 0.35rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.64rem; letter-spacing: 0.2em; color: var(--gold); }
-  .consent strong { color: var(--paper); font-weight: 500; }
-  .consent a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
-  .consent .row { margin-top: 0.7rem; gap: 0.6rem; }
-  .consent .copy { padding: 0.45rem 0.8rem; }
-  @media (max-width: 640px) { .consent { left: 12px; right: 12px; width: auto; bottom: 64px; font-size: 0.86rem; } }
   .callform { max-width: 58ch; display: grid; gap: 0.7rem; margin: 1rem 0 0.4rem; }
   .callform label { display: grid; gap: 0.3rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
   .callform input, .callform select, .callform textarea {
@@ -805,11 +784,6 @@
   <span class="tag" id="nudgeTag">2 MINUTES IN</span>
   <strong>Thanks for spending <span id="nudgeMins">two minutes</span> with me.</strong><span id="nudgeExtra"></span> That's usually a sign you care enough to keep reading, so one reminder before you do: you can just write. Nothing here needs to be finished first. One line to <a class="addr" id="nudgeAddr" href="#transmission">the address</a> is a perfectly good first message, and a video call is one request away.
   <div class="row"><a class="copy bookcall" href="#transmission">Request a video call</a><a class="copy" id="nudgeWrite" href="#transmission">Write to me</a></div>
-</div>
-<div class="consent" id="consent" role="region" aria-label="Analytics consent" hidden>
-  <span class="tag">ONE QUESTION FIRST</span>
-  <strong>May I count your visit?</strong> This site uses Google Analytics to see which sections get read and which buttons get clicked, in aggregate. No names, no messages, no advertising profile. Nothing loads until you answer, and either answer is remembered. Details on <a href="#privacy">the Privacy page</a>.
-  <div class="row"><button class="copy" type="button" id="consentYes">Yes, count me</button><button class="copy" type="button" id="consentNo">No, thanks</button></div>
 </div>
 
 <main class="wrap" id="content" tabindex="-1">
@@ -2021,6 +1995,11 @@
         <span class="k">Date David became Marry David</span>
         <span class="v">The site moved from datedavid.org to marrydavid.com, and the name followed. The old address forwards here. The goal was never a date; it's stated in the first line of Start Here, and now the domain says it too.</span>
       </li>
+      <li>
+        <span class="tag">2026-09-06</span>
+        <span class="k">The consent banner came down</span>
+        <span class="v">Four days after it went up, readers said the question got in the way of the reading. So it's gone: counting is on by default, off with one click on the Privacy page or with a Global Privacy Control signal, and the Privacy page now says legitimate interest where it used to say consent, with the reasoning under "Why there's no cookie banner."</span>
+      </li>
     </ul>
     <p class="crosslink">The receipts, edit by edit: <a href="https://github.com/davidclayman/marrydavid.com/commits/main">the commit log</a>. The promise this keeps: <a href="#yearten">Year Ten</a>.</p>
   </section>
@@ -2074,12 +2053,13 @@
     <p class="subhead">What this site collects, which is very little, and your rights over it, which are complete. Even the fonts don't phone home.</p>
     <div class="prose">
       <p><strong>Who is responsible.</strong> David Clayman, the author of this site, is the data controller. Contact for anything on this page: the address on <a href="#transmission">the Transmission page</a>.</p>
-      <p><strong>What the site collects, and why.</strong> Three things, and nothing else. First, if you agree, Google Analytics counts which sections are read and which buttons are clicked, in aggregate, so I can tell whether the site works. This runs only after you say yes on the banner, is remembered either way in your browser, honors the Global Privacy Control signal as a no, uses IP anonymization, and has advertising features switched off. The legal basis is your consent, and you can withdraw it below. Second, anything you choose to email me goes to my inbox so that I can reply, and a request that I call you travels through a Google Form into the same inbox; the legal basis is that you asked me to. Third, the host records ordinary server logs, as every website's host does. The site sets no cookies of its own. The fonts are served from this site, not from Google.</p>
+      <p><strong>What the site collects, and why.</strong> Three things, and nothing else. First, Google Analytics counts which sections are read and which buttons are clicked, in aggregate, so I can tell whether the site works. It runs by default, with IP anonymization on and every advertising feature off, and it stops the moment you ask: one click below, remembered in your browser, or the Global Privacy Control signal, which the site treats as a standing no. The legal basis is my legitimate interest in knowing whether the site is read at all, which is as light as a reason gets, and the switch below overrides it. Second, anything you choose to email me goes to my inbox so that I can reply, and a request that I call you travels through a Google Form into the same inbox; the legal basis is that you asked me to. Third, the host records ordinary server logs, as every website's host does. The site sets no cookies of its own. The fonts are served from this site, not from Google.</p>
       <p><strong>Who else touches it.</strong> Google LLC processes the analytics data and the call-request form on my behalf under its standard terms, and GitHub, Inc. hosts the site and its server logs. Both are in the United States and operate under the EU-US Data Privacy Framework. Nobody else. Nothing is sold, and nothing is used for advertising.</p>
-      <p><strong>How long.</strong> Analytics data is kept for fourteen months and then deleted by Google. Emails and call requests are kept as long as our conversation lasts and deleted the moment you ask. Your consent choice lives in your own browser until you clear it.</p>
-      <p><strong>Your rights.</strong> Under the GDPR and equivalent laws you can ask what I hold about you, have it corrected or deleted, restrict or object to its use, take a copy with you, and withdraw consent at any time without affecting anything that happened before. Email me and I'll do it within a month, usually the same day. If you're in the EU or UK and think I've handled your data badly, you can complain to your national supervisory authority. The site makes no automated decisions about anyone.</p>
+      <p><strong>How long.</strong> Analytics data is kept for fourteen months and then deleted by Google. Emails and call requests are kept as long as our conversation lasts and deleted the moment you ask. Your analytics choice lives in your own browser until you clear it.</p>
+      <p><strong>Your rights.</strong> Under the GDPR and equivalent laws you can ask what I hold about you, have it corrected or deleted, restrict or object to its use, take a copy with you, and switch the counting off at any time without affecting anything that happened before. Email me and I'll do it within a month, usually the same day. If you're in the EU or UK and think I've handled your data badly, you can complain to your national supervisory authority. The site makes no automated decisions about anyone.</p>
       <p><strong>US readers.</strong> California's CCPA and CPRA, and the similar laws in Virginia, Colorado, Connecticut, Texas, Florida, and a growing list of states, apply to businesses above revenue or data-volume thresholds that a one-person dating page doesn't approach, so none of them technically reaches this site. I follow their core rules anyway: you can ask what I have, have it deleted, and opt out of any sale or sharing, of which there is none, and the site honors the Global Privacy Control signal that California treats as a legal opt-out. Two federal points do apply. This site is for adults; it isn't directed at anyone under 18, and I don't knowingly collect anything from a minor. And if you use the call-me form, the call comes from me personally, by hand, at the time you asked for; there are no autodialed calls, no marketing texts, and a "please stop" ends it, which is what the Telephone Consumer Protection Act requires and what courtesy requires anyway.</p>
-      <p><strong>Change your answer.</strong> <button class="copy" type="button" id="consentReset">Reset my analytics choice</button> <span class="copied-note" id="consentNote"></span></p>
+      <p><strong>Why there's no cookie banner.</strong> There was one, for four days, and readers said it got in the way of the reading. Nothing in United States law asks a site this size to get permission before counting visits, and this site is written for people within a few hours of Florida and Cleveland, not for Europe, where the rule is stricter. So the counting is on by default and off with one click, and if your browser sends the Global Privacy Control signal it was off before you reached this page. If you're reading from the EU or UK and would rather have been asked, the switch below is the asking.</p>
+      <p><strong>The switch.</strong> <button class="copy" type="button" id="consentReset">Stop counting my visits</button> <span class="copied-note" id="consentNote"></span></p>
     </div>
     <p class="crosslink">The safety side of the same promise: <a href="#verifyme">Verify Me</a>.</p>
   </section>
@@ -2203,7 +2183,7 @@ He's clear about what he wants, which is to marry and raise two or three kids so
       <p><strong>The price of a first message is an hour of curiosity.</strong> You don't need to know whether you'd marry me, agree with me, or finish this site. You only need to wonder whether we'd enjoy a coffee. One line is a fine first message. So is a guarded one.</p>
       <p>If something here resonated, reach out. Include whatever you like: a favorite line, your strongest objection, or a counterproposal for any of the functions. Bonus points if your AI disagreed with me and you took its side. If meeting an internet stranger calls for de-risking first, <a href="#verifyme">Verify Me</a> is the standing protocol. And <a href="#feedback">the Feedback Clause</a> starts after our first call or coffee: two or three paragraphs of honest first impressions, whichever way you decide, and you’ll get the same care back.</p>
       <p class="num" style="font-family:'IBM Plex Mono',monospace;"><a id="contactLink" href="#transmission" style="color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);">[ decoding transmission address… ]</a></p>
-      <p><strong>What happens next.</strong> I read every message myself, and I reply to every one, usually within two days and never later than a week. Whatever you send goes to my inbox and nowhere else: it isn't stored by any service of mine, shared with anyone, or used for anything but replying to you, and I'll delete it the moment you ask. The one thing the site itself records, and only if you said yes to the banner, is Google Analytics: which sections get read and which buttons get clicked, in aggregate, with no names, no messages, and no advertising profile attached. <a href="#privacy">The Privacy page</a> has the rest.</p>
+      <p><strong>What happens next.</strong> I read every message myself, and I reply to every one, usually within two days and never later than a week. Whatever you send goes to my inbox and nowhere else: it isn't stored by any service of mine, shared with anyone, or used for anything but replying to you, and I'll delete it the moment you ask. The one thing the site itself records, unless you switch it off on the Privacy page, is Google Analytics: which sections get read and which buttons get clicked, in aggregate, with no names, no messages, and no advertising profile attached. <a href="#privacy">The Privacy page</a> has the rest.</p>
       <p><strong>Request a video call.</strong> Verify Me offers as many as you want, so here is how to ask for the first: <a id="bookLink" href="#transmission" class="bookcall" style="color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);">send three times that work for you</a> and I'll confirm the one that works for me too, usually within a day. I can't take calls at any hour, but I can nearly always find one that fits us both inside a week. Any platform you like; I default to whichever you name.</p>
       <p><strong>Or ask me to call you.</strong> If a phone call is easier than writing, leave a name, a number, and a good time. Submitting sends the request to me through a Google Form, which emails it to my inbox; the site itself stores nothing, and if the send fails you'll get the request as an email to copy instead.</p>
       <form class="callform" id="callForm" autocomplete="on">
@@ -2260,7 +2240,8 @@ He's clear about what he wants, which is to marry and raise two or three kids so
   // Add a <section class="topic" id="..." data-title="...">;
   // the nav builds itself.
   // ============================================================
-  // analytics: sections as page views, calls to action as events, and nothing at all without consent
+  // analytics: sections as page views, calls to action as events. On by default; off with one click on the
+  // Privacy page (stored as 'denied' in localStorage) or whenever the browser sends Global Privacy Control.
   const GA_ID = 'G-GD340Z2HSF';
   function consentState() {
     try {
@@ -2268,6 +2249,7 @@ He's clear about what he wants, which is to marry and raise two or three kids so
       return localStorage.getItem('consent');
     } catch (e) { return null; }
   }
+  function analyticsOff() { return consentState() === 'denied'; }
   let analyticsLoaded = false;
   function loadAnalytics() {
     if (analyticsLoaded) return;
@@ -2279,11 +2261,11 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     gtag('config', GA_ID, { send_page_view: false, anonymize_ip: true, allow_google_signals: false, allow_ad_personalization_signals: false });
   }
   function track(name, params) {
-    if (consentState() !== 'granted') return;
+    if (analyticsOff()) return;
     loadAnalytics();
     try { gtag('event', name, params || {}); } catch (e) {}
   }
-  if (consentState() === 'granted') loadAnalytics();
+  if (!analyticsOff()) loadAnalytics();
 
   const sections = Array.from(document.querySelectorAll('section.topic'));
   const rail = document.getElementById('navRail');
@@ -3135,9 +3117,7 @@ Be honest rather than kind. The author wrote this prompt himself and published i
         if ((a.getAttribute('href') || '').indexOf('mailto') !== 0) hide();
       }));
       document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
-      const banner = document.getElementById('consent');
-      const showWhenAnswered = () => { if (banner && !banner.hidden) setTimeout(showWhenAnswered, 15000); else show(); };
-      if (!seen()) setTimeout(showWhenAnswered, 120000);
+      if (!seen()) setTimeout(show, 120000);
     }
     document.querySelectorAll('a.refer').forEach(b => {
       b.href = 'mailto' + String.fromCharCode(58) + addr + '?subject=' + rSubject + '&body=' + rBody;
@@ -3283,30 +3263,39 @@ Be honest rather than kind. The author wrote this prompt himself and published i
     tick(); setInterval(tick, 60000);
   })();
 
-  // the consent banner: shown until answered, unless the browser already says no
+  // the analytics switch on the Privacy page: counting is on unless the reader turns it off here,
+  // or the browser sends Global Privacy Control, which the site treats as a standing no
   (function () {
-    const banner = document.getElementById('consent');
-    if (!banner) return;
-    const decide = (v) => {
-      try { localStorage.setItem('consent', v); } catch (e) {}
-      banner.hidden = true;
-      if (v === 'granted') {
+    const btn = document.getElementById('consentReset');
+    const note = document.getElementById('consentNote');
+    if (!btn) return;
+    let gpc = false; try { gpc = !!navigator.globalPrivacyControl; } catch (e) {}
+    const label = () => {
+      if (gpc) { btn.textContent = 'Your browser already said no'; btn.disabled = true; return; }
+      btn.textContent = analyticsOff() ? 'Count my visits again' : 'Stop counting my visits';
+    };
+    const say = (t) => { note.textContent = t; note.classList.add('show'); setTimeout(() => note.classList.remove('show'), 4000); };
+    btn.addEventListener('click', () => {
+      if (gpc) return;
+      if (analyticsOff()) {
+        try { localStorage.setItem('consent', 'granted'); } catch (e) {}
+        window['ga-disable-' + GA_ID] = false;
         loadAnalytics();
         const act = document.querySelector('section.topic.active');
-        track('page_view', { page_title: act ? act.dataset.title : 'Start Here', page_path: '/#' + (act ? act.id : 'radius') });
+        track('page_view', { page_title: act ? act.dataset.title : 'Privacy', page_path: '/#' + (act ? act.id : 'privacy') });
+        say('Counting again, from this page on.');
+      } else {
+        try { localStorage.setItem('consent', 'denied'); } catch (e) {}
+        // silence the already-loaded tag and expire its cookies, so the switch is an end and not a pause
+        window['ga-disable-' + GA_ID] = true;
+        ['_ga', '_ga_' + GA_ID.slice(2)].forEach(c => ['', '; domain=' + location.hostname, '; domain=.' + location.hostname].forEach(d => {
+          document.cookie = c + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + d;
+        }));
+        say('Stopped. Nothing more is sent, and the analytics cookies are gone.');
       }
-    };
-    document.getElementById('consentYes').addEventListener('click', () => decide('granted'));
-    document.getElementById('consentNo').addEventListener('click', () => decide('denied'));
-    if (consentState() === null) banner.hidden = false;
-    const reset = document.getElementById('consentReset');
-    if (reset) reset.addEventListener('click', () => {
-      try { localStorage.removeItem('consent'); } catch (e) {}
-      banner.hidden = false;
-      const n = document.getElementById('consentNote');
-      n.textContent = 'Cleared. The question is back at the bottom of the page.'; n.classList.add('show');
-      setTimeout(() => n.classList.remove('show'), 3000);
+      label();
     });
+    label();
   })();
 
   // every prefilled mail link also reveals its text, so a computer with no mail app can still send it

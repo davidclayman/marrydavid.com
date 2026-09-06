@@ -76,7 +76,9 @@ hits = [b for b in BANNED if b in s.lower()]
 check('no banned phrases', not hits, str(hits))
 n4 = open(os.path.join(ROOT, '404.html'), encoding='utf-8').read()
 check('analytics id present on both pages', 'G-GD340Z2HSF' in s and 'G-GD340Z2HSF' in n4)
-check('analytics loads only after consent', 'src="https://www.googletagmanager.com' not in s and 'src="https://www.googletagmanager.com' not in n4 and "localStorage.getItem('consent')" in s)
+check('analytics injected by script, never a static tag', 'src="https://www.googletagmanager.com' not in s and 'src="https://www.googletagmanager.com' not in n4)
+check('analytics honors the opt-out and Global Privacy Control', "localStorage.getItem('consent')" in s and "=== 'denied'" in s and 'navigator.globalPrivacyControl' in s and "!== 'denied'" in n4 and 'navigator.globalPrivacyControl' in n4)
+check('no consent banner; the switch lives on the Privacy page', 'id="consent"' not in s and 'consentYes' not in s and 'id="consentReset"' in s and 'Why there' in s)
 check('fonts self-hosted, no Google Fonts requests', 'fonts.googleapis.com' not in s and 'fonts.gstatic.com' not in s and 'fonts.googleapis.com' not in n4)
 fontfiles = set(re.findall(r"url\('(fonts/[^']+)'\)", s))
 check('font files exist', fontfiles and all(os.path.exists(os.path.join(ROOT, f)) for f in fontfiles), str(sorted(fontfiles)))
@@ -158,7 +160,7 @@ for slug in ('coronacrush', 'shabbat', 'justmatched'):
     check(f'{slug} is noindex', 'content="noindex' in src)
     check(f'{slug} email never in source', 'david@' not in src and 'mailto:' not in src)
     check(f'{slug} is unlisted', f'href="/{slug}' not in s and f'href="{slug}' not in s and f'/{slug}' not in sm)
-    check(f'{slug} analytics loads only after consent', 'src="https://www.googletagmanager.com' not in src and "localStorage.getItem('consent')" in src)
+    check(f'{slug} analytics honors the opt-out and Global Privacy Control', 'src="https://www.googletagmanager.com' not in src and "localStorage.getItem('consent') !== 'denied'" in src and 'navigator.globalPrivacyControl' in src)
     check(f'{slug} greeting is sanitized', "get('for')" in src and 'replace(/[^A-Za-z' in src)
     check(f'{slug} states the current status', stage and (STAGES[stage - 1].upper() in src) and ('SINCE ' + (re.search(r'data-since="([^"]+)"', s).group(1)) in src))
     deep = set(re.findall(r'href="\.\./#([^"]+)"', src))
@@ -189,7 +191,9 @@ os.unlink(jspath)
 # --- rendered smoke test (needs Chrome) ----------------------------------
 chrome = os.environ.get('CHROME_BIN') or '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 if os.path.exists(chrome) or os.environ.get('CHROME_BIN'):
-    probe = s.replace('</body>', """<script>
+    # the probe must never count as a visit: Google's disable flag goes in before the page script runs
+    probe = s.replace('<head>', "<head><script>window['ga-disable-G-GD340Z2HSF']=true;</script>", 1)
+    probe = probe.replace('</body>', """<script>
 window.__errs=[];window.onerror=(m)=>{__errs.push(String(m))};
 window.addEventListener('load',()=>setTimeout(()=>{
   document.title=(__errs.length?('JSERR:'+__errs[0]):'JSOK')
@@ -197,7 +201,9 @@ window.addEventListener('load',()=>setTimeout(()=>{
     +'|age='+(document.getElementById('age')||{}).textContent
     +'|a07='+(document.getElementById('audit-07')||{}).open
     +'|st='+document.querySelectorAll('#status [aria-current="step"]').length
-    +'|stn='+(function(){var b=document.querySelectorAll('#status details.next button.stage')[0];if(!b)return 'none';b.click();var n=document.getElementById('statusNote');return (n&&!n.hidden&&n.querySelector('a'))?'open':'closed';})();},400));
+    +'|stn='+(function(){var b=document.querySelectorAll('#status details.next button.stage')[0];if(!b)return 'none';b.click();var n=document.getElementById('statusNote');return (n&&!n.hidden&&n.querySelector('a'))?'open':'closed';})()
+    +'|ga='+(document.querySelector('script[src*="googletagmanager"]')?'on':'off')
+    +'|sw='+(function(){var b=document.getElementById('consentReset');if(!b)return 'none';var before=b.textContent;b.click();var v='';try{v=localStorage.getItem('consent')}catch(e){}var after=b.textContent;try{localStorage.removeItem('consent')}catch(e){}return (before.indexOf('Stop')===0&&v==='denied'&&after.indexOf('Count')===0)?'flips':('stuck:'+before+'/'+v+'/'+after);})();},400));
 </script></body>""")
     with tempfile.NamedTemporaryFile('w', suffix='.html', delete=False, dir=ROOT, encoding='utf-8') as f:
         f.write(probe); ppath = f.name
@@ -214,6 +220,8 @@ window.addEventListener('load',()=>setTimeout(()=>{
         check('smoke: audit deep link opens card', 'a07=true' in t, t[:200])
         check('smoke: status bar marks one current stage', '|st=1|' in t, t[:200])
         check('smoke: clicking an inactive stage opens its note', 'stn=open' in t, t[:200])
+        check('smoke: analytics loads by default', '|ga=on|' in t, t[:200])
+        check('smoke: privacy switch stores the opt-out and flips its label', 'sw=flips' in t, t[:200])
     finally:
         os.unlink(ppath)
 else:

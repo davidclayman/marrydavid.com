@@ -1,6 +1,6 @@
-# datedavid.org
+# marrydavid.com
 
-The source for [datedavid.org](https://datedavid.org/), a single-page, radically
+The source for [marrydavid.com](https://marrydavid.com/), a single-page, radically
 transparent dating site. If you arrived here from the site's FAQ, this repository
 is the receipts: every position on the page, every revision to it, and every
 number behind it, timestamped in the commit log.
@@ -104,7 +104,7 @@ The copy has house rules, and the test suite enforces most of them:
   those disagree.
 
 Photos live in `photos/` and are dated in their captions. Metadata in `<head>`
-assumes the canonical URL `https://datedavid.org/`.
+assumes the canonical URL `https://marrydavid.com/`.
 
 ## Tests
 

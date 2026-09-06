@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Integrity checks for datedavid.org's single-file site.
+"""Integrity checks for marrydavid.com's single-file site.
 
 Static checks need only python3 + node. Set CHROME_BIN (or have Chrome at the
 default macOS path) to also run the rendered smoke test.
@@ -65,7 +65,7 @@ check('dealbreaker count matches subhead', m and WORDS.get(m.group(1)) == n_db,
       f'{n_db} items vs "These {m.group(1) if m else "?"}"')
 
 # --- content invariants ---------------------------------------------------
-check('email never in source', 'david@datedavid.org' not in s and 'mailto:david' not in s)
+check('email never in source', 'david@marrydavid.com' not in s and 'david@datedavid.org' not in s and 'mailto:david' not in s)
 style = s.split('<style>', 1)[1].split('</style>', 1)[0]
 bad_css = [l.strip() for l in style.splitlines() if 'content:' in l and '\\u' in l]
 check('no \\u escapes in CSS content', not bad_css, str(bad_css))
@@ -114,8 +114,8 @@ if os.path.exists(nf):
     check('404 is noindex', 'name="robots" content="noindex"' in n4)
     check('404 email never in source', 'david@' not in n4 and 'mailto:' not in n4)
 
-check('robots.txt allows crawling and names the sitemap', os.path.exists(os.path.join(ROOT, 'robots.txt')) and 'Sitemap: https://datedavid.org/sitemap.xml' in open(os.path.join(ROOT, 'robots.txt')).read())
-check('sitemap.xml lists the canonical URL', os.path.exists(os.path.join(ROOT, 'sitemap.xml')) and '<loc>https://datedavid.org/</loc>' in open(os.path.join(ROOT, 'sitemap.xml')).read())
+check('robots.txt allows crawling and names the sitemap', os.path.exists(os.path.join(ROOT, 'robots.txt')) and 'Sitemap: https://marrydavid.com/sitemap.xml' in open(os.path.join(ROOT, 'robots.txt')).read())
+check('sitemap.xml lists the canonical URL', os.path.exists(os.path.join(ROOT, 'sitemap.xml')) and '<loc>https://marrydavid.com/</loc>' in open(os.path.join(ROOT, 'sitemap.xml')).read())
 
 # --- relationship status bar ---------------------------------------------
 import datetime

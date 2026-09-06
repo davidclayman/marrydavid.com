@@ -567,6 +567,19 @@
   .chartbox.ladderbox { margin-top: 3rem; padding-top: 3rem; }
   .chartbox.ladderbox::before { color: var(--paper); }
   .chartbox .fine { margin: 0.5rem 0.4rem 0; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; letter-spacing: 0.12em; color: var(--faint); }
+  .drakebox::before { color: var(--paper); }
+  .chartbox .ctl select {
+    display: block; width: 100%; margin-top: 0.45rem;
+    font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.92rem; color: var(--paper);
+    background: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 0.5rem 0.6rem;
+  }
+  .chartbox .ctl.two { grid-template-columns: 1fr 1fr; column-gap: 1.4rem; border-top: none; padding-top: 0; }
+  @media (max-width: 640px) { .chartbox .ctl.two { grid-template-columns: 1fr; } }
+  .drakeout::before { content: "THE ANSWER · GIVE OR TAKE A LOT"; }
+  .drakeout .big { font-size: clamp(1.9rem, 5.5vw, 2.9rem); }
+  .drakeout .big + .big { margin-top: 0.35rem; }
+  .drakeout .big b { font-weight: inherit; }
+  .drakeout .odometer strong { color: var(--gold); }
 
   .audit {
     scroll-margin-top: 70px;
@@ -823,7 +836,7 @@
     <ul class="items">
       <li>
         <span class="k">Three things to know before writing</span>
-        <span class="v">I'm looking for someone Jewish, or converted before we met. Someone who wants children, or already has them. And someone who reads, which doesn't have to mean books, but does have to mean deep thought and relentless curiosity about the world. The other eight dealbreakers, and the things that shouldn't be, are on <a href="#dealbreakers">Dealbreakers</a>; if you land between the lines, don't self-reject.</span>
+        <span class="v">I'm looking for someone Jewish, or converted before we met. Someone who wants children, or already has them. And someone who reads, which doesn't have to mean books, but does have to mean deep thought and relentless curiosity about the world. The other seven dealbreakers, and the things that shouldn't be, are on <a href="#dealbreakers">Dealbreakers</a>; if you land between the lines, don't self-reject.</span>
       </li>
       <li>
         <span class="k">The price of a first message</span>
@@ -831,7 +844,7 @@
       </li>
     </ul>
 
-    <p class="crosslink"><strong>Still curious?</strong> Open the laboratory: <a href="#contents">the Contents page</a> maps forty-odd sections of source code, from the family plan to the wedding math. Skeptical? Healthy. <a href="#audits">The Audit Ledger</a> is there whenever you want it: the physics is Audits 01–04, and the life philosophy runs 05–23.</p>
+    <p class="crosslink"><strong>Still curious?</strong> Open the laboratory: <a href="#contents">the Contents page</a> maps forty-odd sections of source code, from the family plan to the wedding math. Skeptical? Healthy. <a href="#audits">The Audit Ledger</a> is there whenever you want it: the physics is Audits 01–04, and the life philosophy runs 05–24.</p>
   </section>
 
   <!-- ============ CONTENTS ============ -->
@@ -1634,6 +1647,10 @@
         <span class="v">American or not, it makes no difference. I hold three passports myself, my mother was born in Morocco, and the Geography page already assumes we might settle near your parents wherever they are.</span>
       </li>
       <li>
+        <span class="k">Political Party Loyalty/Identification</span>
+        <span class="v">Democrat, Republican, independent, or none of the above: not a filter. I'm an independent who works issues one at a time rather than wearing a jersey, and I think both parties get a lot wrong. My positions are no mystery: the platform at <a href="https://lifesaverlabs.us">lifesaverlabs.us</a> documents them one by one. I'd happily marry a more traditional partisan; Mary Matalin and James Carville built a great marriage as opposing professionals. Florida's closed primaries mean my registration moves tactically, sometimes several times a year, and I've been registered Republican, Democratic, No Party Affiliation, Forward, and No Labels. In 2024 I wanted to vote for Nikki Haley over Donald Trump and for Dean Phillips over Joe Biden. I have never voted a party line, and I won't need you to agree with me. The one rule that reaches politics is the one on <a href="#dealbreakers">Dealbreakers</a> about conflict: a disagreement about the news arrives at the table, the same as any other.</span>
+      </li>
+      <li>
         <span class="k">What I do care about</span>
         <span class="v">How educated you are. I care about that a great deal, and the Dealbreakers page's definition of reading, deep thought and relentless curiosity in whatever form, is the version of educated I mean.</span>
       </li>
@@ -1660,7 +1677,7 @@
   <!-- ============ DEALBREAKERS ============ -->
   <section class="topic" id="dealbreakers" data-title="Dealbreakers" data-chapter="The filters">
     <h2 class="head">Dealbreakers</h2>
-    <p class="subhead">Everything else on this site is a preference with a veto. These eleven are structural, and the list is kept short on purpose.</p>
+    <p class="subhead">Everything else on this site is a preference with a veto. These ten are structural, and the list is kept short on purpose.</p>
     <ul class="items">
       <li>
         <span class="k">The family plan is the mission</span>
@@ -1673,10 +1690,6 @@
       <li>
         <span class="k">Vaccine skepticism</span>
         <span class="v">Our kids will follow the standard medical consensus on vaccination schedules, the boring evidence-backed one. If that sentence reads as controversial rather than obvious, we won't be a match.</span>
-      </li>
-      <li>
-        <span class="k">Party-line partisanship</span>
-        <span class="v">If you need a traditional Democratic or Republican partisan who always agrees with you, that's not me. I'm an independent who works issues one at a time rather than wearing a jersey, and I think both parties get a lot wrong. My positions are no mystery: the platform at <a href="https://lifesaverlabs.us">lifesaverlabs.us</a> documents them one by one. I'd happily marry a more traditional partisan, though; Mary Matalin and James Carville built a great marriage as opposing professionals. Florida's closed primaries mean my registration moves tactically, sometimes several times a year, and I've been registered Republican, Democratic, No Party Affiliation, Forward, and No Labels. In 2024 I wanted to vote for Nikki Haley over Donald Trump and for Dean Phillips over Joe Biden. I have never voted a party line.</span>
       </li>
       <li>
         <span class="k">Income without impact</span>
@@ -1724,7 +1737,89 @@
         <span class="v">I can't change the fact that my marriage ended. I was supercommitted to staying married; my ex-spouse wasn't. How it failed was complex, mostly idiosyncratic to who my ex-wife was, and unlikely to recur, and I'm going to do everything I can to make my next marriage my last one, happy to the end. I know you'll be curious, but please don't press for deep details on our first few dates. Some parts I can't discuss until we know each other better, and some parts not at all. A first-date explanation is a sandtrap: stop short and you'll suspect I'm hiding the story; go long and you'll suspect I think too much about my ex. I also won't say anything that reflects poorly on her: I keep fond memories and a residual duty of protection from our marriage pact. So the fact itself you get up front, right here, and the full chapter comes once we trust each other. Weigh it fairly, too: a divorce deserves no deeper doubt than an unhappy marriage that's merely still standing, or a string of long-term breakups across someone's 20s and 30s that were divorces in everything but paperwork.</span>
       </li>
     </ul>
-    <p class="crosslink">Think one of these is wrong? <a href="#feedback">The Feedback Clause</a> applies: tell me why. The prayer arithmetic and the inconvenient studies against it: <a href="#audit-19">Audit 19</a>.</p>
+    <p class="crosslink">Think one of these is wrong? <a href="#feedback">The Feedback Clause</a> applies: tell me why. The prayer arithmetic and the inconvenient studies against it: <a href="#audit-19">Audit 19</a>. What the ten cost, counted in women: <a href="#drake">Why I Don't Have a Wife</a>.</p>
+  </section>
+
+  <!-- ============ WHY I DON'T HAVE A WIFE ============ -->
+  <section class="topic" id="drake" data-title="Drake Equation" data-chapter="The filters">
+    <h2 class="head">Why I Don't Have a Wife</h2>
+    <p class="subhead">In 2010 an economist ran the Drake equation on his love life and got 26 women in London. Here is the same equation run on mine: every filter on this site priced in people, with the knobs left out where you can turn them.</p>
+    <div class="prose">
+      <p><strong>The original.</strong> Frank Drake's 1961 equation multiplies a short chain of fractions to estimate how many civilizations in the galaxy we could talk to. <a href="https://www.astro.sunysb.edu/fwalter/AST248/why_i_dont_have_a_girlfriend.pdf">Peter Backus</a>, then an economist at the University of Warwick, borrowed it for a four-page paper called "Why I Don't Have a Girlfriend": the population of the UK, times the fraction who are women, who live in London, who are 24 to 34, who went to university, who he found attractive. Six factors, 10,510 women. Then the three he admitted he'd skipped, the women who'd find him attractive, who were single, and who he'd get along with, and the count fell to 26. One in 285,000 on a night out in London, which he noted was about a hundred times better than the odds of finding an alien civilization. The part everyone forgets to cite: he married a few years later. The method on this page is his, borrowed with thanks, and the paper is worth the ten minutes on its own.</p>
+      <p><strong>My version.</strong> Same machine, different filters, and two changes of principle. First, Backus put taste first and structure last; I've done the reverse, because <a href="#dealbreakers">the Dealbreakers page</a> is short on purpose and nearly all of it is the kind of thing a census or a survey can count: Jewish, unpartnered, in the age window, wants a family. Taste comes last and costs little, because <a href="#dontcare">Don't Care</a> means what it says. Second, her side of the equation gets a larger term than he gave it, because this site asks a lot of a stranger: I'm divorced, in my forties, living with family by design, on a family-plan clock, and I wrote all of this down. Every number below is an estimate from public data, rounded to two figures, and <a href="#audit-24">Audit 24</a> hands the whole chain to your AI to check. The two I'd check first: the Jewish share of each map, and the age structure of the Jewish community around Boca Raton, which is mostly retired.</p>
+      <p><strong>The knobs.</strong> The things this site calls flexibilities are the controls. Geography runs from 45 minutes of home in Boca Raton to the whole nonstop map on <a href="#remix">Travel Reach</a>, and the far settings add a row for the women who'd let a man start eight hours away and move to them. The age window defaults to <a href="#agerange">the Age Range page</a>: 30 up to five years older than I am today, with path two, building from scratch, counted only to about 38. Politics has the two modes I've debated with myself, and since party loyalty lives on <a href="#dontcare">Don't Care</a> rather than Dealbreakers, the row sits on her side of the funnel: count every woman who'd marry an independent, or count only the women who call themselves one. The reader row lets you pick the site's broad definition, a bachelor's degree, or both. Observance has a second setting, Just Jewish up to Conservative, for the case where Modern Orthodox women would pass on me for fear of religious incompatibility; it costs less than you'd guess, because Modern Orthodox women are about three in a hundred Jewish women, and the Orthodox share is set per map, since the drive map takes in New York. And three human factors have sliders because no survey can set them: the four dealbreakers nobody measures, my side, and hers. The dealbreakers themselves have no controls. They're drawn so you can see what each one costs.</p>
+    </div>
+    <div class="chartbox drakebox" data-label="THE FUNNEL · LOG SCALE · EVERY BAR IS AN ESTIMATE">
+      <div id="drakeChart"></div>
+      <div class="ctl">
+        <label>WHERE SHE LIVES
+          <select id="drakeGeo" aria-label="Geography of the search">
+            <option value="boca">45 minutes from home: Boca Raton, with Palm Beach and Broward counties</option>
+            <option value="bases">45 minutes from either base: Boca Raton or Cleveland</option>
+            <option value="drive">The 460-mile drive from either base, about eight hours</option>
+            <option value="fly" selected>The nonstop map: eight hours door to door, US and Canada</option>
+          </select>
+        </label>
+        <label>THE FAMILY PATH
+          <select id="drakePath" aria-label="Which family path counts">
+            <option value="both" selected>Both paths: children in hand, or building from scratch to about 38</option>
+            <option value="one">Path one only: two or more children already, or one plus a real appetite for adoption</option>
+            <option value="two">Path two only: no children yet, wants two or more, to about 38</option>
+          </select>
+        </label>
+        <label>POLITICS
+          <select id="drakePol" aria-label="Political filter">
+            <option value="accept" selected>Anyone who'd marry an independent, partisans included</option>
+            <option value="indep">Only women who identify as independents</option>
+          </select>
+        </label>
+        <label>A READER MEANS
+          <select id="drakeRead" aria-label="Definition of a reader">
+            <option value="reads" selected>Reads for pleasure, in the site's broad sense</option>
+            <option value="degree">Holds a bachelor's degree or higher</option>
+            <option value="both">Both</option>
+          </select>
+        </label>
+        <label>HOW OBSERVANT
+          <select id="drakeObs" aria-label="Observance ceiling">
+            <option value="up" selected>Just Jewish up to Modern Orthodox, minus the women who need a thrice-daily husband</option>
+            <option value="cons">Just Jewish up to Conservative: Modern Orthodox women pass on me as a religious mismatch</option>
+          </select>
+        </label>
+      </div>
+      <div class="ctl two">
+        <label>YOUNGEST: <strong id="valLo">30</strong>
+          <input type="range" id="sldLo" min="24" max="44" step="1" value="30" aria-label="Youngest age in the window">
+        </label>
+        <label>OLDEST: <strong id="valHi">45</strong> <span id="drakeCeil"></span>
+          <input type="range" id="sldHi" min="25" max="45" step="1" value="45" aria-label="Oldest age in the window">
+        </label>
+        <label>THE FOUR NO SURVEY MEASURES (CONFLICT STYLE, MY BACKSTORY, PETS, THE TRIPLE BOTTOM LINE): <strong><span id="valUnm">50</span>% CLEAR</strong>
+          <input type="range" id="sldUnm" min="10" max="100" step="5" value="50" aria-label="Share who clear the four unmeasurable dealbreakers">
+        </label>
+        <label>MY SIDE, ATTRACTION TIMES GETTING ALONG: <strong><span id="valMine">60</span>%</strong>
+          <input type="range" id="sldMine" min="10" max="100" step="5" value="60" aria-label="Share I would be attracted to and get along with">
+        </label>
+        <label>HER SIDE, YES TO A COFFEE AFTER READING THIS SITE: <strong><span id="valHers">10</span>%</strong>
+          <input type="range" id="sldHers" min="1" max="50" step="1" value="10" aria-label="Share who would say yes to a first coffee">
+        </label>
+        <label id="drakeRelRow">WOULD LET A MAN EIGHT HOURS AWAY COME TO HER: <strong><span id="valRel">35</span>%</strong>
+          <input type="range" id="sldRel" min="5" max="100" step="5" value="35" aria-label="Share willing to start with a partner who would relocate to her">
+        </label>
+      </div>
+      <p class="fine">BACKUS, LONDON, 2010: 26 WOMEN, 1 IN 285,000 ON A NIGHT OUT · DRAKE, 1961: ABOUT ONE STAR IN 30 MILLION · SOURCES AND THE CHECK: AUDIT 24</p>
+    </div>
+    <div class="radius drakeout">
+      <div class="big"><b id="drakeOdds">1 in 0</b> <span>of the women on this map</span></div>
+      <div class="big"><b id="drakeG">0</b> <span>women</span></div>
+      <div class="sub" id="drakeSub"></div>
+      <div class="odometer" id="drakeVerdict"></div>
+    </div>
+    <div class="prose">
+      <p><strong>What the number says.</strong> Move the map and watch which row does the cutting. Set to 45 minutes of Boca and the Jewish row barely bites, because Palm Beach and Broward are among the most Jewish counties in America, and then the age row bites hard, because that community is mostly retired. Set to the nonstop map and the population climbs a hundredfold, the Jewish row falls to about one in forty, and a relocation row appears, because most women would rather not start with a man eight hours away, however willing he is to move. The count climbs by about ten where the population climbs by a hundred: the geography knob mostly trades one cut for another. What moves the answer is her side. Halve that slider and the whole thing halves, and no demographic row has that kind of leverage left, because the demographic rows are facts and her side is a choice. At the defaults, the 45-minute map lands within a rounding error of Backus's 26, which is either a coincidence or a law of nature.</p>
+      <p><strong>So, why I don't have a wife.</strong> Because the odds per random woman run from about one in seventy thousand on the local map to one in half a million on the big one, and a first coffee tests one woman at a time. Even counted only among unpartnered Jewish women in the window, the odds are one in a few hundred, so a man who meets two of them a month would need somewhere between a decade and a generation of coffees, and the clock on <a href="#family">the Family page</a> has neither. The lazy fixes don't work: the dealbreakers are already the short list, and searching harder only raises the number of coffees. The fix is to turn the search inside out. Publish every filter, so the woman who clears them can recognize herself in an hour instead of on date three, and pay the yentes on <a href="#referrals">the Referrals page</a> to route her here. This site is the Drake equation solved for "let her find me." Backus, for the record, found his.</p>
+    </div>
+    <p class="crosslink">The mathematics of stopping once she's found: <a href="#matching">Matching</a>. The window the sliders default to: <a href="#agerange">Age Range</a>. The ten filters with no controls: <a href="#dealbreakers">Dealbreakers</a>. The way the one in ten thousand finds this page: <a href="#referrals">Referrals</a>. Every input, sourced and checkable: <a href="#audit-24">Audit 24</a>.</p>
   </section>
 
   <!-- ============ FAQ ============ -->
@@ -1791,7 +1886,7 @@
         <span class="v">The arithmetic is right and the pressure is real. A woman reading <a href="#family">Family</a> is asked to feel a deadline that is mostly mine. I've tried to keep the numbers honest and the tone fair, and Audit 16 exists to check both, but a page that counts months does apply pressure by existing.</span>
       </li>
       <li>
-        <span class="k">He says he isn't picky, then publishes eleven dealbreakers and an age ceiling</span>
+        <span class="k">He says he isn't picky, then publishes ten dealbreakers and an age ceiling</span>
         <span class="v">Fair. The honest version is narrower than the slogan: flexible about nearly everything inside the lines, absolute about the lines. Whether that counts as picky depends on where you stand relative to them, which is exactly why they're published.</span>
       </li>
       <li>
@@ -1865,7 +1960,7 @@
   <!-- ============ AUDIT LEDGER ============ -->
   <section class="topic" id="audits" data-title="Audit Ledger" data-chapter="Trust, but verify">
     <h2 class="head">The Audit Ledger</h2>
-    <p class="subhead">Every claim on this site, numbered and checkable, for whenever curiosity strikes; none of it is required reading. Expand one, copy its prompt, hand it to any AI assistant. Audit 00 covers the whole site at once. Audits 01–04 cover the physics, 05–11 the life philosophy, 12 travel reach, 13 the feedback clause, 14 the grandparent effect, 15 the money merger, 16 the mortality clock, 17 the age range, 18 the maintenance schedule, 19 the prayer arithmetic, 20 Safeword, 21 the domestic split, 22 circumcision, and 23 whether a name shapes a life.</p>
+    <p class="subhead">Every claim on this site, numbered and checkable, for whenever curiosity strikes; none of it is required reading. Expand one, copy its prompt, hand it to any AI assistant. Audit 00 covers the whole site at once. Audits 01–04 cover the physics, 05–11 the life philosophy, 12 travel reach, 13 the feedback clause, 14 the grandparent effect, 15 the money merger, 16 the mortality clock, 17 the age range, 18 the maintenance schedule, 19 the prayer arithmetic, 20 Safeword, 21 the domestic split, 22 circumcision, 23 whether a name shapes a life, and 24 the Drake equation, run on me.</p>
     <details class="audit" id="audit-00">
       <summary><span class="no">AUDIT 00</span><span class="q">The meta-audit: run the whole site past your AI</span><span class="chev">›</span></summary>
       <div class="body">
@@ -1998,6 +2093,11 @@
       </li>
       <li>
         <span class="tag">2026-09-06</span>
+        <span class="k">Party loyalty left the dealbreakers</span>
+        <span class="v">It was one of eleven. It now sits on Don't Care as Political Party Loyalty/Identification, where it belonged: I'm an independent, I'd happily marry a partisan, and the only thing the old entry filtered was a woman who needs her husband in the jersey, which the conflict rule already covers. Ten dealbreakers remain.</span>
+      </li>
+      <li>
+        <span class="tag">2026-09-06</span>
         <span class="k">The consent banner came down</span>
         <span class="v">Four days after it went up, readers said the question got in the way of the reading. So it's gone: counting is on by default, off with one click on the Privacy page or with a Global Privacy Control signal, and the Privacy page now says legitimate interest where it used to say consent, with the reasoning under "Why there's no cookie banner."</span>
       </li>
@@ -2010,7 +2110,7 @@
     <h2 class="head">Acknowledgments</h2>
     <p class="subhead">Nothing here was built alone. The positions are mine; the shoulders are other people's.</p>
     <div class="prose">
-      <p><strong>The giants.</strong> This site stands on the available research and scholarly literature, and the Audit Ledger is mostly a list of the people whose work it borrows: Gale and Shapley on stable matching and the optimal-stopping mathematicians who followed them; the economists behind the wedding-spending study and the courtship-length data; the reproductive-medicine societies whose fertility tables set the Family page's clock; the actuaries at the Social Security Administration whose life tables run the grandparent clock; the geneticists who measured how paternal age writes itself into a child's genome; the psychologists who studied pooled finances, housework, feedback, and the transition to parenthood; and the cosmologists who measured our motion against the microwave background and gave the whole thing its radius. Where I've summarized them fairly, the credit is theirs. Where I haven't, the audits exist so you'll catch it.</p>
+      <p><strong>The giants.</strong> This site stands on the available research and scholarly literature, and the Audit Ledger is mostly a list of the people whose work it borrows: Gale and Shapley on stable matching and the optimal-stopping mathematicians who followed them; the economists behind the wedding-spending study and the courtship-length data; the reproductive-medicine societies whose fertility tables set the Family page's clock; the actuaries at the Social Security Administration whose life tables run the grandparent clock; the geneticists who measured how paternal age writes itself into a child's genome; the psychologists who studied pooled finances, housework, feedback, and the transition to parenthood; the cosmologists who measured our motion against the microwave background and gave the whole thing its radius; and Peter Backus, the economist whose 2010 paper on why he had no girlfriend gave <a href="#drake">Why I Don't Have a Wife</a> its method and its nerve. Where I've summarized them fairly, the credit is theirs. Where I haven't, the audits exist so you'll catch it.</p>
       <p><strong>The people.</strong> My parents and grandparents, who showed me what a lifelong marriage looks like from the inside. The teachers named on <a href="#shelf">The Shelf</a>, who made a science teacher out of me. And the role models listed there, most of whom will never know they're on it.</p>
       <p><strong>The editor.</strong> This site benefited enormously from production and editorial assistance from Anthropic's Claude, in its Fable 5.0 and 5.1 versions: drafting and tightening prose from my positions, building the live widgets, the map, the integrity tests, and the audit prompts, checking the numbers against one another, and telling me, more than once, which sentence a protective best friend would quote back at me. Every position, preference, dealbreaker, and number is mine and was decided by me. The AI helped me say it clearly and check it honestly. It seemed only fair to disclose that on a site that asks you to hand its claims to an AI of your own.</p>
       <p><strong>The bill.</strong> Since a site this transparent should also disclose what it cost to make: about <span class="num">$13.50</span>. The build took roughly two days' worth of loving labor on a <span class="num">$200</span>-a-month Claude Max plan, and two days of a month is $13.50. For the curious, the session transcripts add up to about <span class="num">3,800</span> model replies, <span class="num">3.7 million</span> tokens written, <span class="num">29 million</span> tokens stored in the prompt cache, and <span class="num">1.05 billion</span> tokens read back from it, across the two build sessions and the two dozen independent agents that ran the Audit Ledger. At <a href="https://platform.claude.com/docs/en/about-claude/pricing">Anthropic's published API list prices</a> for Fable 5 and 5.1 as of September 2026 ($10 per million tokens in, $50 per million out, $0.25 to $1 per million cache reads, $12.50 to $20 per million cache writes), the same work would have billed somewhere between <span class="num">$1,000</span> and <span class="num">$1,250</span>, most of it cache. I am emphatically not paying API prices, and I mention the number only so the $13.50 lands. The best deal on this site remains the <a href="#referrals">referral prize</a>. The line the bill leaves out is my own time: the chat record's timestamps put it at about <span class="num">22 hours</span> of hands-on work across <span class="num">313</span> messages, most of it in three long days, on top of the years of thinking the positions themselves took. That time is expensive and, at the moment, unquantifiable; getting this as close to exactly right as I could is what I chose to spend it on.</p>
@@ -2068,7 +2168,7 @@
   <!-- ============ QUESTIONS FOR YOU ============ -->
   <section class="topic" id="questions" data-title="Questions for You" data-chapter="Your turn">
     <h2 class="head">Questions for You</h2>
-    <p class="subhead">Forty-five sections about me is a monologue. This is the interview I'm hoping for. You may bring notes.</p>
+    <p class="subhead">Forty-six sections about me is a monologue. This is the interview I'm hoping for. You may bring notes.</p>
     <ul class="items">
       <li>
         <span class="tag">Question 01</span>
@@ -2202,7 +2302,7 @@ He's clear about what he wants, which is to marry and raise two or three kids so
         </div>
         <p class="fine">By sending, you're giving me your name and number so I can call you back, via Google Forms. I keep them only for that, share them with nobody, and delete them the moment you ask.</p>
       </form>
-      <p><strong>If you don't fit a category.</strong> This site draws a lot of lines: two paths on the Family page, an age range, eleven dealbreakers. If your situation lands between them, one child and no adoption plans, say, or any other condition that reads as a maybe, don't self-reject. Get in touch and let's talk. The lines are there to save us both time, not to make the decision for me.</p>
+      <p><strong>If you don't fit a category.</strong> This site draws a lot of lines: two paths on the Family page, an age range, ten dealbreakers. If your situation lands between them, one child and no adoption plans, say, or any other condition that reads as a maybe, don't self-reject. Get in touch and let's talk. The lines are there to save us both time, not to make the decision for me.</p>
     </div>
   </section>
 
@@ -2803,6 +2903,24 @@ Cite the studies and the responsa you rely on, and give numbers rather than adje
 6. THE FAIR SUMMARY. The page hedges to "suggesting." Is that the right strength? Write the single most defensible sentence about what a name does to a life, and say whether it justifies treating naming as the serious, deliberate decision the author describes.
 
 Cite the studies, give effect sizes, and separate what replicated from what didn't.`
+    },
+    {
+      title: "Why I don't have a wife: the Drake equation, run on the author",
+      claim: "Adapting Peter Backus's 2010 paper, the page multiplies public demographic and survey estimates through every filter on the site, from a map of the reader's choosing down to both sides' willingness, and at its defaults lands on a few hundred eligible women on the nonstop map and a few dozen within 45 minutes of home, with odds per random woman of roughly one in seventy thousand locally and one in half a million nationally, which it offers as the reason the site exists: to let the match find the author rather than the reverse.",
+      prompt: `CONTEXT: A dating page by a man aged exactly {{AGE}} adapts Peter Backus's "Why I Don't Have a Girlfriend" (2010), which applied the Drake equation to dating in London, to his own search for a wife. His chain, in order, with the default constants: people in reach on one of four maps (about 3.5 million within 45 minutes of Boca Raton, Florida; 5.6 million adding 45 minutes of Cleveland, Ohio; 130 million within a 460-mile drive of either; 325 million on a nonstop map of the US and Canada that omits only the Bay Area and the Pacific Northwest); women 0.504; an age window from 30 to five years older than him, using US female single-year age shares of about 1.3 percent per year of age; Jewish or converted before meeting him (0.11 near Boca, 0.086 for both bases, 0.031 for the drive, 0.0225 for the nonstop map); an adjustment for the local Jewish community's age structure relative to American women generally (0.5 near Boca, 0.6 for both bases, 0.9 beyond); unpartnered (0.34 at 30 to 34, 0.29 at 35 to 39, 0.27 at 40 to 44, 0.26 above); dates men 0.95; wants a family of two or more or has one (0.27 already have two or more children or one plus an appetite for adoption, plus 0.26 who have none and want two or more, the latter counted only to age 38); not closed to adoption 0.80; accepts the standard childhood vaccine schedule 0.85; a reader (0.65 in the site's broad sense, 0.70 with a bachelor's degree or higher, 0.50 both); politics (0.85 would marry an independent, or 0.36 identify as independents); observance, with the Orthodox share of the local Jewish population set per map (0.06 near Boca, 0.07 for both bases, 0.16 for the drive because it takes in New York, 0.10 for the nonstop map) and about a third of it Modern Orthodox, where the default keeps half of Modern Orthodox women and none of the Haredi and the alternative, Just Jewish up to Conservative, excludes all Orthodox women; four unmeasured dealbreakers, 0.5; his side 0.6; her side after reading the site, 0.10; and on the two far maps, willing to start with a man eight hours away who would move to her, 0.35. Audit the chain.
+
+1. THE ORIGINAL. Summarize Backus's paper accurately: his six factors and their values, the 10,510 figure, the three afterthought factors, the 26, and the one-in-285,000 line. Did he later marry, as the page says? Is the page's description of his method fair to him?
+2. THE MAPS. Check the four populations against Census Bureau Vintage estimates and Statistics Canada. What does a 45-minute drive from Boca Raton actually cover, and from Cleveland? Is 130 million fair for a 460-mile radius drawn from both South Florida and Cleveland, which reaches New York, Chicago, Washington, Toronto, and Atlanta?
+3. THE JEWISH SHARE. Using Pew Research's 2020 "Jewish Americans" study (about 7.5 million Jews, 2.4 percent of the US), the Brandeis American Jewish Population Project county estimates, and the 2021 Canadian census, check the four Jewish shares. Palm Beach and Broward are among the most Jewish counties in the country; give the best available figures.
+4. THE AGE STRUCTURE. The page flags this as its weakest constant. Using the most recent Palm Beach County and Broward community studies and Pew's age distribution of US Jews, estimate what share of Jewish women in each map are in their 30s and early 40s relative to American women generally. Is 0.5 near Boca fair, harsh, or generous? Is 0.9 nationally?
+5. UNPARTNERED. Check the single shares by age against Pew's 2020 profile of unpartnered adults and ACS marital status, and note that Jewish women marry later on average. Adjust if warranted.
+6. FAMILY. Check the two path shares against Census and Pew data on single mothers by number of children and on whether childless adults want children (Pew 2021 and 2023). Is counting path two only to 38 consistent with the fertility numbers in Audit 17?
+7. ATTITUDES. Check adoption openness (the Dave Thomas Foundation surveys and others), vaccine attitudes among women of childbearing age (KFF and Pew), reading and education among Jewish women (Pew 2020 reports 58 percent of Jewish adults are college graduates), party identification among Jewish women (Pew 2020: about 71 percent Democratic or leaning, 26 percent Republican or leaning), and the Orthodox share (Pew 2020: 9 percent of US Jews). Which constants are most wrong, and in which direction?
+8. HER SIDE. The page sets acceptance after reading at 10 percent and relocation willingness at 35 percent. Using what research exists on what women say disqualifies a match (divorce, living with family, wanting children soon, long-distance starts, an unusually detailed public profile), are those fair defaults for a divorced man of {{AGE}} who lives with family by design?
+9. THE ARITHMETIC. Rebuild the chain in a table for the nonstop map and for the 45-minute Boca map. Report the final counts, the odds per woman on each map, and the largest single cut on each. Does the page's claim hold that the geography knob mostly trades one cut for another, and that her side has the most leverage?
+10. THE CONCLUSION. The page argues the odds per random encounter are bad enough that the rational move is to publish the filters and let the match self-identify, aided by paid referrals. Is that inference sound, and what single change to the inputs would most raise the count without breaking a dealbreaker?
+
+Show every figure with its source and year, and separate what you verified from what you estimated.`
     }
   ];
 
@@ -2994,6 +3112,128 @@ Be honest rather than kind. The author wrote this prompt himself and published i
     });
 
     host.innerHTML = `<svg viewBox="0 0 1000 705" role="img" aria-label="Chart of the United States and southern Canada showing cities reachable nonstop within the eight-hour travel budget, which is nearly the whole country including Denver, Phoenix, Las Vegas, San Diego, and Los Angeles, plus Toronto and Montreal; San Francisco sits on the line and Portland and Seattle just outside from Florida">${s}</svg>`;
+  })();
+
+  // ============================================================
+  // WHY I DON'T HAVE A WIFE: the Drake equation, run on the author.
+  // Every constant is an estimate from public data, rounded; Audit 24 lists the sources and asks an AI to check them.
+  // ============================================================
+  (function () {
+    const host = document.getElementById('drakeChart');
+    if (!host) return;
+    const $ = id => document.getElementById(id);
+    const born = Date.UTC(1986, 2, 31, 5, 0, 0);
+    const CEIL = Math.floor((Date.now() - born) / (365.2425 * 86400000) + 5);  // the Age Range ceiling: five years older, in whole years
+    const sldLo = $('sldLo'), sldHi = $('sldHi');
+    sldHi.max = CEIL; sldHi.value = CEIL;  // the default window ends at the ceiling, however far it has ticked
+    // the maps: people in reach, the Jewish share of them, and how the local Jewish community's age structure compares with the nation's
+    const GEO = {
+      boca:  { n: 3.5e6,  jew: 0.11,   skew: 0.5, orth: 0.06, far: false, label: 'within 45 minutes of Boca Raton' },
+      bases: { n: 5.6e6,  jew: 0.086,  skew: 0.6, orth: 0.07, far: false, label: 'within 45 minutes of Boca Raton or Cleveland' },
+      drive: { n: 1.3e8,  jew: 0.031,  skew: 0.9, orth: 0.16, far: true,  label: 'within the 460-mile drive of either base' },
+      fly:   { n: 3.25e8, jew: 0.0225, skew: 0.9, orth: 0.10, far: true,  label: 'on the nonstop map, US and Canada' }
+    };
+    // orth: the Orthodox share of the local Jewish population, about a third of it Modern Orthodox (Pew 2020: 9 percent nationally; far higher around New York)
+    const MO_SHARE = 1 / 3;
+    const observ = (g, mode) => mode === 'cons' ? 1 - g.orth : 1 - g.orth * (1 - MO_SHARE) - g.orth * MO_SHARE * 0.5;
+    const WOMEN = 0.504;
+    const AGE_SHARE = a => a < 25 ? 0.0125 : a < 30 ? 0.0131 : a < 35 ? 0.0138 : a < 40 ? 0.0133 : a < 45 ? 0.0127 : 0.0120;  // US women per single year of age, as a share of all women
+    const SINGLE = a => a < 30 ? 0.40 : a < 35 ? 0.34 : a < 40 ? 0.29 : a < 45 ? 0.27 : 0.26;  // unpartnered share of women, by age
+    const DATES_MEN = 0.95, ADOPT = 0.80, VAX = 0.85;
+    const PATH1 = 0.27, PATH2 = 0.26, PATH2_MAX = 38;  // has two or more children (or one plus adoption); has none and wants two or more, realistic to 38
+    const READER = { reads: 0.65, degree: 0.70, both: 0.50 };
+    const POL = { accept: 0.85, indep: 0.36 };
+    const family = (a, mode) => (mode !== 'two' ? PATH1 : 0) + (mode !== 'one' && a <= PATH2_MAX ? PATH2 : 0);
+    const sum = v => v.reduce((p, q) => p + q, 0);
+    const sig2 = n => { if (!(n > 0)) return 0; const p = Math.pow(10, Math.floor(Math.log10(n)) - 1); return Math.round(n / p) * p; };
+    const fmt = n => {
+      if (!(n >= 0.5)) return 'under 1';
+      if (n >= 1e6) { const m = n / 1e6; return (m >= 10 ? Math.round(m) : m.toFixed(1)) + ' million'; }
+      return sig2(n).toLocaleString('en-US');
+    };
+    const MONO = 'font-family="IBM Plex Mono, monospace"';
+    const GOLD = '#e8b44a', PAPER = '#eae6d8', FAINT = '#8b93b8', INK = '#0b1026';
+    const W = 1000, L = 380, R = 190, T = 18, ROW = 28, HROW = 34, B = 34;
+    const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+    function draw() {
+      const g = GEO[$('drakeGeo').value];
+      let lo = +sldLo.value, hi = +sldHi.value;
+      if (lo > hi) { if (document.activeElement === sldLo) { hi = lo; sldHi.value = hi; } else { lo = hi; sldLo.value = lo; } }
+      $('valLo').textContent = lo; $('valHi').textContent = hi;
+      $('drakeCeil').textContent = hi === CEIL ? '(THE CEILING: FIVE YEARS OLDER THAN ME)' : '(CEILING ' + CEIL + ')';
+      const path = $('drakePath').value, pol = $('drakePol').value, rd = $('drakeRead').value, obs = $('drakeObs').value;
+      const unm = +$('sldUnm').value / 100, mine = +$('sldMine').value / 100, hers = +$('sldHers').value / 100, rel = +$('sldRel').value / 100;
+      $('valUnm').textContent = Math.round(unm * 100); $('valMine').textContent = Math.round(mine * 100);
+      $('valHers').textContent = Math.round(hers * 100); $('valRel').textContent = Math.round(rel * 100);
+      $('drakeRelRow').style.display = g.far ? '' : 'none';
+
+      const ages = []; for (let a = lo; a <= hi; a++) ages.push(a);
+      const N = g.n, Wn = N * WOMEN;
+      let vec = ages.map(a => Wn * AGE_SHARE(a));
+      const rows = [{ h: 'THE CENSUS' }, { l: 'People ' + g.label, n: N }, { l: 'Women', n: Wn }, { l: 'Aged ' + lo + ' to ' + hi, n: sum(vec) }];
+      const step = (label, f) => { vec = vec.map((x, i) => x * f(ages[i])); rows.push({ l: label, n: sum(vec) }); };
+      step('Jewish, or converted before we met', () => g.jew);
+      step('The local Jewish community’s age mix', () => g.skew);
+      step('Unpartnered', a => SINGLE(a));
+      step('Dates men', () => DATES_MEN);
+      const D = sum(vec);
+      rows.push({ h: 'THE DEALBREAKERS, AND THE FLEXIBILITIES YOU SET' });
+      step('Wants a family of two or more, or has one', a => family(a, path));
+      step('Not closed to adoption', () => ADOPT);
+      step('Standard vaccine schedule', () => VAX);
+      step(rd === 'degree' ? 'A reader: bachelor’s or higher' : rd === 'both' ? 'A reader: reads, and holds a degree' : 'A reader, in the broad sense', () => READER[rd]);
+      step(obs === 'cons' ? 'Just Jewish up to Conservative' : 'Up to Modern Orthodox, no thrice-daily prayer', () => observ(g, obs));
+      step('The four no survey measures', () => unm);
+      rows.push({ h: 'BOTH SIDES' });
+      step(pol === 'indep' ? 'Identifies as an independent' : 'Her side: would marry an independent', () => POL[pol]);
+      step('My side: attracted, and we get along', () => mine);
+      step('Her side: yes to a coffee after reading this', () => hers);
+      if (g.far) step('Would let a man eight hours away come to her', () => rel);
+      const G = sum(vec);
+
+      // factors and the biggest cuts
+      let prev = null;
+      rows.forEach(r => { if (r.l) { r.f = prev === null ? 1 : r.n / prev; prev = r.n; } });
+      const cuts = rows.filter(r => r.l && r.f < 1).sort((a, b) => a.f - b.f);
+      const div = f => { if (!(f > 0)) return 'everything'; const d = 1 / f; return d >= 9.95 ? Math.round(d) : d.toFixed(1); };
+
+      // the funnel, on a log scale so the last rows stay visible
+      const HGT = T + rows.reduce((h, r) => h + (r.h ? HROW : ROW), 0) + B;
+      const span = W - L - R, X = n => L + Math.max(0, Math.log10(Math.max(n, 1)) / Math.log10(N)) * span;
+      let svg = `<svg viewBox="0 0 ${W} ${HGT}" role="img" aria-label="A funnel chart: the people in reach, cut row by row through every filter on this site, ending at about ${fmt(G)} women.">`;
+      let y = T;
+      rows.forEach(r => {
+        if (r.h) {
+          y += HROW;
+          svg += `<text x="24" y="${y - 10}" ${MONO} font-size="10.5" letter-spacing="1.8" fill="${FAINT}">${r.h}</text>`;
+          svg += `<line x1="24" y1="${y - 4}" x2="${W - 24}" y2="${y - 4}" stroke="${FAINT}" stroke-width="1" opacity="0.25"/>`;
+          return;
+        }
+        const cy = y + ROW / 2, w = Math.max(X(r.n) - L, 3);
+        svg += `<text x="${L - 14}" y="${(cy + 4).toFixed(1)}" ${MONO} font-size="12.5" fill="${PAPER}" text-anchor="end">${esc(r.l)}</text>`;
+        svg += `<rect x="${L}" y="${(cy - 8).toFixed(1)}" width="${w.toFixed(1)}" height="16" rx="3" fill="${GOLD}" opacity="${r.f === 1 ? 0.9 : 0.75}"/>`;
+        if (r.f < 1) {
+          const t = '× ' + (r.f >= 0.1 ? r.f.toFixed(2) : r.f.toFixed(3));
+          if (w > 64) svg += `<text x="${(L + 8).toFixed(1)}" y="${(cy + 4).toFixed(1)}" ${MONO} font-size="11" fill="${INK}" font-weight="500">${t}</text>`;
+          else svg += `<text x="${(L + w + 8).toFixed(1)}" y="${(cy + 4).toFixed(1)}" ${MONO} font-size="11" fill="${FAINT}">${t}</text>`;
+        }
+        svg += `<text x="${W - 64}" y="${(cy + 4).toFixed(1)}" ${MONO} font-size="12.5" fill="${PAPER}" text-anchor="end">${fmt(r.n)}</text>`;
+        y += ROW;
+      });
+      svg += `<text x="24" y="${HGT - 10}" ${MONO} font-size="10.5" letter-spacing="1.2" fill="${FAINT}">LOG SCALE. ROWS WITHOUT A CONTROL ARE DEALBREAKERS. EVERY CONSTANT IS ROUNDED TO TWO FIGURES AND SOURCED IN AUDIT 24.</text>`;
+      svg += '</svg>';
+      host.innerHTML = svg;
+
+      $('drakeG').textContent = fmt(G);
+      $('drakeOdds').textContent = '1 in ' + fmt(Wn / Math.max(G, 0.5));
+      $('drakeSub').textContent = `The map: ${g.label}. About ${fmt(N)} people, ${fmt(Wn)} women, and ${fmt(D)} unpartnered Jewish women aged ${lo} to ${hi} who date men. Every row is an estimate.`;
+      const perMatch = fmt(D / Math.max(G, 0.5));
+      $('drakeVerdict').innerHTML = `THE BIGGEST SINGLE CUT: <strong>${esc(cuts[0].l.toUpperCase())}</strong> (÷ ${div(cuts[0].f)}) · THE SECOND: <strong>${esc(cuts[1].l.toUpperCase())}</strong> (÷ ${div(cuts[1].f)}) · ONE MATCH PER <strong>${perMatch}</strong> UNPARTNERED JEWISH WOMEN IN THE WINDOW · BACKUS GOT 26; THIS SETTING GETS <strong>${fmt(G)}</strong>`;
+    }
+    ['drakeGeo', 'drakePath', 'drakePol', 'drakeRead', 'drakeObs'].forEach(id => $(id).addEventListener('change', draw));
+    ['sldLo', 'sldHi', 'sldUnm', 'sldMine', 'sldHers', 'sldRel'].forEach(id => $(id).addEventListener('input', draw));
+    draw();
   })();
 
   // ============================================================

@@ -94,7 +94,7 @@ check('radius numbers consistent',
 check('reduced motion switches every animation and transition off', 'prefers-reduced-motion: reduce' in s and 'animation-duration: 0.001ms !important' in s and 'transition-duration: 0.001ms !important' in s)
 check('no stale pre-EV time budget', '5 hours 19 minutes' not in s and '7-hour clock' not in s and 'seven-hour travel budget' not in s)
 check('no stale one-second radius', '370 km <span>' not in s and '≈370' not in s and 'radius is 230' not in s and '≈230&nbsp;mi' not in s)
-check('birthdate constant in both tickers', s.count('Date.UTC(1986, 2, 31') == 2)
+check('birthdate constant in both tickers and the Drake ceiling', s.count('Date.UTC(1986, 2, 31, 5, 0, 0)') == 3)
 
 # --- assets & accessibility ----------------------------------------------
 imgs = re.findall(r'<img\b[^>]*>', s)
@@ -203,6 +203,7 @@ window.addEventListener('load',()=>setTimeout(()=>{
     +'|st='+document.querySelectorAll('#status [aria-current="step"]').length
     +'|stn='+(function(){var b=document.querySelectorAll('#status details.next button.stage')[0];if(!b)return 'none';b.click();var n=document.getElementById('statusNote');return (n&&!n.hidden&&n.querySelector('a'))?'open':'closed';})()
     +'|ga='+(document.querySelector('script[src*="googletagmanager"]')?'on':'off')
+    +'|dk='+(function(){var s=document.getElementById('drakeGeo'),b=document.getElementById('drakeG');if(!s||!b)return 'none';var before=b.textContent;s.value='boca';s.dispatchEvent(new Event('change'));var after=b.textContent;return (before&&after&&after!==before&&document.querySelector('#drakeChart svg'))?'moves':('stuck:'+before+'/'+after);})()
     +'|sw='+(function(){var b=document.getElementById('consentReset');if(!b)return 'none';var before=b.textContent;b.click();var v='';try{v=localStorage.getItem('consent')}catch(e){}var after=b.textContent;try{localStorage.removeItem('consent')}catch(e){}return (before.indexOf('Stop')===0&&v==='denied'&&after.indexOf('Count')===0)?'flips':('stuck:'+before+'/'+v+'/'+after);})();},400));
 </script></body>""")
     with tempfile.NamedTemporaryFile('w', suffix='.html', delete=False, dir=ROOT, encoding='utf-8') as f:
@@ -221,6 +222,7 @@ window.addEventListener('load',()=>setTimeout(()=>{
         check('smoke: status bar marks one current stage', '|st=1|' in t, t[:200])
         check('smoke: clicking an inactive stage opens its note', 'stn=open' in t, t[:200])
         check('smoke: analytics loads by default', '|ga=on|' in t, t[:200])
+        check('smoke: the Drake funnel redraws when the map changes', 'dk=moves' in t, t[:300])
         check('smoke: privacy switch stores the opt-out and flips its label', 'sw=flips' in t, t[:200])
     finally:
         os.unlink(ppath)

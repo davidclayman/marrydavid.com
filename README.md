@@ -34,7 +34,9 @@ crosslink, nudge, status, link, deeplink, landing, history), `view_index`
 50 and 100 percent; `section_leave` with `seconds` on screen when the section
 changes or the tab hides; `card_open` for every collapsed card; and the calls
 to action as events. Each parameter is an event-scoped custom dimension in
-GA4 (`seconds` a custom metric), and `analytics/ga.py` reads them back.
+GA4 (`seconds` a custom metric). The scripts that read them back live outside
+this repository, and reading the data needs the property owner's own Google
+login; nothing in the repository grants access to it.
 `404.html` redirects `/family`-style paths to `/#family` and otherwise links
 home. A few unlisted follow-up pages (each in its own folder, `noindex`, never
 linked from the main page or the sitemap) exist for people met in person or

@@ -1,2 +1,4 @@
 __pycache__/
-analytics/config.json
+# analytics tooling and its reports live outside this public repo, in ../marrydavid-analytics and ~/Documents/marrydavid-analytics
+analytics/
+marrydavid-*.md

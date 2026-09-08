@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /tests/
+Disallow: /analytics/
 # The unlisted pages are deliberately not listed here: robots.txt is public, and a disallowed page can never show Google its noindex tag.
 Sitemap: https://marrydavid.com/sitemap.xml

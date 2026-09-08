@@ -205,6 +205,33 @@ check('reading times are computed from the page', 'const WPM' in s and 'data-min
 check('the appendix comes last', ids[-5:] == ['verifyme', 'audits', 'revisions', 'acknowledgments', 'glossary'], str(ids[-5:]))
 check('the appendix is its own chapter', all(re.search(rf'id="{i}" data-title="[^"]*" data-chapter="The appendix"', s) for i in ids[-5:]))
 
+# --- the play page: public, linked from Proposal 05, every crossword answer on the main page ---
+pp = os.path.join(ROOT, 'play', 'index.html')
+check('play page exists', os.path.exists(pp))
+if os.path.exists(pp):
+    src = open(pp, encoding='utf-8').read()
+    check('play page is linked from the main page and the sitemap', 'href="play/"' in s and '/play/' in sm)
+    check('play page is indexable', 'noindex' not in src)
+    check('play page email never in source', 'david@' not in src and 'mailto:' not in src)
+    check('play analytics honors the opt-out and Global Privacy Control', 'src="https://www.googletagmanager.com' not in src and "localStorage.getItem('consent') !== 'denied'" in src and 'navigator.globalPrivacyControl' in src)
+    deep = set(re.findall(r"href=\"\.\./#([a-z0-9-]+)\"", src)) | set(re.findall(r"h: '([a-z0-9-]+)'", src))
+    bad = [i for i in deep if i not in valid]
+    check('play links into the main page resolve', not bad, str(bad))
+    check('play page keeps the em dash budget at zero', '—' not in src)
+    low = re.sub(r'<script.*?</script>', ' ', s, flags=re.S).lower()
+    answers = re.findall(r"w: '([A-Z]+)'", src)
+    missing = [w for w in answers if w.lower() not in low and w.lower() != 'khaosoi']
+    check('every crossword answer appears on the main page', answers and not missing and 'khao soi' in low, str(missing))
+    words = [(w, int(r), int(c), d) for w, r, c, d in re.findall(r"w: '([A-Z]+)',\s*r: (\d+),\s*c: (\d+),\s*d: '([AD])'", src)]
+    grid = {}
+    clash = False
+    for w, r, c, d in words:
+        for k, ch in enumerate(w):
+            pos = (r + (k if d == 'D' else 0), c + (k if d == 'A' else 0))
+            clash |= grid.get(pos, ch) != ch
+            grid[pos] = ch
+    check('crossword letters agree where words cross', words and not clash)
+
 # --- audit recheck schedule (warns, never fails) --------------------------
 m = re.search(r'Next full recheck due <strong>(\d{4}-\d{2}-\d{2})</strong>', s)
 check('ledger states a recheck date', bool(m))

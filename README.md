@@ -35,7 +35,10 @@ linked from the main page or the sitemap) exist for people met in person or
 matched on an app, and `/safeword/` holds the intimacy chapter, shared after a
 first kiss rather than published; they take `?for=Name` to personalize the
 greeting and carry no state beyond an optional reading checklist kept in the
-visitor's browser.
+visitor's browser. One follow-up page is public and linked: `/play/`, reached
+from Proposal 05, holds a criss-cross crossword whose every answer appears on
+the main page (the tests check that) and a sort of the Dealbreakers and Don't
+Care filters, each verdict deep-linked to the paragraph that decides it.
 
 **Two layers.** The first section, Start Here, is the profile: hook, photo,
 introduction, what dating him is like, what he's looking for, the essential

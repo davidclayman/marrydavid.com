@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marry David · Play</title>
+<meta name="description" content="Two open-book games about marrydavid.com: a crossword whose every answer is on the site, and a sort of the filters most dating profiles run silently.">
+<link rel="canonical" href="https://marrydavid.com/play/">
+<meta name="theme-color" content="#0b1026">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b1026'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23e8b44a' stroke-width='4' stroke-dasharray='6 5'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23eae6d8'/%3E%3C/svg%3E">
+<!-- Google Analytics (G-GD340Z2HSF) loads unless the visitor switched it off on the main site's Privacy page or the browser sends Global Privacy Control -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  (function () {
+    var ok = false; try { ok = !navigator.globalPrivacyControl && localStorage.getItem('consent') !== 'denied'; } catch (e) {}
+    if (!ok) return;
+    var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.googletagmanager.com/gtag/js?id=G-GD340Z2HSF'; document.head.appendChild(sc);
+    gtag('js', new Date()); gtag('config', 'G-GD340Z2HSF', { page_title: 'Play', anonymize_ip: true, allow_google_signals: false, allow_ad_personalization_signals: false });
+  })();
+</script>
+<style>
+  @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('../fonts/Fraunces.woff2') format('woff2'); }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/SpaceGrotesk-normal-400.woff2') format('woff2'); }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 500; font-display: swap; src: url('../fonts/SpaceGrotesk-normal-500.woff2') format('woff2'); }
+  @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/IBMPlexMono-normal-400.woff2') format('woff2'); }
+  @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('../fonts/IBMPlexMono-normal-500.woff2') format('woff2'); }
+  :root { --ink: #0b1026; --plate: #0f1633; --paper: #eae6d8; --faint: #8b93b8; --gold: #e8b44a; --line: rgba(234, 230, 216, 0.14); --good: #7fd1a0; --bad: #e0705f; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Space Grotesk', system-ui, sans-serif; line-height: 1.6; min-height: 100vh;
+    background-image:
+      radial-gradient(circle at 70% 20%, rgba(232,180,74,0.06), transparent 40%),
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 100% 100%, 96px 96px, 96px 96px;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 9vh 24px 12vh; }
+  @media (max-width: 420px) { .wrap { padding-left: 14px; padding-right: 14px; } }
+  .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); margin-bottom: 2rem; }
+  .eyebrow b { color: var(--gold); font-weight: 500; }
+  h1 { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(2.1rem, 6vw, 3.3rem); line-height: 1.12; margin-bottom: 2rem; }
+  h1 em { font-style: italic; font-weight: 500; color: var(--gold); }
+  h2 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.5rem; margin: 3.2rem 0 0.7rem; }
+  h3 { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin: 1.4rem 0 0.5rem; }
+  p { color: #cfd3e6; max-width: 58ch; font-size: 1.02rem; }
+  p + p { margin-top: 1rem; }
+  p strong { color: var(--paper); font-weight: 500; }
+  a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
+  .row { margin-top: 1.2rem; display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+  .btn { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; letter-spacing: 0.06em; color: var(--gold); border: 1px solid var(--gold); border-radius: 4px; padding: 0.6rem 0.95rem; text-decoration: none; background: none; cursor: pointer; }
+  .btn:hover { background: rgba(232,180,74,0.1); }
+  .btn.quiet { color: var(--faint); border-color: var(--faint); }
+  .mono { font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem; letter-spacing: 0.08em; color: var(--faint); }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  /* the crossword */
+  .xw-status { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin: 1.2rem 0 0.6rem; }
+  .xw-status .done { color: var(--good); }
+  .gridwrap { overflow-x: auto; margin: 0 -14px; padding: 0 14px 6px; }
+  .grid { display: grid; grid-template-columns: repeat(14, 1fr); gap: 2px; width: 100%; min-width: 336px; max-width: 560px; }
+  .cell { position: relative; aspect-ratio: 1; }
+  .cell.blank { background: transparent; }
+  .cell.open { background: var(--paper); border-radius: 2px; }
+  .cell.open.active { background: #fbe7b7; }
+  .cell.open.cursor { background: var(--gold); }
+  .cell.open.wrong input { color: var(--bad); text-decoration: line-through; }
+  .cell.open.revealed input { color: #4a5aa0; }
+  .cell input {
+    position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: transparent; text-align: center;
+    font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 500; text-transform: uppercase; color: var(--ink);
+    font-size: clamp(0.85rem, 3.2vw, 1.35rem); padding: 0.35em 0 0; caret-color: transparent; border-radius: 2px;
+  }
+  .cell input:focus { outline: 2px solid var(--ink); outline-offset: -2px; }
+  .cell .n { position: absolute; top: 1px; left: 2px; font-family: 'IBM Plex Mono', monospace; font-size: clamp(0.4rem, 1.5vw, 0.6rem); line-height: 1; color: #3a3f5c; pointer-events: none; }
+  .clues { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1.6rem; margin-top: 1.4rem; }
+  @media (max-width: 560px) { .clues { grid-template-columns: 1fr; } }
+  .clues ol { list-style: none; }
+  .clues li { display: grid; grid-template-columns: 1.6rem 1fr; gap: 0.4rem; padding: 0.42rem 0.4rem 0.42rem 0.2rem; font-size: 0.93rem; color: #cfd3e6; border-left: 2px solid transparent; cursor: pointer; border-radius: 2px; }
+  .clues li b { font-family: 'IBM Plex Mono', monospace; font-weight: 500; color: var(--faint); font-size: 0.78rem; padding-top: 0.15rem; }
+  .clues li.active { background: rgba(232,180,74,0.1); border-left-color: var(--gold); color: var(--paper); }
+  .clues li.solved { color: var(--faint); }
+  .clues li.solved b { color: var(--good); }
+
+  /* the sort */
+  .card { background: var(--plate); border: 1px solid var(--line); border-radius: 8px; padding: 1.4rem 1.5rem 1.5rem; margin-top: 1.2rem; }
+  .card .stmt { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(1.25rem, 3.6vw, 1.55rem); line-height: 1.3; color: var(--paper); max-width: 30ch; }
+  .buckets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-top: 1.3rem; }
+  @media (max-width: 480px) { .buckets { grid-template-columns: 1fr; } }
+  .bucket { text-align: left; background: none; border: 1px solid var(--line); border-radius: 6px; padding: 0.75rem 0.85rem; color: var(--paper); cursor: pointer; font-family: inherit; }
+  .bucket:hover { border-color: var(--gold); }
+  .bucket .k { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; }
+  .bucket .k i { font-style: normal; color: var(--faint); margin-right: 0.4rem; }
+  .bucket .d { display: block; font-size: 0.82rem; color: #b9bfd6; line-height: 1.45; }
+  .bucket:disabled { cursor: default; opacity: 0.55; }
+  .bucket.right { border-color: var(--good); opacity: 1; }
+  .bucket.right .k { color: var(--good); }
+  .bucket.picked.miss { border-color: var(--bad); opacity: 1; }
+  .bucket.picked.miss .k { color: var(--bad); }
+  .verdict { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px dashed var(--line); }
+  .verdict .v { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .verdict .v.hit { color: var(--good); }
+  .verdict .v.miss { color: var(--bad); }
+  .verdict p { font-size: 0.97rem; }
+  .verdict a { white-space: nowrap; }
+  .tally { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-top: 1.4rem; }
+  .final .stmt { max-width: 34ch; }
+  .final p { margin-top: 1rem; }
+  footer { margin-top: 5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; letter-spacing: 0.18em; color: var(--faint); text-transform: uppercase; }
+  footer a { color: inherit; border-bottom-color: currentColor; }
+  @media (prefers-reduced-motion: no-preference) { .cell.open { transition: background 0.12s; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="eyebrow">PROPOSAL 05 · <b>PRACTICE ROUND</b> · MILD COMPETITION</div>
+
+  <h1>Two games, <em>both open book.</em> Every answer is somewhere on the site.</h1>
+
+  <p>Proposal 05 on the main page is trivia night, on the theory that mild competition reveals character at a discount. This is the practice round. First, a crossword whose nineteen answers all come from the site, so the clues double as a reading list. Then a sort: the filters most dating profiles run silently, and where this one actually puts each. Your crossword progress is saved in your browser only and never reaches me. The sort keeps no score anywhere but on your screen.</p>
+
+  <h2 id="crossword">The crossword</h2>
+  <p>Words touch only where they cross, so there's no filler: nineteen answers, all house vocabulary. Tap a square and type; tap it again to switch direction. Check marks what's wrong, and Reveal is there for the answers you'd rather look up on the main page first.</p>
+
+  <div class="xw-status mono"><span id="xwProgress">0 of 19 words</span><span id="xwTimer">0:00</span></div>
+  <div class="gridwrap"><div class="grid" id="grid" aria-label="Crossword grid, fourteen by fourteen"></div></div>
+  <div class="row">
+    <button class="btn" id="xwCheck" type="button">Check</button>
+    <button class="btn" id="xwReveal" type="button">Reveal word</button>
+    <button class="btn quiet" id="xwRevealAll" type="button">Reveal all</button>
+    <button class="btn quiet" id="xwClear" type="button">Clear</button>
+  </div>
+  <div class="clues">
+    <div><h3>Across</h3><ol id="acrossList"></ol></div>
+    <div><h3>Down</h3><ol id="downList"></ol></div>
+  </div>
+
+  <h2 id="sort">The dealbreaker sort</h2>
+  <p>Twenty-six statements about a hypothetical her. For each one, say where the site files it. Three buckets, in the page's own words: <strong>Dealbreaker</strong> is one of the ten structural filters, a clean no-match. <strong>Preference</strong> means the page has a stated lean, for or against, and leaves you the call. <strong>Don't care</strong> is a filter most profiles run silently, switched off here and said out loud. Every answer links to the paragraph that decides it, so if you think the page is wrong you can argue with the page.</p>
+
+  <div class="card" id="sortCard" aria-live="polite"></div>
+  <div class="tally mono"><span id="sortProgress"></span><span id="sortScore"></span></div>
+
+  <h2>If you'd rather just read</h2>
+  <p>The crossword's answers are scattered across Who I Am, Before the Chuppah, the Glossary, and the Ring Policy. The sort is the Dealbreakers and Don't Care pages, with cameos from Proposals, the Age Range, and the Wedding. <a href="../">The whole site</a> is the answer key. Think a clue or a verdict is wrong? <a href="../#feedback">The Feedback Clause</a> covers games too.</p>
+
+  <div class="row">
+    <a class="btn" href="../#proposals">Back to the date proposals</a>
+    <a class="btn" href="../">Read the whole site</a>
+  </div>
+
+  <footer>PROGRESS STAYS IN YOUR BROWSER · NOTHING IS SENT · <a href="../#privacy">PRIVACY</a></footer>
+</main>
+<script>
+// ---------- the crossword ----------
+(function () {
+  var H = 14, W = 14;
+  // every answer appears on the main page; the test suite checks that
+  var WORDS = [
+    { w: 'EIGHT',    r: 0,  c: 4,  d: 'A', clue: 'Hours in the travel budget, door to door in an electric Chevy with the charging stops counted' },
+    { w: 'CHUPPAH',  r: 2,  c: 1,  d: 'A', clue: 'The canopy a couple marries under, and the wedding by extension; "Before the ___" is a page on the site' },
+    { w: 'DRONE',    r: 4,  c: 0,  d: 'A', clue: 'Flown on a license; FAQ 08 asks whether it will be at the wedding' },
+    { w: 'PRENUP',   r: 5,  c: 7,  d: 'A', clue: 'One, narrow, signed alongside one shared pot' },
+    { w: 'INVENTOR', r: 7,  c: 2,  d: 'A', clue: 'The newest word in the byline, backed by a granted US patent' },
+    { w: 'SALSA',    r: 10, c: 1,  d: 'A', clue: 'Proposal 06; lessons first if you\'re new, then the social' },
+    { w: 'YENTE',    r: 10, c: 9,  d: 'A', clue: 'Yiddish busybody, softened into matchmaker; amateurs welcome, and paid' },
+    { w: 'KETUBAH',  r: 12, c: 6,  d: 'A', clue: 'Wedding contract that prices a first marriage at 200 zuz' },
+    { w: 'BOCA',     r: 13, c: 1,  d: 'A', clue: 'Home base, with Cleveland as the second' },
+    { w: 'GLATT',    r: 0,  c: 6,  d: 'D', clue: 'The strict end of his kosher range; Chipotle is the other end' },
+    { w: 'KHAOSOI',  r: 1,  c: 2,  d: 'D', clue: 'The dish that gets the face in FIG. 01 (two words, run together)' },
+    { w: 'RADIUS',   r: 1,  c: 11, d: 'D', clue: 'Two astronomical seconds, about 460 miles, on the front page' },
+    { w: 'VENEERS',  r: 2,  c: 9,  d: 'D', clue: 'On his upper front teeth; disclosed on Don\'t Care because you\'d never think to ask' },
+    { w: 'DRAKE',    r: 4,  c: 0,  d: 'D', clue: 'Frank whose 1961 equation explains why he doesn\'t have a wife' },
+    { w: 'TUESDAY',  r: 5,  c: 5,  d: 'D', clue: 'The test he asks to be judged on, ahead of any grand gesture' },
+    { w: 'LOCKET',   r: 6,  c: 13, d: 'D', clue: 'Date ___: the optional mutual-consent recording of a first video date' },
+    { w: 'TEACHER',  r: 7,  c: 7,  d: 'D', clue: 'What he was before he built software; the teaching changed rooms rather than stopping' },
+    { w: 'MINYAN',   r: 8,  c: 11, d: 'D', clue: 'Quorum of ten; he\'ll join one service a day with you, never the full three' },
+    { w: 'TANGO',    r: 9,  c: 2,  d: 'D', clue: 'The one dance he asks you not to pick' }
+  ];
+  var KEY = 'play-crossword';
+  var cells = {}; // key -> { ch, A: wordIndex, D: wordIndex, el, input }
+  function key(r, c) { return r * W + c; }
+  WORDS.forEach(function (wd, i) {
+    for (var k = 0; k < wd.w.length; k++) {
+      var r = wd.r + (wd.d === 'D' ? k : 0), c = wd.c + (wd.d === 'A' ? k : 0);
+      var cell = cells[key(r, c)] || (cells[key(r, c)] = { r: r, c: c, ch: wd.w[k] });
+      cell[wd.d] = i;
+    }
+  });
+  // numbering: a square gets a number if a word starts there, in reading order
+  var starts = {}; var n = 0;
+  for (var r = 0; r < H; r++) for (var c = 0; c < W; c++) {
+    var here = WORDS.map(function (wd, i) { return (wd.r === r && wd.c === c) ? i : -1; }).filter(function (i) { return i >= 0; });
+    if (here.length) { n++; here.forEach(function (i) { WORDS[i].num = n; }); starts[key(r, c)] = n; }
+  }
+
+  var grid = document.getElementById('grid');
+  for (var r = 0; r < H; r++) for (var c = 0; c < W; c++) {
+    var cell = cells[key(r, c)];
+    var div = document.createElement('div');
+    if (!cell) { div.className = 'cell blank'; div.setAttribute('aria-hidden', 'true'); grid.appendChild(div); continue; }
+    div.className = 'cell open';
+    if (starts[key(r, c)]) { var num = document.createElement('span'); num.className = 'n'; num.textContent = starts[key(r, c)]; div.appendChild(num); }
+    var input = document.createElement('input');
+    input.type = 'text'; input.maxLength = 1; input.autocomplete = 'off'; input.autocapitalize = 'characters'; input.spellcheck = false;
+    input.setAttribute('aria-label', 'Row ' + (r + 1) + ', column ' + (c + 1));
+    input.dataset.k = key(r, c);
+    div.appendChild(input);
+    cell.el = div; cell.input = input;
+    grid.appendChild(div);
+  }
+
+  var cur = null, dir = 'A', elapsed = 0, ticking = null, solved = false;
+  function wordCells(i) {
+    var wd = WORDS[i], out = [];
+    for (var k = 0; k < wd.w.length; k++) out.push(cells[key(wd.r + (wd.d === 'D' ? k : 0), wd.c + (wd.d === 'A' ? k : 0))]);
+    return out;
+  }
+  function select(cell, d) {
+    if (!cell) return;
+    if (d) dir = d;
+    if (cell[dir] === undefined) dir = dir === 'A' ? 'D' : 'A';
+    cur = cell;
+    Object.keys(cells).forEach(function (k) { cells[k].el.classList.remove('active', 'cursor'); });
+    wordCells(cell[dir]).forEach(function (x) { x.el.classList.add('active'); });
+    cell.el.classList.add('cursor');
+    var items = document.querySelectorAll('.clues li');
+    for (var i = 0; i < items.length; i++) items[i].classList.toggle('active', +items[i].dataset.i === cell[dir]);
+    if (document.activeElement !== cell.input) cell.input.focus({ preventScroll: true });
+  }
+  function step(cell, delta) {
+    var r = cell.r + (dir === 'D' ? delta : 0), c = cell.c + (dir === 'A' ? delta : 0);
+    var nxt = cells[key(r, c)];
+    return (nxt && nxt[dir] === cell[dir]) ? nxt : null;
+  }
+  function startClock() { if (ticking || solved) return; ticking = setInterval(function () { elapsed++; renderClock(); save(); }, 1000); }
+  function renderClock() { var m = Math.floor(elapsed / 60), s = elapsed % 60; document.getElementById('xwTimer').textContent = m + ':' + (s < 10 ? '0' : '') + s; }
+  function isSolved(i) { return wordCells(i).every(function (x) { return x.input.value.toUpperCase() === x.ch; }); }
+  function render() {
+    var done = WORDS.map(function (_, i) { return isSolved(i); });
+    var count = done.filter(Boolean).length;
+    var items = document.querySelectorAll('.clues li');
+    for (var i = 0; i < items.length; i++) items[i].classList.toggle('solved', done[+items[i].dataset.i]);
+    var p = document.getElementById('xwProgress');
+    if (count === WORDS.length) {
+      solved = true; if (ticking) { clearInterval(ticking); ticking = null; }
+      var peeked = Object.keys(cells).some(function (k) { return cells[k].el.classList.contains('revealed'); });
+      p.textContent = peeked ? 'Filled in ' + document.getElementById('xwTimer').textContent + ', with help. The main page has the rest.'
+        : 'Solved in ' + document.getElementById('xwTimer').textContent + '. You read the page. Your move.';
+      p.classList.add('done');
+    } else { p.textContent = count + ' of ' + WORDS.length + ' words'; p.classList.remove('done'); }
+  }
+  function save() {
+    var vals = {};
+    Object.keys(cells).forEach(function (k) { if (cells[k].input.value) vals[k] = cells[k].input.value.toUpperCase(); });
+    try { localStorage.setItem(KEY, JSON.stringify({ vals: vals, elapsed: elapsed })); } catch (e) {}
+  }
+  function load() {
+    var st = null; try { st = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+    if (!st) return;
+    elapsed = st.elapsed || 0; renderClock();
+    Object.keys(st.vals || {}).forEach(function (k) { if (cells[k]) cells[k].input.value = st.vals[k]; });
+  }
+
+  // pointerdown runs before focus, so a first tap selects and a second tap on the same square turns the corner
+  grid.addEventListener('pointerdown', function (e) {
+    var input = e.target.closest('input'); if (!input) return;
+    var cell = cells[input.dataset.k];
+    if (cell === cur && cell.A !== undefined && cell.D !== undefined) select(cell, dir === 'A' ? 'D' : 'A'); else select(cell);
+  });
+  grid.addEventListener('focusin', function (e) {
+    var input = e.target.closest('input'); if (!input) return;
+    var cell = cells[input.dataset.k]; if (cell !== cur) select(cell);
+  });
+  grid.addEventListener('input', function (e) {
+    var input = e.target; var cell = cells[input.dataset.k]; if (!cell) return;
+    var v = (input.value || '').replace(/[^a-z]/gi, '').slice(-1).toUpperCase();
+    input.value = v; cell.el.classList.remove('wrong', 'revealed');
+    startClock();
+    if (v) { var nxt = step(cell, 1); if (nxt) select(nxt); }
+    render(); save();
+  });
+  grid.addEventListener('keydown', function (e) {
+    var input = e.target; var cell = cells[input.dataset.k]; if (!cell) return;
+    var k = e.key;
+    if (k === 'Backspace') {
+      if (input.value) { input.value = ''; cell.el.classList.remove('wrong', 'revealed'); }
+      else { var prev = step(cell, -1); if (prev) { prev.input.value = ''; prev.el.classList.remove('wrong', 'revealed'); select(prev); } }
+      e.preventDefault(); render(); save(); return;
+    }
+    var moves = { ArrowRight: ['A', 1], ArrowLeft: ['A', -1], ArrowDown: ['D', 1], ArrowUp: ['D', -1] };
+    if (moves[k]) {
+      e.preventDefault();
+      var d = moves[k][0], delta = moves[k][1];
+      var r = cell.r + (d === 'D' ? delta : 0), c = cell.c + (d === 'A' ? delta : 0);
+      var target = cells[key(r, c)];
+      while (!target && r >= 0 && r < H && c >= 0 && c < W) { r += (d === 'D' ? delta : 0); c += (d === 'A' ? delta : 0); target = cells[key(r, c)]; }
+      if (target) select(target, target[d] !== undefined ? d : undefined);
+      return;
+    }
+    if (k === 'Tab') {
+      e.preventDefault();
+      var i = cur[dir], list = WORDS.map(function (_, j) { return j; }).filter(function (j) { return WORDS[j].d === dir; });
+      var pos = list.indexOf(i), nextI = list[(pos + (e.shiftKey ? -1 : 1) + list.length) % list.length];
+      var wd = WORDS[nextI]; select(cells[key(wd.r, wd.c)], wd.d);
+      return;
+    }
+    if (k === ' ') { e.preventDefault(); if (cell.A !== undefined && cell.D !== undefined) select(cell, dir === 'A' ? 'D' : 'A'); }
+  });
+
+  // clue lists
+  ['A', 'D'].forEach(function (d) {
+    var ol = document.getElementById(d === 'A' ? 'acrossList' : 'downList');
+    WORDS.map(function (wd, i) { return i; }).filter(function (i) { return WORDS[i].d === d; }).sort(function (a, b) { return WORDS[a].num - WORDS[b].num; }).forEach(function (i) {
+      var wd = WORDS[i];
+      var li = document.createElement('li'); li.dataset.i = i; li.tabIndex = 0;
+      li.innerHTML = '<b>' + wd.num + '</b><span>' + wd.clue + ' (' + wd.w.length + ')</span>';
+      li.addEventListener('click', function () { select(cells[key(wd.r, wd.c)], wd.d); });
+      li.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(cells[key(wd.r, wd.c)], wd.d); } });
+      ol.appendChild(li);
+    });
+  });
+
+  document.getElementById('xwCheck').addEventListener('click', function () {
+    Object.keys(cells).forEach(function (k) { var x = cells[k]; x.el.classList.toggle('wrong', !!x.input.value && x.input.value.toUpperCase() !== x.ch); });
+  });
+  document.getElementById('xwReveal').addEventListener('click', function () {
+    if (!cur) return; startClock();
+    wordCells(cur[dir]).forEach(function (x) { x.input.value = x.ch; x.el.classList.remove('wrong'); x.el.classList.add('revealed'); });
+    render(); save();
+  });
+  document.getElementById('xwRevealAll').addEventListener('click', function () {
+    Object.keys(cells).forEach(function (k) { var x = cells[k]; x.input.value = x.ch; x.el.classList.remove('wrong'); x.el.classList.add('revealed'); });
+    render(); save();
+  });
+  document.getElementById('xwClear').addEventListener('click', function () {
+    Object.keys(cells).forEach(function (k) { var x = cells[k]; x.input.value = ''; x.el.classList.remove('wrong', 'revealed'); });
+    elapsed = 0; solved = false; if (ticking) { clearInterval(ticking); ticking = null; }
+    renderClock(); render(); save();
+  });
+
+  load(); render();  // a saved game resumes here; the clock restarts on the next keystroke
+})();
+
+// ---------- the dealbreaker sort ----------
+(function () {
+  var B = {
+    db: { k: 'Dealbreaker', d: 'Structural. One of the ten, and a clean no-match.' },
+    pref: { k: 'Preference', d: 'The page has a lean, for or against, and leaves you the call.' },
+    dc: { k: 'Don\'t care', d: 'A filter most profiles run silently, switched off here.' }
+  };
+  // every href below is a deep link into the main page; the test suite checks that they resolve
+  var CARDS = [
+    { s: 'She doesn\'t want at least two kids.', b: 'db', why: 'The family plan is the mission. A clean no-match, not a flaw in either of us.', h: 'db-family', t: 'Dealbreakers, the family plan' },
+    { s: 'She\'s firmly closed to adoption.', b: 'db', why: 'Interested or flexible works. Firmly closed doesn\'t.', h: 'db-adoption', t: 'Dealbreakers, adoption' },
+    { s: 'She\'s skeptical of the standard vaccine schedule.', b: 'db', why: 'The kids follow the boring, evidence-backed schedule. If that reads as controversial, no match.', h: 'db-vaccines', t: 'Dealbreakers, vaccines' },
+    { s: 'She wants a household that maximizes income and measures nothing else.', b: 'db', why: 'He wants a triple bottom line, with community impact on the ledger next to the money.', h: 'db-impact', t: 'Dealbreakers, income without impact' },
+    { s: 'She ranks the dog above having children.', b: 'db', why: 'Pets are welcome. Pets ranked above or instead of human children are not.', h: 'db-pets', t: 'Dealbreakers, pets' },
+    { s: 'She treats every disagreement as a battle to win.', b: 'db', why: 'Conflicts arrive at a negotiating table, not a battlefield, or nothing else survives year one.', h: 'db-conflict', t: 'Dealbreakers, conflict' },
+    { s: 'She has no room for his backstory.', b: 'db', why: 'You\'ll hear it early and honestly, and he needs it heard and accepted, not held against him.', h: 'db-backstory', t: 'Dealbreakers, the backstory' },
+    { s: 'Nothing in her life feeds deep thought and relentless curiosity.', b: 'db', why: 'Reading doesn\'t have to mean books. It does have to mean that.', h: 'db-reader', t: 'Dealbreakers, not a reader' },
+    { s: 'She needs a husband who prays three times a day.', b: 'db', why: 'One service a day, prayed with you and meant, and company on the way to the other two. Never three.', h: 'db-prayer', t: 'Dealbreakers, three times a day' },
+    { s: 'She isn\'t Jewish, and isn\'t a convert from before they met.', b: 'db', why: 'The site assumes it quietly everywhere: the ketubah, the kashrut range, the day-school question.', h: 'db-jewish', t: 'Dealbreakers, a partner who isn\'t Jewish' },
+    { s: 'Her skin is a very different color from his.', b: 'dc', why: 'Not a factor, and if it tilts at all, it tilts the other way.', h: 'dc-skin', t: 'Don\'t Care, skin color' },
+    { s: 'She\'s five foot nothing. Or six foot one.', b: 'dc', why: 'Tall or short, any color hair or none, any color eyes. He published his own numbers and isn\'t running the math on yours.', h: 'dc-height', t: 'Don\'t Care, height, hair, eyes' },
+    { s: 'She earns a fraction of what he does.', b: 'dc', why: 'Skilled at something and solvent is the whole bar. The Money page pools whatever each brings.', h: 'dc-money', t: 'Don\'t Care, money' },
+    { s: 'She isn\'t American.', b: 'dc', why: 'He holds three passports, and the Geography page already assumes settling near her parents, wherever they are.', h: 'dc-nationality', t: 'Don\'t Care, nationality' },
+    { s: 'She\'s a registered Republican. Or Democrat.', b: 'dc', why: 'Right, left, or the independent center: not a filter. Open-mindedness is the trait he\'s actually after.', h: 'dc-politics', t: 'Don\'t Care, party loyalty' },
+    { s: 'She uses a wheelchair.', b: 'dc', why: 'Wouldn\'t give him pause. The page says so in exactly those words.', h: 'dc-health', t: 'Don\'t Care, disability and health' },
+    { s: 'She has a peanut allergy.', b: 'dc', why: 'He loves peanuts and would give them up for a marriage without a second thought.', h: 'dc-health', t: 'Don\'t Care, disability and health' },
+    { s: 'She keeps strictly glatt kosher.', b: 'dc', why: 'He\'ll match you, anywhere from glatt to Chipotle. He\'s kept fairly strict kosher for more than half his life.', h: 'db-kosher', t: 'What shouldn\'t be a dealbreaker, kosher' },
+    { s: 'She has two left feet and never wants to dance.', b: 'dc', why: 'The dancing is an offer, not a filter. No good marriage fails on a dance floor.', h: 'proposals-salsa-night', t: 'Proposal 06, salsa night' },
+    { s: 'She\'d like a diamond.', b: 'pref', why: 'He\'d rather not buy one, and says why. The counter-offer is a check for the median ring price, yours to spend on exactly the ring you want.', h: 'ring', t: 'The Ring Policy' },
+    { s: 'She wants a big wedding.', b: 'pref', why: 'The page argues for the courthouse and then the biggest, cheapest party you\'ve ever been to. It\'s an argument, not a filter.', h: 'wedding', t: 'Skip the Big Wedding' },
+    { s: 'She wears makeup on the first date.', b: 'pref', why: 'He\'d really prefer you skip it, at some length. Still your call, and he says that too.', h: 'dc-makeup', t: 'Don\'t Care, makeup' },
+    { s: 'Her dance of choice is Argentine tango.', b: 'pref', why: 'The one style he asks you not to pick. He\'ll learn any other one you like.', h: 'proposals-salsa-night', t: 'Proposal 06, salsa night' },
+    { s: 'She already has two children.', b: 'pref', why: 'A lean in her favor: widows and single mothers get top-tier priority, because their kids deserve a father figure as soon as one can be found.', h: 'agerange-priority-stated-plainly', t: 'The Age Range, priority stated plainly' },
+    { s: 'She\'s a different ethnicity from his.', b: 'pref', why: 'A lean in her favor, said out loud: he\'d highly prefer a meaningfully different genetic background from his own.', h: 'db-jewish', t: 'Dealbreakers, the preference inside the assumption' },
+    { s: 'She wants to stay home with the kids for a few years.', b: 'pref', why: 'Stay-at-home by reason rather than convention: run the numbers, and outside the nursing years the father may be the better candidate.', h: 'partnership-if-someone-stays-home', t: 'Partnership, if someone stays home' }
+  ];
+  var order = CARDS.map(function (_, i) { return i; });
+  for (var i = order.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = order[i]; order[i] = order[j]; order[j] = t; }
+  var pos = 0, score = 0, answered = false;
+  var card = document.getElementById('sortCard'), prog = document.getElementById('sortProgress'), sc = document.getElementById('sortScore');
+
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  function show() {
+    answered = false;
+    if (pos >= order.length) return finish();
+    var c = CARDS[order[pos]];
+    card.className = 'card';
+    card.innerHTML = '<div class="stmt">' + esc(c.s) + '</div><div class="buckets">' +
+      ['db', 'pref', 'dc'].map(function (b, i) { return '<button class="bucket" type="button" data-b="' + b + '"><span class="k"><i>' + (i + 1) + '</i>' + esc(B[b].k) + '</span><span class="d">' + esc(B[b].d) + '</span></button>'; }).join('') +
+      '</div><div class="verdict" id="verdict" hidden></div>';
+    prog.textContent = (pos + 1) + ' of ' + order.length;
+    sc.textContent = score + ' right so far';
+  }
+  function answer(b) {
+    if (answered) return; answered = true;
+    var c = CARDS[order[pos]], hit = b === c.b;
+    if (hit) score++;
+    var btns = card.querySelectorAll('.bucket');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].disabled = true;
+      if (btns[i].dataset.b === c.b) btns[i].classList.add('right');
+      if (btns[i].dataset.b === b) btns[i].classList.add('picked', hit ? 'hit' : 'miss');
+    }
+    var v = document.getElementById('verdict');
+    v.hidden = false;
+    v.innerHTML = '<div class="v ' + (hit ? 'hit' : 'miss') + '">' + (hit ? 'Right. ' : 'The page says ') + esc(B[c.b].k) + '</div>' +
+      '<p>' + esc(c.why) + ' <a href="../#' + c.h + '">' + esc(c.t) + '</a></p>' +
+      '<div class="row"><button class="btn" type="button" id="sortNext">' + (pos + 1 < order.length ? 'Next' : 'See the score') + '</button></div>';
+    sc.textContent = score + ' right so far';
+    var nb = document.getElementById('sortNext');
+    nb.addEventListener('click', function () { pos++; show(); });
+    nb.focus({ preventScroll: true });
+  }
+  function finish() {
+    var n = order.length, line;
+    if (score === n) line = 'Perfect. You read the page more carefully than most second dates did. Your move.';
+    else if (score >= n - 3) line = 'Nearly all of it. The ones you missed are the ones worth a first-date question.';
+    else if (score >= n / 2) line = 'More right than wrong, which is better than most profiles manage about themselves.';
+    else line = 'The page and you disagree about what matters. That\'s useful to know before coffee, and every card links to the paragraph that decided it.';
+    card.className = 'card final';
+    card.innerHTML = '<div class="stmt">' + score + ' of ' + n + '.</div><p>' + esc(line) + '</p>' +
+      '<div class="row"><button class="btn" type="button" id="sortAgain">Play again, reshuffled</button><a class="btn quiet" href="../#dealbreakers">Read the Dealbreakers page</a></div>';
+    prog.textContent = 'Done'; sc.textContent = score + ' of ' + n;
+    document.getElementById('sortAgain').addEventListener('click', function () {
+      for (var i = order.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = order[i]; order[i] = order[j]; order[j] = t; }
+      pos = 0; score = 0; show();
+    });
+  }
+  card.addEventListener('click', function (e) { var b = e.target.closest('.bucket'); if (b && !b.disabled) answer(b.dataset.b); });
+  document.addEventListener('keydown', function (e) {
+    if (e.target.closest('input, textarea')) return;
+    var map = { '1': 'db', '2': 'pref', '3': 'dc' };
+    if (map[e.key] && !answered && pos < order.length) answer(map[e.key]);
+    else if ((e.key === 'Enter' || e.key === 'n') && answered) { var nb = document.getElementById('sortNext'); if (nb) nb.click(); }
+  });
+  show();
+})();
+</script>
+</body>
+</html>

@@ -202,6 +202,9 @@ check('the filing left the main page', '<div class="body patent">' not in s)
 path_block = s.split('id="radius-read-this-first"', 1)[1].split('</ol>', 1)[0] if 'id="radius-read-this-first"' in s else ''
 check('Start Here names the reading order', bool(path_block) and all(f'href="#{x}"' in path_block for x in ('offer', 'family', 'dealbreakers', 'agerange')))
 check('reading times are computed from the page', 'const WPM' in s and 'data-mins' in s and 'minsSum' in s and 'id="pathMins"' in s)
+check('reading events: via, view_index, scroll depth, seconds on screen, cards',
+      all(x in s for x in ("via: via", "view_index: viewIndex(true)", "track('section_scroll'", "track('section_leave'", "track('card_open'", "'visibilitychange'")))
+check('a hash change inside the same section is not a page view', 'if (changed) {  // a hash change inside the same section' in s)
 check('the appendix comes last', ids[-5:] == ['verifyme', 'audits', 'revisions', 'acknowledgments', 'glossary'], str(ids[-5:]))
 check('the appendix is its own chapter', all(re.search(rf'id="{i}" data-title="[^"]*" data-chapter="The appendix"', s) for i in ids[-5:]))
 

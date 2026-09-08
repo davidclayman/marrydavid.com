@@ -1926,7 +1926,7 @@
     <p class="subhead">What this site collects, which is very little, and your rights over it, which are complete. Even the fonts don't phone home.</p>
     <div class="prose">
       <p id="privacy-who-is-responsible"><strong>Who is responsible.</strong><a class="pmark" href="#privacy-who-is-responsible" aria-label="Link to this paragraph">#</a> David Clayman, the author of this site, is the data controller. Contact for anything on this page: the address on <a href="#transmission">the Transmission page</a>.</p>
-      <p id="privacy-the-site-collects-and-why"><strong>What the site collects, and why.</strong><a class="pmark" href="#privacy-the-site-collects-and-why" aria-label="Link to this paragraph">#</a> Three things, and nothing else. First, Google Analytics counts which sections are read and which buttons are clicked, in aggregate, along with the size of the browser window, so I can tell whether the site works and which layout was read. It runs by default, with IP anonymization on and every advertising feature off, and it stops the moment you ask: one click below, remembered in your browser, or the Global Privacy Control signal, which the site treats as a standing no. The legal basis is my legitimate interest in knowing whether the site is read at all, which is as light as a reason gets, and the switch below overrides it. Second, anything you choose to email me goes to my inbox so that I can reply, and a request that I call you travels through a Google Form into the same inbox, and a video call you book goes through Google Calendar, which puts it on both our calendars and sends the Meet link; the legal basis is that you asked me to. Third, the host records ordinary server logs, as every website's host does. The site sets no cookies of its own. The fonts are served from this site, not from Google.</p>
+      <p id="privacy-the-site-collects-and-why"><strong>What the site collects, and why.</strong><a class="pmark" href="#privacy-the-site-collects-and-why" aria-label="Link to this paragraph">#</a> Three things, and nothing else. First, Google Analytics counts which sections are read, in what order, how far down, and for how long, which collapsed cards are opened and which buttons are clicked, in aggregate, along with the size of the browser window, so I can tell whether the site works and what actually gets read. It never sees what you type, copy, or select. It runs by default, with IP anonymization on and every advertising feature off, and it stops the moment you ask: one click below, remembered in your browser, or the Global Privacy Control signal, which the site treats as a standing no. The legal basis is my legitimate interest in knowing whether the site is read at all, which is as light as a reason gets, and the switch below overrides it. Second, anything you choose to email me goes to my inbox so that I can reply, and a request that I call you travels through a Google Form into the same inbox, and a video call you book goes through Google Calendar, which puts it on both our calendars and sends the Meet link; the legal basis is that you asked me to. Third, the host records ordinary server logs, as every website's host does. The site sets no cookies of its own. The fonts are served from this site, not from Google.</p>
       <p id="privacy-who-else-touches-it"><strong>Who else touches it.</strong><a class="pmark" href="#privacy-who-else-touches-it" aria-label="Link to this paragraph">#</a> Google LLC processes the analytics data, the call-request form, and calendar bookings on my behalf under its standard terms, and GitHub, Inc. hosts the site and its server logs. Both are in the United States and operate under the EU-US Data Privacy Framework. Nobody else. Nothing is sold, and nothing is used for advertising.</p>
       <p id="privacy-long"><strong>How long.</strong><a class="pmark" href="#privacy-long" aria-label="Link to this paragraph">#</a> Analytics data is kept for fourteen months and then deleted by Google. Emails, call requests, and calendar bookings are kept as long as our conversation lasts and deleted the moment you ask. Your analytics choice lives in your own browser until you clear it.</p>
       <p id="privacy-your-rights"><strong>Your rights.</strong><a class="pmark" href="#privacy-your-rights" aria-label="Link to this paragraph">#</a> Under the GDPR and equivalent laws you can ask what I hold about you, have it corrected or deleted, restrict or object to its use, take a copy with you, and switch the counting off at any time without affecting anything that happened before. Email me and I'll do it within a month, usually the same day. If you're in the EU or UK and think I've handled your data badly, you can complain to your national supervisory authority. The site makes no automated decisions about anyone.</p>
@@ -2420,6 +2420,54 @@ He's clear about what he wants, which is to marry and raise two or three kids so
   }
   if (!analyticsOff()) loadAnalytics();
 
+  // READING: how each section was reached (via: rail, sidebar, contents, path, crosslink, nudge, status, link,
+  // deeplink, landing, history), its position in the visit (view_index, kept for the tab in sessionStorage), how
+  // far down it was read (section_scroll at 50 and 100), and the seconds it was on a visible screen
+  // (section_leave, sent when the section changes or the tab is hidden, so nothing is lost on close).
+  // Registered in GA4 as event-scoped custom dimensions via, view_index, section, depth, and the custom metric seconds.
+  let pendingVia = null;  // set by the click that causes a hash change, read once by the router
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]'); if (!a) return;
+    pendingVia = a.closest('nav.topics') ? 'rail' : a.closest('#sideNav') ? 'sidebar' : a.closest('#toc') ? 'contents'
+      : a.closest('.path-list') ? 'path' : a.closest('p.crosslink') ? 'crosslink' : a.closest('#nudge') ? 'nudge'
+      : a.closest('#status') ? 'status' : 'link';
+  }, true);
+  function viewIndex(bump) {
+    let n = 0;
+    try { n = parseInt(sessionStorage.getItem('viewIndex') || '0', 10) || 0; } catch (e) {}
+    if (bump) { n++; try { sessionStorage.setItem('viewIndex', String(n)); } catch (e) {} }
+    return n;
+  }
+  const reading = { section: null, title: null, start: 0, seconds: 0, depth: 0, sent50: false, sent100: false };
+  function depthNow() {
+    const total = Math.max(document.documentElement.scrollHeight, 1);
+    return Math.min(100, Math.round(100 * (window.scrollY + window.innerHeight) / total));
+  }
+  function scrollCheck() {
+    if (!reading.section) return;
+    const d = depthNow();
+    if (d > reading.depth) reading.depth = d;
+    if (d >= 50 && !reading.sent50) { reading.sent50 = true; track('section_scroll', { section: reading.title, depth: 50 }); }
+    if (d >= 98 && !reading.sent100) { reading.sent100 = true; track('section_scroll', { section: reading.title, depth: 100 }); }
+  }
+  function readingPause() {  // the tab was hidden or the section changed: bank the time on screen and report it
+    if (!reading.section) return;
+    if (reading.start) { reading.seconds += (performance.now() - reading.start) / 1000; reading.start = 0; }
+    const s = Math.round(reading.seconds);
+    if (s >= 1) track('section_leave', { section: reading.title, seconds: s, depth: reading.depth });
+    reading.seconds = 0;
+  }
+  function readingResume() { if (reading.section && !reading.start && document.visibilityState === 'visible') reading.start = performance.now(); }
+  function readingStart(sec) {
+    readingPause();
+    Object.assign(reading, { section: sec.id, title: sec.dataset.title, start: 0, seconds: 0, depth: 0, sent50: false, sent100: false });
+    readingResume();
+    setTimeout(scrollCheck, 350);  // a short section can be entirely on screen at once
+  }
+  window.addEventListener('scroll', scrollCheck, { passive: true });
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') readingPause(); else readingResume(); });
+  window.addEventListener('pagehide', readingPause);
+
   const sections = Array.from(document.querySelectorAll('section.topic'));
   const rail = document.getElementById('navRail');
   // the rail shows the Start Here chapter, whichever section is open, and one door to everything else;
@@ -2543,7 +2591,8 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     const el = document.getElementById(id);
     const deepIn = el && !el.classList.contains('topic') ? el.closest('section.topic') : null;  // an item id, like #db-reader, opens its section and scrolls there
     const target = el && el.classList.contains('topic') ? id : deepIn ? deepIn.id : 'radius';
-    if (target !== lastTarget) { document.querySelectorAll('.inview').forEach(e => e.classList.remove('inview')); lastTarget = target; }
+    const first = lastTarget === null, changed = target !== lastTarget;
+    if (changed) { document.querySelectorAll('.inview').forEach(e => e.classList.remove('inview')); lastTarget = target; }
     sections.forEach(s => s.classList.toggle('active', s.id === target));
     rail.querySelectorAll('a').forEach(a => { const on = a.dataset.target === target; a.classList.toggle('active', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     if (side) side.querySelectorAll('a').forEach(a => { const on = a.dataset.target === target; a.classList.toggle('active', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
@@ -2553,7 +2602,12 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     updateNavFades();
     placeIndicators();
     const activeSec = document.getElementById(target);
-    track('page_view', Object.assign({ page_title: (activeSec && activeSec.dataset.title) || target, page_location: location.origin + location.pathname + '#' + target, page_path: '/#' + target }, viewport()));
+    if (changed) {  // a hash change inside the same section (a paragraph mark, an audit card) is not a new page view
+      const via = first ? (location.hash ? 'deeplink' : 'landing') : (pendingVia || 'history');
+      track('page_view', Object.assign({ page_title: (activeSec && activeSec.dataset.title) || target, page_location: location.origin + location.pathname + '#' + target, page_path: '/#' + target, via: via, view_index: viewIndex(true) }, viewport()));
+      if (activeSec) readingStart(activeSec);
+    }
+    pendingVia = null;
     const card = audit && document.getElementById(audit);
     if (card) {
       card.open = true;
@@ -3579,7 +3633,7 @@ Be honest rather than kind. The author wrote this prompt himself and published i
         window['ga-disable-' + GA_ID] = false;
         loadAnalytics();
         const act = document.querySelector('section.topic.active');
-        track('page_view', Object.assign({ page_title: act ? act.dataset.title : 'Privacy', page_path: '/#' + (act ? act.id : 'privacy') }, viewport()));
+        track('page_view', Object.assign({ page_title: act ? act.dataset.title : 'Privacy', page_path: '/#' + (act ? act.id : 'privacy'), via: 'consent', view_index: viewIndex(false) || 1 }, viewport()));
         say('Counting again, from this page on.');
       } else {
         try { localStorage.setItem('consent', 'denied'); } catch (e) {}

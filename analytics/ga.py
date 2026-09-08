@@ -13,11 +13,14 @@ property (Admin > Property access management).
     python3 analytics/ga.py events    [--days 7]    # audit_copy, seal_click, and friends
     python3 analytics/ga.py layout    [--days 7]    # sidebar vs rail, and window widths (once the custom dimensions exist)
     python3 analytics/ga.py cards     [--days 7]    # which collapsed cards get opened, and audits opened vs copied
-    python3 analytics/ga.py path      [--days 7]    # how far the Start Here reading order carries readers
+    python3 analytics/ga.py path      [--days 7]    # how far the Start Here reading order carries readers, and how long it takes
+    python3 analytics/ga.py via       [--days 7]    # how readers reach sections: rail, sidebar, contents, path, crosslink, ...
+    python3 analytics/ga.py order     [--days 7]    # what is usually read first, second, third
+    python3 analytics/ga.py depth     [--days 7]    # per section: views, read halfway, read to the end, seconds on screen
 
 Set GA_PROPERTY to skip discovery (a number like 4xxxxxxxxx).
 """
-import json, os, subprocess, sys, urllib.request
+import json, os, re, subprocess, sys, urllib.request
 
 SA = 'ga-reader@marrydavid-analytics.iam.gserviceaccount.com'
 SCOPE = 'https://www.googleapis.com/auth/analytics.readonly'
@@ -34,6 +37,10 @@ def token():
     return r.stdout.strip()
 
 
+class Unregistered(Exception):
+    """A custom dimension or metric the page sends but GA4 hasn't been told about yet."""
+
+
 def call(url, body=None):
     req = urllib.request.Request(url, data=json.dumps(body).encode() if body else None,
                                  headers={'Authorization': 'Bearer ' + token(), 'Content-Type': 'application/json'})
@@ -41,7 +48,20 @@ def call(url, body=None):
         with urllib.request.urlopen(req) as resp:
             return json.load(resp)
     except urllib.error.HTTPError as e:
-        sys.exit(f'{e.code} from {url}\n{e.read().decode()[:600]}')
+        text = e.read().decode()
+        m = re.search(r'Field (customEvent:\w+) is not a valid (dimension|metric)', text)
+        if e.code == 400 and m:
+            raise Unregistered(m.group(1).split(':')[1], m.group(2))
+        sys.exit(f'{e.code} from {url}\n{text[:600]}')
+
+
+def soft(fn, default):
+    """Run a report that needs a custom definition; explain and carry on if GA4 doesn't have it yet."""
+    try:
+        return fn()
+    except Unregistered as e:
+        print(f'  (waiting on GA4: register the event-scoped custom {e.args[1]} "{e.args[0]}" under Admin > Custom definitions; data shows from then on)')
+        return default
 
 
 def properties():
@@ -89,6 +109,23 @@ def table(head, rows):
 
 def eq(dim, value):
     return {'filter': {'fieldName': dim, 'stringFilter': {'value': value}}}
+
+
+def funnel(pid, days):
+    """The reading order as a GA4 funnel (Data API v1alpha): Start Here, then the four named sections."""
+    steps = [{'name': t, 'filterExpression': {'funnelFieldFilter': {'fieldName': 'pageTitle', 'stringFilter': {'matchType': 'EXACT', 'value': t}}}} for t in PATH_TITLES]
+    body = {'dateRanges': [{'startDate': f'{days}daysAgo', 'endDate': 'today'}], 'funnel': {'isOpenFunnel': True, 'steps': steps}}
+    req = urllib.request.Request(f'https://analyticsdata.googleapis.com/v1alpha/properties/{pid}:runFunnelReport', data=json.dumps(body).encode(),
+                                 headers={'Authorization': 'Bearer ' + token(), 'Content-Type': 'application/json'})
+    try:
+        with urllib.request.urlopen(req) as resp:
+            r = json.load(resp)
+    except urllib.error.HTTPError as e:
+        print('  funnel unavailable:', e.read().decode()[:200]); return
+    t = r.get('funnelTable', {})
+    head = [h['name'] for h in t.get('dimensionHeaders', [])] + [h['name'] for h in t.get('metricHeaders', [])]
+    rows = [[c['value'] for c in row.get('dimensionValues', [])] + [c['value'] for c in row.get('metricValues', [])] for row in t.get('rows', [])]
+    table(head, rows)
 
 
 def main():
@@ -142,10 +179,48 @@ def main():
     elif cmd == 'path':
         rows = report(pid, ['pageTitle'], ['screenPageViews', 'activeUsers'], days, limit=200)
         by = {r[0]: (int(r[1]), int(r[2])) for r in rows}
-        table(['section', 'views', 'users'], [[t] + list(by.get(t, (0, 0))) for t in PATH_TITLES + ['Transmission']])
+        secs = soft(lambda: {r[0]: float(r[1]) for r in report(pid, ['customEvent:section'], ['customEvent:seconds'], days, eq('eventName', 'section_leave'), limit=200)}, {})
+        base = by.get(PATH_TITLES[0], (0, 0))[1] or 1
+        print('reach: users per section, as a share of Start Here users; seconds on screen per user')
+        table(['section', 'views', 'users', 'share', 'min per user'],
+              [[t, by.get(t, (0, 0))[0], by.get(t, (0, 0))[1], f'{100 * by.get(t, (0, 0))[1] / base:.0f}%',
+                f'{secs.get(t, 0) / 60 / max(1, by.get(t, (0, 0))[1]):.1f}'] for t in PATH_TITLES + ['Transmission']])
+        print(f'\nreading order total: {sum(secs.get(t, 0) for t in PATH_TITLES) / 60 / base:.1f} min per Start Here user, against the page\'s promise')
+        print('\narrivals through the read-this-first list')
+        table(['section', 'views'], soft(lambda: report(pid, ['pageTitle'], ['screenPageViews'], days, eq('customEvent:via', 'path'), limit=50), []))
+        print('\nfunnel: users who reached each step in order (open funnel, so a step counts whenever it follows the last)')
+        funnel(pid, days)
+    elif cmd == 'via':
+        print('by source'); table(['via', 'views', 'users'], report(pid, ['customEvent:via'], ['screenPageViews', 'activeUsers'], days, eq('eventName', 'page_view'), order='screenPageViews'))
+        print('\nby source and section'); table(['via', 'section', 'views'],
+              report(pid, ['customEvent:via', 'pageTitle'], ['screenPageViews'], days, eq('eventName', 'page_view'), order='screenPageViews', limit=60))
+    elif cmd == 'order':
+        rows = report(pid, ['customEvent:view_index', 'pageTitle'], ['screenPageViews'], days, eq('eventName', 'page_view'), limit=2000)
+        by = {}
+        for idx, title, n in rows:
+            if idx.isdigit(): by.setdefault(int(idx), []).append((int(n), title))
+        out = []
+        for i in sorted(by)[:10]:
+            top = sorted(by[i], reverse=True)[:3]; total = sum(n for n, _ in by[i])
+            out.append([i, total, ', '.join(f'{t} ({n})' for n, t in top)])
+        table(['position', 'views', 'most common sections'], out)
+    elif cmd == 'depth':
+        views = {r[0]: int(r[1]) for r in report(pid, ['pageTitle'], ['screenPageViews'], days, eq('eventName', 'page_view'), limit=200)}
+        half, full = {}, {}
+        for sec, d, n in report(pid, ['customEvent:section', 'customEvent:depth'], ['eventCount'], days, eq('eventName', 'section_scroll'), limit=400):
+            (half if d == '50' else full)[sec] = int(n)
+        left = {r[0]: (float(r[1]), int(r[2])) for r in report(pid, ['customEvent:section'], ['customEvent:seconds', 'eventCount'], days, eq('eventName', 'section_leave'), limit=200)}
+        out = []
+        for sec, v in sorted(views.items(), key=lambda kv: -kv[1]):
+            s, c = left.get(sec, (0.0, 0))
+            out.append([sec, v, half.get(sec, 0), full.get(sec, 0), f'{100 * full.get(sec, 0) / v:.0f}%' if v else '', f'{s / max(1, v):.0f}'])
+        table(['section', 'views', 'halfway', 'to the end', 'finish rate', 'avg s on screen'], out)
     else:
         sys.exit('unknown command; see --help')
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except Unregistered as e:
+        sys.exit(f'waiting on GA4: register the event-scoped custom {e.args[1]} "{e.args[0]}" under Admin > Custom definitions; data shows from then on')

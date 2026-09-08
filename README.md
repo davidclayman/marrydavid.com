@@ -25,10 +25,16 @@ says so.
 **One static file.** Everything is `index.html`: hand-written CSS, vanilla
 JavaScript, no framework, no build step. The three typefaces are self-hosted
 from `fonts/`. Google Analytics is the only third party. It loads by default
-(sections are sent as page views, calls to action as events) and stays off for
-anyone who flipped the switch on the Privacy section or whose browser sends
-Global Privacy Control; there is no consent banner. The Privacy section
-documents the rest.
+and stays off for anyone who flipped the switch on the Privacy section or
+whose browser sends Global Privacy Control; there is no consent banner. The
+Privacy section documents the rest. What it sends: each section as a page view
+carrying `via` (how the reader got there: rail, sidebar, contents, path,
+crosslink, nudge, status, link, deeplink, landing, history), `view_index`
+(position in the visit), and the window size and layout; `section_scroll` at
+50 and 100 percent; `section_leave` with `seconds` on screen when the section
+changes or the tab hides; `card_open` for every collapsed card; and the calls
+to action as events. Each parameter is an event-scoped custom dimension in
+GA4 (`seconds` a custom metric), and `analytics/ga.py` reads them back.
 `404.html` redirects `/family`-style paths to `/#family` and otherwise links
 home. A few unlisted follow-up pages (each in its own folder, `noindex`, never
 linked from the main page or the sitemap) exist for people met in person or

@@ -12,6 +12,7 @@ property (Admin > Property access management).
     python3 analytics/ga.py country IR [--days 30]  # everything about one country's sessions
     python3 analytics/ga.py events    [--days 7]    # audit_copy, seal_click, and friends
     python3 analytics/ga.py layout    [--days 7]    # sidebar vs rail, and window widths (once the custom dimensions exist)
+    python3 analytics/ga.py cards     [--days 7]    # which collapsed cards get opened, and audits opened vs copied
     python3 analytics/ga.py path      [--days 7]    # how far the Start Here reading order carries readers
 
 Set GA_PROPERTY to skip discovery (a number like 4xxxxxxxxx).
@@ -127,6 +128,15 @@ def main():
               report(pid, ['customEvent:layout', 'country', 'deviceCategory'], ['sessions', 'screenPageViews'], days, order='sessions'))
         print('\nviewport widths'); table(['width', 'device', 'views'],
               report(pid, ['customEvent:viewport_width', 'deviceCategory'], ['screenPageViews'], days, order='screenPageViews', limit=40))
+    elif cmd == 'cards':
+        # needs the event-scoped custom dimensions card and audit registered in GA4 Admin > Custom definitions
+        print('cards opened'); table(['card', 'section', 'opens', 'users'],
+              report(pid, ['customEvent:card', 'customEvent:section'], ['eventCount', 'activeUsers'], days,
+                     eq('eventName', 'card_open'), order='eventCount', limit=60))
+        print('\naudits: opened vs copied')
+        opened = {r[0]: int(r[1]) for r in report(pid, ['customEvent:card'], ['eventCount'], days, eq('eventName', 'card_open'), limit=100) if r[0].startswith('audit-')}
+        copied = {'audit-' + r[0]: int(r[1]) for r in report(pid, ['customEvent:audit'], ['eventCount'], days, eq('eventName', 'audit_copy'), limit=100)}
+        table(['audit', 'opened', 'copied'], [[a, opened.get(a, 0), copied.get(a, 0)] for a in sorted(set(opened) | set(copied))])
     elif cmd == 'events':
         table(['event', 'count', 'users'], report(pid, ['eventName'], ['eventCount', 'activeUsers'], days, order='eventCount'))
     elif cmd == 'path':

@@ -1110,6 +1110,23 @@
     </ul>
   </section>
 
+  <!-- ============ PLAY ============ -->
+  <section class="topic" id="play" data-title="Play" data-chapter="The strategy">
+    <h2 class="head">Play</h2>
+    <p class="subhead">Proposal 05 is trivia night, on the theory that mild competition reveals character at a discount. This is the practice round: two open-book games, every answer somewhere on this site.</p>
+    <ul class="items">
+      <li id="play-crossword">
+        <span class="k"><a class="deep" href="#play-crossword">The crossword</a></span>
+        <span class="v">Nineteen answers, all house vocabulary, in a grid where words touch only where they cross: the Tuesday test, the chuppah, the drone, the yente, the one dance you're asked not to pick. The clues double as a reading list, and progress stays in your browser. <a href="play/#crossword">Solve it</a>.</span>
+      </li>
+      <li id="play-dealbreaker-sort">
+        <span class="k"><a class="deep" href="#play-dealbreaker-sort">The dealbreaker sort</a></span>
+        <span class="v">Twenty-six statements about a hypothetical her. Say whether this site files each as a dealbreaker, a preference, or a don't-care, and every verdict links to the paragraph that decides it. If you disagree with the page, you can argue with the page. <a href="play/#sort">Sort them</a>.</span>
+      </li>
+    </ul>
+    <p class="crosslink">Both games live on <a href="play/">their own page</a>, which is the only follow-up page this site links to. The rules they test: <a href="#dealbreakers">Dealbreakers</a> and <a href="#dontcare">Don't Care</a>.</p>
+  </section>
+
   <!-- ============ FIRST WEEKEND ============ -->
   <section class="topic" id="weekend" data-title="First Weekend" data-chapter="The strategy">
     <h2 class="head">A First Weekend, Concretely</h2>
@@ -1555,7 +1572,7 @@
       </li>
       <li id="db-prayer">
         <span class="k"><a class="deep" href="#db-prayer">Needing me to pray three times a day</a></span>
-        <span class="v">If you need a partner who prays three times a day, that's a definite no. Rote daily liturgy, in a Hebrew I only partly understand, isn't where my hours do the most good next to learning, building things that help people, or exercise, whose case for extending a life is causal and dose-dependent, where the prayer literature's real effect belongs to showing up in community rather than to the words. The arithmetic is unforgiving: even fifteen minutes a day is over ninety hours a year, more than eleven workdays, and a full minyan day runs closer to an hour. If daily prayer matters to you, here's what I can honestly offer: one service a day, prayed with you and meant, and my company on the way to the other two. But nobody, even in retirement, is getting me to the full thrice-daily liturgy.</span>
+        <span class="v">If you need a partner who prays three times a day, that's a definite no. Rote daily liturgy, in a Hebrew I only partly understand, isn't where my hours do the most good next to learning, building things that help people, or exercise, whose case for extending a life is causal and dose-dependent, where the prayer literature's real effect belongs to showing up in community rather than to the words. The arithmetic is unforgiving: even fifteen minutes a day is over ninety hours a year, more than eleven workdays, and a full minyan day runs closer to an hour. If daily prayer matters to you, here's what I can honestly offer: at most one service a day, prayed with you and meant, and my company on the way to the other two. That is a ceiling, not a habit. Left to myself I'd pray about a half-dozen times a year, and I'd rather put the hours toward community, time with family, regular exercise, or a great book on a Saturday morning. But nobody, even in retirement, is getting me to the full thrice-daily liturgy.</span>
       </li>
       <li id="db-jewish">
         <span class="k"><a class="deep" href="#db-jewish">A partner who isn't Jewish</a></span>
@@ -1923,7 +1940,7 @@
   <!-- ============ QUESTIONS FOR YOU ============ -->
   <section class="topic" id="questions" data-title="Questions for You" data-chapter="Your turn">
     <h2 class="head">Questions for You</h2>
-    <p class="subhead">Forty-five sections about me is a monologue. This is the interview I'm hoping for. You may bring notes.</p>
+    <p class="subhead">Forty-six sections about me is a monologue. This is the interview I'm hoping for. You may bring notes.</p>
     <ul class="items">
       <li id="questions-do-you-believe-that-you-cant-prove">
         <span class="tag">Question 01</span>
@@ -2243,6 +2260,11 @@ He's clear about what he wants, which is to marry and raise two or three kids so
         <span class="tag">2026-09-07</span>
         <span class="k"><a class="deep" href="#revisions-date-locket-filing-moved-to-its-own">The Date Locket filing moved to its own page</a></span>
         <span class="v">The provisional application was six thousand words inside a collapsed card, about a sixth of the whole site on one page. Date Locket now carries the design in plain language, about fifteen hundred words in all, and the filing lives verbatim at its own address, still dated 2026-09-02, still CC0, still in the commit log.</span>
+      </li>
+      <li id="revisions-one-service-a-day-became-a-ceiling">
+        <span class="tag">2026-09-07</span>
+        <span class="k"><a class="deep" href="#revisions-one-service-a-day-became-a-ceiling">One service a day became a ceiling</a></span>
+        <span class="v">The prayer dealbreaker offered one service a day, prayed together and meant, which read as a habit. It was always a maximum. The page now says so: at most one a day, and left to myself about a half-dozen times a year, with the hours going to community, family, exercise, and a good book on a Saturday morning. Audit 19 was updated to match.</span>
       </li>
     </ul>
     <p class="crosslink">The receipts, edit by edit: <a href="https://github.com/davidclayman/marrydavid.com/commits/main">the commit log</a>. The promise this keeps: <a href="#yearten">Year Ten</a>.</p>
@@ -2853,13 +2875,13 @@ Cite the studies you rely on and give effect sizes, not adjectives.`
     },
     {
       title: "The prayer arithmetic: 15 minutes a day is 11 workdays a year",
-      claim: "Thrice-daily liturgy costs over 90 hours a year at 15 minutes a day, exercise extends life with better evidence than prayer does, and one service a day, prayed with his partner and meant, is the author's counter-offer.",
-      prompt: `CONTEXT: A dating page lists "needing me to pray three times a day" as a dealbreaker. The author, who is Jewish, argues that rote daily liturgy is a poor use of hours next to learning, building, and exercise, "whose case for extending a life is causal and dose-dependent." He computes that even 15 minutes a day costs over 90 hours a year, "more than eleven workdays," and notes a full minyan day runs closer to an hour. His counter-offer: one service a day, prayed with his partner and meant, plus his company on the way to the other two. Audit the arithmetic, the evidence claim, and the religious logic.
+      claim: "Thrice-daily liturgy costs over 90 hours a year at 15 minutes a day, exercise extends life with better evidence than prayer does, and at most one service a day, prayed with his partner and meant, is the author's ceiling; left to himself he'd pray about a half-dozen times a year.",
+      prompt: `CONTEXT: A dating page lists "needing me to pray three times a day" as a dealbreaker. The author, who is Jewish, argues that rote daily liturgy is a poor use of hours next to learning, building, and exercise, "whose case for extending a life is causal and dose-dependent." He computes that even 15 minutes a day costs over 90 hours a year, "more than eleven workdays," and notes a full minyan day runs closer to an hour. His counter-offer, stated as a ceiling rather than a habit: at most one service a day, prayed with his partner and meant, plus his company on the way to the other two; left to himself he says he'd pray about a half-dozen times a year and spend the hours on community, family, exercise, and reading. Audit the arithmetic, the evidence claim, and the religious logic.
 
 1. THE ARITHMETIC. Check: 15 minutes a day for 365 days; convert 90-plus hours to 8-hour workdays; then the same for an hour a day. Then estimate the real duration of the three weekday services for an observant man praying alone versus with a minyan, and the word count of the daily liturgy. Is "15 minutes" a fair lower bound, an underestimate, or an overestimate, and is "closer to an hour" right for a minyan day?
 2. THE INCONVENIENT LITERATURE. The author claims exercise beats prayer on lifespan evidence. Report the research on religious service attendance and mortality (including the Nurses' Health Study analyses by VanderWeele and colleagues, and the broader meta-analyses on religiosity and longevity). What effect sizes are reported, how much is confounded by social connection and health behaviors, and how does it compare with the exercise literature? Does the evidence distinguish communal attendance from private rote prayer?
 3. THE OPPORTUNITY COST. Is comparing prayer to exercise hour-for-hour a fair frame, or a category error (one is a health intervention, the other a religious obligation with community, meaning, and identity payoffs)? What would a fair cost-benefit account include on both sides?
-4. THE COUNTER-OFFER. How would Orthodox, Conservative, and Reform authorities each regard a man who prays one service a day with his wife and accompanies her to the other two without praying? Is one-a-day a coherent middle ground, a signal about where he sits religiously, or both? Is it fair to a partner for whom the full obligation is real?
+4. THE COUNTER-OFFER. How would Orthodox, Conservative, and Reform authorities each regard a man who prays at most one service a day with his wife, accompanies her to the other two without praying, and on his own account prays perhaps a half-dozen times a year? Is a one-a-day ceiling a coherent middle ground, a signal about where he sits religiously, or both? Is it fair to a partner for whom the full obligation is real?
 5. CONSISTENCY. The same page says his flavor of Judaism is not a filter unless the partner is ultra-Orthodox, that he is happy to match anywhere from Reform to Modern Orthodox, and that a Jewish day school is on the table. Is "no thrice-daily prayer" compatible with a Modern Orthodox household, or does it quietly narrow the stated range?
 6. VERDICT. Is this dealbreaker arithmetic, theology, or taste dressed as arithmetic? Say which, and name the single sentence a religious partner should read before deciding whether it applies to her.
 

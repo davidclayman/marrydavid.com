@@ -1,0 +1,4 @@
+{
+  "service_account": "ga-reader@YOUR-PROJECT.iam.gserviceaccount.com",
+  "property": "YOUR-GA4-PROPERTY-ID"
+}

@@ -18,23 +18,38 @@ property (Admin > Property access management).
     python3 analytics/ga.py order     [--days 7]    # what is usually read first, second, third
     python3 analytics/ga.py depth     [--days 7]    # per section: views, read halfway, read to the end, seconds on screen
 
-Set GA_PROPERTY to skip discovery (a number like 4xxxxxxxxx).
+Identifiers come from analytics/config.json (gitignored; copy config.example.json) or GA_SERVICE_ACCOUNT / GA_PROPERTY.
 """
 import json, os, re, subprocess, sys, urllib.request
 
-SA = 'ga-reader@marrydavid-analytics.iam.gserviceaccount.com'
+# Identifiers live outside the public repo: analytics/config.json (gitignored) or the environment.
+#   {"service_account": "<name>@<project>.iam.gserviceaccount.com", "property": "<GA4 property id>"}
+CONFIG = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config.json')
+try:
+    _cfg = json.load(open(CONFIG, encoding='utf-8'))
+except (OSError, ValueError):
+    _cfg = {}
+SA = os.environ.get('GA_SERVICE_ACCOUNT') or _cfg.get('service_account') or sys.exit(f'no service account: set GA_SERVICE_ACCOUNT or write {CONFIG} (see config.example.json)')
 SCOPE = 'https://www.googleapis.com/auth/analytics.readonly'
 DATA = 'https://analyticsdata.googleapis.com/v1beta'
 ADMIN = 'https://analyticsadmin.googleapis.com/v1beta'
 PATH_TITLES = ['Start Here', 'What You Get', 'Family', 'Dealbreakers', 'Age Range']  # the data-title of each section on the reading order
 
 
+_token = None
+
+
 def token():
+    """One borrowed token per run; minting takes a second or two of gcloud each time."""
+    global _token
+    if _token:
+        return _token
     r = subprocess.run(['gcloud', 'auth', 'print-access-token', '--impersonate-service-account=' + SA, '--scopes=' + SCOPE],
                        capture_output=True, text=True)
     if r.returncode != 0:
         sys.exit('could not mint a token; run `gcloud auth login` as the property owner first\n' + r.stderr[-400:])
-    return r.stdout.strip()
+    _token = r.stdout.strip()
+    return _token
 
 
 class Unregistered(Exception):
@@ -73,8 +88,8 @@ def properties():
 
 
 def property_id():
-    if os.environ.get('GA_PROPERTY'):
-        return os.environ['GA_PROPERTY']
+    if os.environ.get('GA_PROPERTY') or _cfg.get('property'):
+        return os.environ.get('GA_PROPERTY') or str(_cfg['property'])
     props = properties()
     if not props:
         sys.exit(f'the service account sees no properties yet: add {SA} as a Viewer on the GA4 property')

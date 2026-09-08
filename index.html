@@ -1926,7 +1926,7 @@
     <p class="subhead">What this site collects, which is very little, and your rights over it, which are complete. Even the fonts don't phone home.</p>
     <div class="prose">
       <p id="privacy-who-is-responsible"><strong>Who is responsible.</strong><a class="pmark" href="#privacy-who-is-responsible" aria-label="Link to this paragraph">#</a> David Clayman, the author of this site, is the data controller. Contact for anything on this page: the address on <a href="#transmission">the Transmission page</a>.</p>
-      <p id="privacy-the-site-collects-and-why"><strong>What the site collects, and why.</strong><a class="pmark" href="#privacy-the-site-collects-and-why" aria-label="Link to this paragraph">#</a> Three things, and nothing else. First, Google Analytics counts which sections are read and which buttons are clicked, in aggregate, so I can tell whether the site works. It runs by default, with IP anonymization on and every advertising feature off, and it stops the moment you ask: one click below, remembered in your browser, or the Global Privacy Control signal, which the site treats as a standing no. The legal basis is my legitimate interest in knowing whether the site is read at all, which is as light as a reason gets, and the switch below overrides it. Second, anything you choose to email me goes to my inbox so that I can reply, and a request that I call you travels through a Google Form into the same inbox, and a video call you book goes through Google Calendar, which puts it on both our calendars and sends the Meet link; the legal basis is that you asked me to. Third, the host records ordinary server logs, as every website's host does. The site sets no cookies of its own. The fonts are served from this site, not from Google.</p>
+      <p id="privacy-the-site-collects-and-why"><strong>What the site collects, and why.</strong><a class="pmark" href="#privacy-the-site-collects-and-why" aria-label="Link to this paragraph">#</a> Three things, and nothing else. First, Google Analytics counts which sections are read and which buttons are clicked, in aggregate, along with the size of the browser window, so I can tell whether the site works and which layout was read. It runs by default, with IP anonymization on and every advertising feature off, and it stops the moment you ask: one click below, remembered in your browser, or the Global Privacy Control signal, which the site treats as a standing no. The legal basis is my legitimate interest in knowing whether the site is read at all, which is as light as a reason gets, and the switch below overrides it. Second, anything you choose to email me goes to my inbox so that I can reply, and a request that I call you travels through a Google Form into the same inbox, and a video call you book goes through Google Calendar, which puts it on both our calendars and sends the Meet link; the legal basis is that you asked me to. Third, the host records ordinary server logs, as every website's host does. The site sets no cookies of its own. The fonts are served from this site, not from Google.</p>
       <p id="privacy-who-else-touches-it"><strong>Who else touches it.</strong><a class="pmark" href="#privacy-who-else-touches-it" aria-label="Link to this paragraph">#</a> Google LLC processes the analytics data, the call-request form, and calendar bookings on my behalf under its standard terms, and GitHub, Inc. hosts the site and its server logs. Both are in the United States and operate under the EU-US Data Privacy Framework. Nobody else. Nothing is sold, and nothing is used for advertising.</p>
       <p id="privacy-long"><strong>How long.</strong><a class="pmark" href="#privacy-long" aria-label="Link to this paragraph">#</a> Analytics data is kept for fourteen months and then deleted by Google. Emails, call requests, and calendar bookings are kept as long as our conversation lasts and deleted the moment you ask. Your analytics choice lives in your own browser until you clear it.</p>
       <p id="privacy-your-rights"><strong>Your rights.</strong><a class="pmark" href="#privacy-your-rights" aria-label="Link to this paragraph">#</a> Under the GDPR and equivalent laws you can ask what I hold about you, have it corrected or deleted, restrict or object to its use, take a copy with you, and switch the counting off at any time without affecting anything that happened before. Email me and I'll do it within a month, usually the same day. If you're in the EU or UK and think I've handled your data badly, you can complain to your national supervisory authority. The site makes no automated decisions about anyone.</p>
@@ -2396,6 +2396,13 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     gtag('js', new Date());
     gtag('config', GA_ID, { send_page_view: false, anonymize_ip: true, allow_google_signals: false, allow_ad_personalization_signals: false });
   }
+  // the browser window's size and the layout it produced travel with every page view, since screen resolution
+  // alone can't say whether a reader had the sidebar (1180px and up) or the top rail; registered in GA4 as
+  // event-scoped custom dimensions viewport_width, viewport_height, layout
+  function viewport() {
+    const w = window.innerWidth || 0, h = window.innerHeight || 0;
+    return { viewport_width: w, viewport_height: h, layout: w >= 1180 ? 'sidebar' : 'rail' };
+  }
   function track(name, params) {
     if (analyticsOff()) return;
     loadAnalytics();
@@ -2536,7 +2543,7 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     updateNavFades();
     placeIndicators();
     const activeSec = document.getElementById(target);
-    track('page_view', { page_title: (activeSec && activeSec.dataset.title) || target, page_location: location.origin + location.pathname + '#' + target, page_path: '/#' + target });
+    track('page_view', Object.assign({ page_title: (activeSec && activeSec.dataset.title) || target, page_location: location.origin + location.pathname + '#' + target, page_path: '/#' + target }, viewport()));
     const card = audit && document.getElementById(audit);
     if (card) {
       card.open = true;
@@ -3562,7 +3569,7 @@ Be honest rather than kind. The author wrote this prompt himself and published i
         window['ga-disable-' + GA_ID] = false;
         loadAnalytics();
         const act = document.querySelector('section.topic.active');
-        track('page_view', { page_title: act ? act.dataset.title : 'Privacy', page_path: '/#' + (act ? act.id : 'privacy') });
+        track('page_view', Object.assign({ page_title: act ? act.dataset.title : 'Privacy', page_path: '/#' + (act ? act.id : 'privacy') }, viewport()));
         say('Counting again, from this page on.');
       } else {
         try { localStorage.setItem('consent', 'denied'); } catch (e) {}

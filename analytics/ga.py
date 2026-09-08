@@ -11,6 +11,7 @@ property (Admin > Property access management).
     python3 analytics/ga.py sections  [--days 7]    # page views per section (the hash router sends /#id)
     python3 analytics/ga.py country IR [--days 30]  # everything about one country's sessions
     python3 analytics/ga.py events    [--days 7]    # audit_copy, seal_click, and friends
+    python3 analytics/ga.py layout    [--days 7]    # sidebar vs rail, and window widths (once the custom dimensions exist)
     python3 analytics/ga.py path      [--days 7]    # how far the Start Here reading order carries readers
 
 Set GA_PROPERTY to skip discovery (a number like 4xxxxxxxxx).
@@ -120,6 +121,12 @@ def main():
                                                         report(pid, ['city', 'sessionSourceMedium', 'deviceCategory', 'browser'], ['sessions', 'averageSessionDuration'], days, f))
         print('\nsections'); table(['section', 'views'], report(pid, ['pageTitle'], ['screenPageViews'], days, f, order='screenPageViews'))
         print('\nevents'); table(['event', 'count'], report(pid, ['eventName'], ['eventCount'], days, f, order='eventCount'))
+    elif cmd == 'layout':
+        # needs the event-scoped custom dimensions layout and viewport_width registered in GA4 Admin > Custom definitions
+        print('layout by country and device'); table(['layout', 'country', 'device', 'sessions', 'views'],
+              report(pid, ['customEvent:layout', 'country', 'deviceCategory'], ['sessions', 'screenPageViews'], days, order='sessions'))
+        print('\nviewport widths'); table(['width', 'device', 'views'],
+              report(pid, ['customEvent:viewport_width', 'deviceCategory'], ['screenPageViews'], days, order='screenPageViews', limit=40))
     elif cmd == 'events':
         table(['event', 'count', 'users'], report(pid, ['eventName'], ['eventCount', 'activeUsers'], days, order='eventCount'))
     elif cmd == 'path':

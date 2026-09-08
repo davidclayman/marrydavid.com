@@ -34,7 +34,12 @@ crosslink, nudge, status, link, deeplink, landing, history), `view_index`
 50 and 100 percent; `section_leave` with `seconds` on screen when the section
 changes or the tab hides; `card_open` for every collapsed card; and the calls
 to action as events. Each parameter is an event-scoped custom dimension in
-GA4 (`seconds` a custom metric). The scripts that read them back live outside
+GA4 (`seconds` a custom metric). Links may carry `?src=tag` (letters, digits,
+hyphens) naming the kind of link, one tag per channel, never a person; it is
+kept for the tab and sent as `src` on every event, including from the
+follow-up pages. Every page reports its address and referrer without the
+query string, so the `?for=Name` greeting on the follow-up pages never
+reaches Analytics. The scripts that read them back live outside
 this repository, and reading the data needs the property owner's own Google
 login; nothing in the repository grants access to it.
 `404.html` redirects `/family`-style paths to `/#family` and otherwise links

@@ -179,6 +179,7 @@ for slug in ('coronacrush', 'shabbat', 'justmatched', 'safeword'):
     check(f'{slug} analytics honors the opt-out and Global Privacy Control', 'src="https://www.googletagmanager.com' not in src and "localStorage.getItem('consent') !== 'denied'" in src and 'navigator.globalPrivacyControl' in src)
     check(f'{slug} carries both prize seals', 'id="seal"' in src and 'id="seal2"' in src and 'href="../#referrals"' in src)
     check(f'{slug} greeting is sanitized', "get('for')" in src and 'replace(/[^A-Za-z' in src)
+    check(f'{slug} reports its address without the query string', 'page_location: location.origin + location.pathname' in src and "page_referrer: (document.referrer || '').split('?')[0]" in src and "get('src')" in src)
     check(f'{slug} states the current status', stage and (STAGES[stage - 1].upper() in src) and ('SINCE ' + (re.search(r'data-since="([^"]+)"', s).group(1)) in src))
     deep = set(re.findall(r'href="\.\./#([^"]+)"', src))
     bad = [i for i in deep if i not in valid]
@@ -202,6 +203,9 @@ check('the filing left the main page', '<div class="body patent">' not in s)
 path_block = s.split('id="radius-read-this-first"', 1)[1].split('</ol>', 1)[0] if 'id="radius-read-this-first"' in s else ''
 check('Start Here names the reading order', bool(path_block) and all(f'href="#{x}"' in path_block for x in ('offer', 'family', 'dealbreakers', 'agerange')))
 check('reading times are computed from the page', 'const WPM' in s and 'data-mins' in s and 'minsSum' in s and 'id="pathMins"' in s)
+check('names in links never reach Analytics: referrer stripped on the main page, src tag carried on every event',
+      "page_referrer: (document.referrer || '').split('?')[0]" in s and "SRC ? { src: SRC } : {}" in s
+      and all('page_location: location.origin + location.pathname' in open(os.path.join(ROOT, p), encoding='utf-8').read() for p in ('play/index.html', 'prior-art/datelocket/index.html')))
 check('reading events: via, view_index, scroll depth, seconds on screen, cards',
       all(x in s for x in ("via: via", "view_index: viewIndex(true)", "track('section_scroll'", "track('section_leave'", "track('card_open'", "'visibilitychange'")))
 check('a hash change inside the same section is not a page view', 'if (changed) {  // a hash change inside the same section' in s)

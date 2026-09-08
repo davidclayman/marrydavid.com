@@ -21,7 +21,12 @@
     var ok = false; try { ok = !navigator.globalPrivacyControl && localStorage.getItem('consent') !== 'denied'; } catch (e) {}
     if (!ok) return;
     var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.googletagmanager.com/gtag/js?id=G-GD340Z2HSF'; document.head.appendChild(sc);
-    gtag('js', new Date()); gtag('config', 'G-GD340Z2HSF', { page_title: 'Date Locket filing', anonymize_ip: true, allow_google_signals: false, allow_ad_personalization_signals: false });
+    // the address is reported without its query string, so a ?for=Name greeting never reaches Analytics;
+    // ?src=tag (letters, digits, hyphens) names the kind of link and is kept for the tab so the main page carries it too
+    var src = ''; try { src = (new URLSearchParams(location.search).get('src') || '').toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 32); if (src) sessionStorage.setItem('src', src); src = src || sessionStorage.getItem('src') || ''; } catch (e) {}
+    var cfg = { page_title: 'Date Locket filing', page_location: location.origin + location.pathname, page_referrer: (document.referrer || '').split('?')[0], anonymize_ip: true, allow_google_signals: false, allow_ad_personalization_signals: false };
+    if (src) cfg.src = src;
+    gtag('js', new Date()); gtag('config', 'G-GD340Z2HSF', cfg);
   })();
 </script>
 <style>

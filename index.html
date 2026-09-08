@@ -681,17 +681,19 @@
   .toc a { color: #cfd3e6; text-decoration: none; }
   .toc a:hover { color: var(--paper); }
   .toc a.here { color: var(--gold); }
-  .patent { font-size: 0.86rem; color: #b9bfd6; }
-  .patent h4 {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.66rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 500;
-    margin: 1.4rem 0 0.5rem;
-  }
-  .patent p { margin: 0 0 0.7rem; line-height: 1.55; }
+  /* reading times: a mono label at the end of every Contents entry, every chapter heading, and the Start Here reading order */
+  .mins { margin-left: auto; padding-left: 0.6rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; letter-spacing: 0.08em; color: var(--faint); white-space: nowrap; }
+  .toc li { display: flex; align-items: baseline; gap: 0.45rem; }
+  .toc h3 { display: flex; align-items: baseline; }
+  .toc h3 .mins { letter-spacing: 0.08em; text-transform: none; font-weight: 400; }
+  .path { max-width: 58ch; margin: 2rem 0 1.8rem; padding: 1rem 1.2rem 0.6rem; border: 1px solid var(--line); border-radius: 8px; background: rgba(15, 22, 51, 0.55); }
+  .path .eyebrow { margin-bottom: 0.7rem; }
+  .path-lead { font-size: 0.92rem; color: #cfd3e6; margin-bottom: 0.5rem; }
+  .path-list { list-style: none; counter-reset: path; }
+  .path-list li { counter-increment: path; display: flex; align-items: baseline; gap: 0.6rem; padding: 0.45rem 0; border-top: 1px dashed var(--line); }
+  .path-list li::before { content: counter(path) "."; font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--faint); }
+  .path-list a { color: var(--paper); text-decoration: none; border-bottom: 1px dotted var(--gold); }
+  .path-list a:hover { color: var(--gold); }
   h3.head-sm {
     font-family: 'Fraunces', serif;
     font-weight: 500;
@@ -802,7 +804,7 @@
     <h1>I'll come to you for a coffee, <em>anywhere within eight hours</em>. The rest can wait.</h1>
 
     <div class="prose">
-      <p id="radius-who-this-is"><strong>Who this is.</strong><a class="pmark" href="#radius-who-this-is" aria-label="Link to this paragraph">#</a> A former science teacher who now builds public-health software at the company I founded, based in South Florida with a second base in Cleveland. I work remotely, hold three passports, and can move to wherever you are on a week's notice. I read for pleasure, dance salsa when the chance comes, don't drink, and I'm divorced, which the site explains when the time is right. I want to marry and raise two or three children, soon, whether they arrive with you or after you. Everything below this line is me going first.</p>
+      <p id="radius-who-this-is"><strong>Who this is.</strong><a class="pmark" href="#radius-who-this-is" aria-label="Link to this paragraph">#</a> A former science teacher who now builds health software at the company I founded, based in South Florida with a second base in Cleveland. I work remotely, hold three passports, and can move to wherever you are on a week's notice. I read for pleasure, dance salsa when the chance comes, don't drink, and I'm divorced, which the site explains when the time is right. I want to marry and raise two or three children, soon, whether they arrive with you or after you. Everything below this line is me going first.</p>
       <p id="radius-tuesdays-with-me-look-like"><strong>What Tuesdays with me look like.</strong><a class="pmark" href="#radius-tuesdays-with-me-look-like" aria-label="Link to this paragraph">#</a> Coffee handled, my half or more of everything domestic done without being asked, a walk after dinner, two people reading in the same room and interrupting each other with the good parts. When you're sick, I carry your half of the house on top of mine. When you win, I brag about you in rooms you're not in. When there are kids, yours or ours, I'm an active, heavily engaged coparent, not a helper. And you will be danced with, in the kitchen, while dinner cooks. The long version is <a href="#offer">What You Get</a>. This site is the demo.</p>
       <p id="radius-im-looking-for"><strong>What I'm looking for.</strong><a class="pmark" href="#radius-im-looking-for" aria-label="Link to this paragraph">#</a> Someone who wants a family, whether she's bringing children or building them with me. Someone curious enough to say "huh, I wonder why that is," and kind under pressure, to waitstaff and lost tourists especially. Someone who would rather choose each other on purpose than wait for the universe to assign us. The three structural things, so nobody spends an hour finding them out: Jewish, or converted before we met; wants children, or already has them; and reads, which needn't mean books but does mean deep thought and relentless curiosity. The other dealbreakers are few and short, and if you land between the lines, <a href="#dealbreakers">don't self-reject</a>.</p>
     </div>
@@ -813,6 +815,17 @@
         <span class="v">One hour of curiosity. You don't need to know whether you'd marry me, agree with me, or finish this site. You only need to wonder whether we'd enjoy a coffee. <a href="#transmission" class="bookcall">Request a video call</a> or <a href="#transmission">send a transmission</a>, guarded or not, and you'll get a real reply, usually within two days.</span>
       </li>
     </ul>
+
+    <div class="path" id="radius-read-this-first">
+      <div class="eyebrow">READ THIS FIRST · <b id="pathMins">A SHORT READ</b> · THE REST IS OPTIONAL</div>
+      <p class="path-lead">This page and four more are everything a first coffee needs. The times are at a comfortable reading pace. The other <span id="pathRest">forty</span> sections are the laboratory: optional, and they keep.</p>
+      <ol class="path-list">
+        <li><a href="#offer">What You Get</a><span class="mins" data-mins="offer"></span></li>
+        <li><a href="#family">Family</a><span class="mins" data-mins="family"></span></li>
+        <li><a href="#dealbreakers">Dealbreakers</a><span class="mins" data-mins="dealbreakers"></span></li>
+        <li><a href="#agerange">Age Range</a><span class="mins" data-mins="agerange"></span></li>
+      </ol>
+    </div>
 
     <details class="audit" id="radius-the-rest">
       <summary><a class="no" href="#radius-the-rest" title="Link to this card">THE REST</a><span class="q">If you're the type: where eight hours comes from, an odometer, and forty-odd sections of source code</span><span class="chev">›</span></summary>
@@ -843,9 +856,9 @@
   <!-- ============ CONTENTS ============ -->
   <section class="topic" id="contents" data-title="Contents" data-chapter="Start here">
     <h2 class="head">Contents</h2>
-    <p class="subhead">Two layers. <a href="#radius">Start Here</a> is the profile: everything a first coffee needs, in one scroll. The rest of this map is the laboratory, for whenever curiosity strikes.</p>
+    <p class="subhead">Two layers. <a href="#radius">Start Here</a> is the profile: everything a first coffee needs, in one scroll. The rest of this map is the laboratory, for whenever curiosity strikes. Every entry shows its reading time at a comfortable pace, so the length reads as a menu rather than a wall.</p>
     <div id="toc" class="toc"></div>
-    <p class="crosslink">In a hurry? <a href="#radius">Start Here</a> is the whole plot. After that, <a href="#offer">What You Get</a>, <a href="#family">Family</a>, and <a href="#dealbreakers">Dealbreakers</a> carry it furthest. The rest keeps.</p>
+    <p class="crosslink">In a hurry? <a href="#radius">Start Here</a>, then <a href="#offer">What You Get</a>, <a href="#family">Family</a>, <a href="#dealbreakers">Dealbreakers</a>, and <a href="#agerange">Age Range</a>: the whole plot in about <span class="num" data-mins-n="radius,offer,family,dealbreakers,agerange">fifteen</span> minutes. The rest keeps.</p>
   </section>
 
   <!-- ============ THE OBSERVER ============ -->
@@ -1240,92 +1253,46 @@
       <p id="datelocket-it-would-work"><strong>How it would work.</strong><a class="pmark" href="#datelocket-it-would-work" aria-label="Link to this paragraph">#</a> Both of us say yes, on the record, at the start. The recording is encrypted the moment it's captured, and the key is split in two: one half lives on your phone, one on mine. Nothing can be watched unless we both unlock it together, at the same time, each of us saying yes again. No company, no server, no me alone can open it. Either of us can delete it at will, any time, without asking the other, and deletion is permanent. And there's a cooling-off period built into the key itself: for the first thirty days after the date, nothing can be opened by anyone, not even by both of us together. After that, it opens only with both of us, and only ever with both of us. Audio-only is a choice, and either of us can switch the camera off mid-date while the other keeps talking. It's a locket: two people, two halves, nothing inside without both.</p>
       <p id="datelocket-recording-does-to-a-date"><strong>What recording does to a date.</strong><a class="pmark" href="#datelocket-recording-does-to-a-date" aria-label="Link to this paragraph">#</a> People behave differently when they know they're being recorded. They stay a little more composed, get a little less vulnerable, and save some things for when the camera's off. If that's what you'd fear, I understand completely and we go without. But if you're comfortable archiving our first date warts and all, the awkward pauses included, I think it would make an incredible time capsule if we go the distance to engagement, let alone to marriage and kids. The version of us that hadn't met yet, kept.</p>
       <p id="datelocket-it-doesnt-exist-yet"><strong>It doesn't exist yet.</strong><a class="pmark" href="#datelocket-it-doesnt-exist-yet" aria-label="Link to this paragraph">#</a> I designed it and never built it. If you want to try it, tell me, and I'll build it before we meet; the design is done. If you'd rather not, say so or say nothing, and our first date or two get lost to the imprecision of recalled memory, the way it's been done for millennia before us. That's a perfectly good outcome. Honestly, nothing about this page is a test, and a no here costs you nothing with me.</p>
-      <p id="datelocket-released-to-the-commons"><strong>Released to the commons.</strong><a class="pmark" href="#datelocket-released-to-the-commons" aria-label="Link to this paragraph">#</a> I drafted a patent application for this design and decided not to file it. The claims aren't broad enough to be worth defending, and I'm not sure it would ever be profitable. So instead of a patent, the full provisional application is published below, on this page, dated <span class="num">2026-09-02</span> and timestamped in this site's public commit log, as a disclosure of prior art. Nobody can patent this exact thing now, and as much of the conception as the law allows becomes part of the commons. To the extent I hold any copyright in the text below, I dedicate it to the public domain under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>. Build it, improve it, use it for your own first date. One caution if you do: don't rely on me alone for your freedom to operate. These claims and this prior-art research never went through examination, and I'm not a lawyer, just a former patent attorney clerk and a curious, experienced inventor. Publishing here stops anyone from patenting this exact design after today; it doesn't clear whatever was patented before. Check the patent literature yourself, or hire a patent attorney, before you build what's described.</p>
-      <p id="datelocket-one-embodiment-ill-never-build"><strong>One embodiment I'll never build.</strong><a class="pmark" href="#datelocket-one-embodiment-ill-never-build" aria-label="Link to this paragraph">#</a> The filing includes an intimate-encounter embodiment, a version of the same locket for adult partners recording something private, with age assurance on both sides and destruction rules that neither party can waive. I have no interest in building it or ever using it. It's in the disclosure because the architecture happens to fit, and because some couples could genuinely benefit from a recording that neither of them, and no company, can ever open alone. That's for someone else to build, and in fact someone nearly has: Rumuki, a side project from about 2017, paired two phones so that an intimate recording could be played only when each partner's device granted it, with either partner able to delete it alone. It is architecturally a cousin of Date Locket in a far more sensitive domain, it never found paying users, and it's cited as prior art in the filing below. What I'd build, and the only thing I'd ever ask you to try, is the first-date version above.</p>
+      <p id="datelocket-released-to-the-commons"><strong>Released to the commons.</strong><a class="pmark" href="#datelocket-released-to-the-commons" aria-label="Link to this paragraph">#</a> I drafted a patent application for this design and decided not to file it. The claims aren't broad enough to be worth defending, and I'm not sure it would ever be profitable. So instead of a patent, the full provisional application is published on <a href="/prior-art/datelocket/">its own page</a>, dated <span class="num">2026-09-02</span> and timestamped in this site's public commit log, as a disclosure of prior art. (It spent its first five days on this page, inside a collapsed card, and moved to its own address on <span class="num">2026-09-07</span>; both dates are in the log.) Nobody can patent this exact thing now, and as much of the conception as the law allows becomes part of the commons. To the extent I hold any copyright in that text, I dedicate it to the public domain under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>. Build it, improve it, use it for your own first date. One caution if you do: don't rely on me alone for your freedom to operate. These claims and this prior-art research never went through examination, and I'm not a lawyer, just a former patent attorney clerk and a curious, experienced inventor. Publishing here stops anyone from patenting this exact design after today; it doesn't clear whatever was patented before. Check the patent literature yourself, or hire a patent attorney, before you build what's described.</p>
+      <p id="datelocket-one-embodiment-ill-never-build"><strong>One embodiment I'll never build.</strong><a class="pmark" href="#datelocket-one-embodiment-ill-never-build" aria-label="Link to this paragraph">#</a> The filing includes an intimate-encounter embodiment, a version of the same locket for adult partners recording something private, with age assurance on both sides and destruction rules that neither party can waive. I have no interest in building it or ever using it. It's in the disclosure because the architecture happens to fit, and because some couples could genuinely benefit from a recording that neither of them, and no company, can ever open alone. That's for someone else to build, and in fact someone nearly has: Rumuki, a side project from about 2017, paired two phones so that an intimate recording could be played only when each partner's device granted it, with either partner able to delete it alone. It is architecturally a cousin of Date Locket in a far more sensitive domain, it never found paying users, and it's cited as prior art in the filing. What I'd build, and the only thing I'd ever ask you to try, is the first-date version above.</p>
+      <p id="datelocket-design-in-plain-language"><strong>The design, in plain language.</strong><a class="pmark" href="#datelocket-design-in-plain-language" aria-label="Link to this paragraph">#</a> The filing runs to six thousand words and twenty claims. What follows is the whole of it in eight short entries, for the reader who wants to know what she'd be saying yes to without reading a patent.</p>
     </div>
 
-    <details class="audit" id="datelocket-filing">
-      <summary><a class="no" href="#datelocket-filing" title="Link to this card">FILING</a><span class="q">The provisional application, in full: System and Method for Mutual-Consent Conditional Access to an Encrypted Recording of an Interpersonal Encounter</span><span class="chev">›</span></summary>
-      <div class="body patent">
-<p>PROVISIONAL PATENT APPLICATION</p>
-<p>Under 35 U.S.C. § 111(b)</p>
-<h4>Title of the Invention</h4>
-<p>SYSTEM AND METHOD FOR MUTUAL-CONSENT CONDITIONAL ACCESS TO AN ENCRYPTED RECORDING OF AN INTERPERSONAL ENCOUNTER, WITH TIME-LOCKED RELEASE, JOINT REDACTION, AND UNILATERAL CRYPTOGRAPHIC DESTRUCTION</p>
-<p>Inventor: David Clayman, Boca Raton, Florida, United States</p>
-<p>Filing note: This specification is intended to be accompanied by USPTO form SB/16 (Provisional Application for Patent Cover Sheet) and the applicable filing fee. Claims are not required in a provisional application; the claims herein are included as part of the disclosure to support the full scope of a later nonprovisional application.</p>
-<h4>Statement Regarding Federally Sponsored Research or Development</h4>
-<p>[0001]   Not applicable.</p>
-<h4>Field of the Invention</h4>
-<p>[0002]   The present disclosure relates generally to cryptographic access control for recorded media, and more particularly to systems and methods in which a recording of an interpersonal encounter between two or more participants is encrypted at capture and rendered accessible only upon the contemporaneous, verified, mutual consent of the participants, subject to a time-lock condition, with provision for jointly authorized redaction by cryptographic erasure and for unilateral, irreversible destruction of the recording by any single participant.</p>
-<h4>Background</h4>
-<p>[0003]   Interpersonal encounters conducted over video communication platforms, and interpersonal encounters recorded by personal devices generally, may be recorded for later sentimental, evidentiary, or commemorative use. Conventional recording systems place the resulting media file under the control of a single party — typically the meeting host, the platform operator, or the device owner. Such unilateral control is poorly suited to intimate or sensitive encounters, in which each participant has a legitimate and continuing interest in whether, when, and by whom the recording may ever be viewed.</p>
-<p>[0004]   Known access-control approaches for recorded content, including conventional digital rights management and conventional server-side permission systems, share a common deficiency: a single custodian (the platform, the host, or a rights holder) retains the technical ability to decrypt or disclose the content without the concurrence of all recorded participants. Such systems also generally lack any mechanism by which the recorded participants may jointly and permanently excise portions of the recording, or by which any single participant may permanently and verifiably destroy the recording notwithstanding the objection of the other participant or of the custodian. A need therefore exists for a recording architecture in which access is technically impossible — not merely administratively prohibited — absent the verified mutual consent of the recorded participants, and in which destruction rights are asymmetric to access rights: access requires unanimity, while destruction may be effected unilaterally.</p>
-<h4>Summary of the Invention</h4>
-<p>[0005]   In one aspect, a system captures a recording of an encounter between a first participant and a second participant, the recording comprising audio, video, or both, each participant providing recorded affirmative consent at the commencement of capture. The recording is encrypted substantially at capture under an ephemeral content key. The content key is divided under a threshold secret-sharing scheme into a plurality of key shares, including at least a first share delivered to and held exclusively in a protected keystore of the first participant&#x27;s device, a second share delivered to and held exclusively in a protected keystore of the second participant&#x27;s device, and a third share retained by a policy server subject to a release policy. The assembled content key is then destroyed, such that no single entity — including the operator of the system — possesses sufficient key material to decrypt the recording.</p>
-<p>[0006]   In another aspect, the release policy of the policy server conditions release of the server-held share upon at least: (a) expiration of a predetermined time-lock interval measured from the time of capture; (b) receipt of fresh, cryptographically signed mutual attestations from both participants, generated within a validity window, affirming each participant&#x27;s present consent to decryption; and (c) verification of the contemporaneous co-presence and liveness of both participants at the time of the unlock request. Decryption occurs within a session-bound protected environment, and playback may be forensically watermarked with session identifiers.</p>
-<p>[0007]   In another aspect, during a joint decryption session, the participants may jointly designate one or more segments of the recording for redaction. The system generates a redacted copy omitting the designated segments, encrypts the redacted copy under a new content key that is re-split and re-distributed as above, and thereafter effects cryptographic erasure of the original recording by destroying all shares of the original content key, rendering the original ciphertext permanently unrecoverable.</p>
-<p>[0008]   In another aspect, either participant may at any time, unilaterally and without the concurrence of the other participant or of the system operator, direct the verified destruction of that participant&#x27;s own key share, thereby rendering the recording permanently undecryptable by all parties. This asymmetry — unanimous consent required for access, unilateral action sufficient for destruction — is a defining property of the disclosed architecture.</p>
-<p>[0009]   Further aspects include: capture embodiments for both platform-hosted virtual encounters and co-located in-person encounters recorded by a participant device; client-side encryption embodiments in which plaintext media never transits operator infrastructure; participant-selectable storage modes in which the ciphertext resides exclusively on the participant devices under an additional device-bound storage wrapping, or on operator infrastructure under an additional participant-derived envelope encryption that the operator cannot decrypt, or both, with identical access-control guarantees in every mode; generalization to N participants under a T-of-N threshold in which T includes all recorded participants plus a policy share; hardware-protected embodiments in which shares are sealed in secure enclaves, trusted execution environments, or hardware security modules; and audit-log embodiments in which every consent event, attestation, unlock, redaction, and destruction is recorded in an append-only, tamper-evident log available to both participants.</p>
-<h4>Brief Description of the Drawings</h4>
-<p>[0010]   FIG. 1 is a block diagram of a system architecture (100) according to an embodiment, showing participant devices (110, 120), a session service and media capture component (130), an encryption engine (140), an encrypted recording store (150) which, as described below, may reside on operator infrastructure, on the participant devices, or both, a policy server (160), and an audit log (170).</p>
-<p>[0011]   FIG. 2 is a block diagram of key generation and threshold distribution (200) according to an embodiment, showing generation of an ephemeral content key (210), a two-of-three threshold split (220), distribution of shares to a first participant device keystore (230), a second participant device keystore (240), and a policy server (250), and destruction of the assembled key (260).</p>
-<p>[0012]   FIG. 3 is a flow diagram of a conditional joint unlock ceremony (300) according to an embodiment, showing an unlock request (310), a time-lock check (320), fresh mutual attestation (330), co-presence and liveness verification (340), conditional release of the server share (350), reconstruction of the content key in a protected session (360), and session-bound decryption with watermarked playback (370).</p>
-<p>[0013]   FIG. 4 is a flow diagram of joint redaction and cryptographic erasure (400) according to an embodiment, showing a joint decryption session (410), joint designation of segments for redaction (420), production of a re-encrypted redacted copy (430), re-splitting of the new key (440), destruction of all shares of the original key (450), resulting unrecoverability of the original ciphertext (460), and the unilateral destruction pathway (470).</p>
-<h4>Detailed Description</h4>
-<p>1. Overview and Definitions</p>
-<p>[0014]   The following description sets forth specific embodiments to provide a thorough understanding of the invention. The invention may be practiced without one or more of the specific details described, and features of different embodiments may be combined. As used herein, an “encounter” includes without limitation a first romantic date, a subsequent date, a conversation, a ceremony (such as an exchange of vows), a mediation, an intimate or private encounter between adult partners, or any other interpersonal interaction the participants elect to record; a “participant” is a natural person recorded during the encounter; “cryptographic erasure” means rendering ciphertext permanently unrecoverable by verified destruction of all key material necessary for its decryption; and a “protected keystore” includes an operating-system keystore, a secure enclave, a trusted execution environment (TEE), a hardware security module (HSM), or functionally equivalent hardware- or software-protected storage. “Media” and “recording” mean audio alone, video alone, audio and video together, or any of the foregoing together with derived artifacts such as a transcript, and nothing herein requires the capture of video; every capture, encryption, key-management, storage, unlock, redaction, and destruction operation described herein applies identically to audio-only recordings.</p>
-<p>2. System Architecture (FIG. 1)</p>
-<p>[0015]   Referring to FIG. 1, system 100 comprises a first participant device 110 and a second participant device 120, each running a client application; a session service 130 that hosts or joins the encounter and captures the media streams; an encryption engine 140 that encrypts captured media substantially at capture; an encrypted recording store 150 that persists only ciphertext; a policy server 160 that holds a policy-controlled key share and evaluates a release policy; and an append-only audit log 170. In a preferred embodiment the session service 130 is a real-time communication service operated by the system (for example, a WebRTC selective forwarding unit or an embeddable video SDK), so that raw media never transits a third-party recording pipeline. In alternative embodiments the session service 130 receives media streams from a third-party conferencing platform through that platform&#x27;s real-time media interface, subject to the platform&#x27;s participant-consent mechanisms, or receives media from a camera and microphone of a participant device recording a co-located, in-person encounter.</p>
-<p>[0016]   At the commencement of capture, each participant provides an affirmative, on-the-record consent to recording, which is captured both as recorded media and as a cryptographically signed consent artifact bound to the participant&#x27;s enrolled identity key. Capture does not proceed absent both consent artifacts. In embodiments directed to intimate encounters between adult partners, enrollment further comprises verification that each participant is an adult, performed by one or more of: verification against a government-issued identity document, a device- or platform-attested age signal, or a third-party age-assurance service; the verification result, but not the underlying identity document or biometric data, is bound to the participant&#x27;s identity key as a signed age-assurance artifact, and capture of an encounter designated as intimate does not proceed absent a valid age-assurance artifact for every participant. Each consent artifact, each age-assurance artifact, and every subsequent lifecycle event described herein, is written to audit log 170 in an append-only, hash-chained structure such that neither participant nor the operator can retroactively alter the event history without detection.</p>
-<p>3. Encryption at Capture and Segmentation</p>
-<p>[0017]   Encryption engine 140 encrypts the media stream substantially contemporaneously with capture using an authenticated encryption scheme. In a preferred embodiment, the stream is divided into time-indexed segments (for example, segments of between one and thirty seconds), and each segment i is encrypted under a per-segment key K_i derived from an ephemeral master content key K by a key-derivation function (for example, HKDF with the segment index and a per-recording salt as context). Per-segment keying supports the segment-level redaction described below, because destruction of the key material for a designated segment renders that segment alone unrecoverable. In a preferred embodiment the authenticated cipher is AES-256-GCM or XChaCha20-Poly1305; associated data for each segment binds the segment to the recording identifier, segment index, and participant identity keys, so that segments cannot be reordered, substituted, or transplanted between recordings without detection.</p>
-<p>[0018]   Plaintext media is held only transiently in volatile memory of the capture path and is never written to durable storage. In server-side capture embodiments, encryption engine 140 operates on the capture server, preferably within a trusted execution environment. In client-side capture embodiments, the encryption engine operates within the client application of each participant device, media is exchanged peer-to-peer or captured locally (as in the in-person embodiment), and plaintext media never transits or resides on operator infrastructure in any form.</p>
-<p>[0019]   The storage location of the ciphertext is selectable by the joint election of the participants at capture, and is orthogonal to the access-control architecture described herein: in every storage mode, decryption requires reconstruction of the content key from the jointly necessary participant shares together with the policy-governed server share, so that the mutual-consent, time-lock, redaction, and unilateral-destruction guarantees are identical regardless of where the ciphertext resides. In a device-resident storage mode, the ciphertext is stored exclusively on the participant devices, preferably as a replica on each participant device for redundancy against device loss, and each local replica is additionally wrapped under a storage key bound to the respective device&#x27;s protected keystore, such that the recording is protected by at least two independently held protections (the split content key and the device-bound storage wrapping) and the operator at no time possesses the ciphertext. In an operator-hosted storage mode, the ciphertext is stored in encrypted recording store 150, which may be commodity object storage, protected by at least three independently held protections: (i) the content encryption under the split content key; (ii) an outer envelope encryption of the stored object under a storage envelope key derived jointly from key material of both participant devices and not held by the operator, such that the operator cannot decrypt even the outer envelope of the object it stores; and (iii) sealing of the server share within the hardware security module or trusted execution environment of the policy server. In a hybrid storage mode, replicas are maintained both on the participant devices and in the operator-hosted store, with the operator-hosted replica protected as in the operator-hosted mode. The participants&#x27; storage-mode election, and any subsequent jointly authorized migration between storage modes, is recorded in audit log 170; migration to or from the operator-hosted store transfers only ciphertext and never requires or effects reconstruction of the content key.</p>
-<p>4. Key Splitting and Distribution (FIG. 2)</p>
-<p>[0020]   Referring to FIG. 2, upon completion of capture (or progressively during capture), master content key K (210) is divided (220) under a threshold secret-sharing scheme into shares such that a defined quorum is necessary and sufficient to reconstruct K. In a preferred two-participant embodiment, a two-of-three arrangement is used in a specific configuration: share S1 (230) is encrypted to a device public key of the first participant and stored in the first participant&#x27;s protected keystore; share S2 (240) is likewise held by the second participant; and share S3 (250) is held by policy server 160, preferably sealed within an HSM or TEE. Critically, the reconstruction policy is configured so that the participant shares S1 and S2 are jointly necessary: reconstruction requires S1 and S2 together with S3, or, in an alternative embodiment tolerating device loss, requires both participants&#x27; authenticated approval before S3 may substitute for a lost participant share through an escrowed recovery share released only upon both participants&#x27; fresh attestations. In all embodiments, no single entity — participant or operator — holds material sufficient to reconstruct K. After distribution, every assembled or intermediate copy of K is destroyed (260) by overwriting in memory.</p>
-<p>[0021]   Suitable secret-sharing constructions include Shamir secret sharing over a finite field, additive (XOR) splitting for the strictly-unanimous case, and verifiable secret sharing in which each share carries a commitment enabling any party to verify share integrity without revealing the share. Participant identity keys are asymmetric key pairs (for example, Ed25519 for signatures and X25519 for key agreement) generated on-device at enrollment, with private keys non-exportable from the protected keystore where the platform so permits.</p>
-<p>5. Release Policy and Time-Lock</p>
-<p>[0022]   Policy server 160 associates share S3 with a machine-evaluable release policy established at capture and signed by both participants. The release policy comprises at least: (a) a time-lock condition prohibiting release of S3 before a time t₀ + Δ, where t₀ is the capture time and Δ is a predetermined interval (in one embodiment, thirty days; in another, one year, such that the first permissible viewing coincides with an anniversary of the encounter); (b) a mutual-attestation condition requiring fresh, signed attestations from both participants, each generated within a bounded validity window (for example, ten minutes) preceding the unlock request, affirming present consent to decryption; and (c) a co-presence condition as described below. In an embodiment, the policy further comprises a relationship-status condition in which each attestation includes an affirmation that the participants remain in a continuing relationship, the truthfulness of which is committed to by signature of each participant. The policy is immutable after capture except by a jointly signed amendment, and every evaluation of the policy is written to audit log 170.</p>
-<p>[0023]   In a hardened embodiment, S3 is sealed such that the policy evaluation itself occurs inside a TEE or HSM whose attested code enforces the time-lock, so that even the operator cannot release S3 early. In a further embodiment, the time-lock is additionally or alternatively enforced by timed-release cryptography, including encryption of S3 to a time-lock encryption service or construction whose decryption capability does not exist before the release time, thereby removing the operator&#x27;s early-release capability entirely.</p>
-<p>6. Joint Unlock Ceremony, Co-Presence, and Liveness (FIG. 3)</p>
-<p>[0024]   Referring to FIG. 3, decryption is initiated only by a joint unlock request (310) originating from both participants. The policy server verifies the time-lock (320) and the fresh mutual attestations (330). Co-presence and liveness verification (340) then establishes that both participants are contemporaneously present and are live human beings rather than recorded or synthetic imagery. In a preferred embodiment, verification is performed on-device: each participant device performs a biometric liveness check using the device&#x27;s native biometric framework (for example, a platform face-authentication service backed by a secure enclave), such that no biometric template or image is transmitted to or retained by the operator; the device then emits a signed presence assertion. In a co-located embodiment, co-presence is additionally corroborated by proximity signals between the two participant devices, including Bluetooth Low Energy ranging, ultra-wideband ranging, or exchange of an acoustic or visual nonce (for example, one device displaying a short-lived code captured by the other device&#x27;s camera). In a remote embodiment, both participants join a live verification video session and each device attests to the liveness of its own enrolled participant.</p>
-<p>[0025]   Upon satisfaction of all conditions, policy server 160 releases S3 into the unlock session (350). Key reconstruction (360) occurs within a protected environment — in one embodiment within a TEE of one participant device; in another, within a server-side confidential-computing enclave whose attested code performs decryption and streaming without exposing K or plaintext to the operator&#x27;s general infrastructure. Playback (370) is session-bound: reconstructed key material exists only for the duration of the session, is destroyed at session end, and each subsequent viewing requires a new ceremony. Playback may be marked with a forensic watermark encoding the session identifier, viewing time, and participant identities, so that any out-of-band capture of the displayed content is attributable. The system does not represent that display-layer capture (for example, photographing a screen) is preventable; the security objective enforced cryptographically is that the ciphertext is undecryptable absent the ceremony.</p>
-<p>7. Joint Redaction by Cryptographic Erasure (FIG. 4)</p>
-<p>[0026]   Referring to FIG. 4, during an active joint decryption session (410) the participants may review the recording and jointly designate segments for redaction (420), each designation requiring confirmation input from both participants. The system then produces a redacted copy omitting the designated segments (430), encrypts the redacted copy under a new master key K′ with fresh per-segment keys, and re-splits and redistributes K′ as new shares S1′, S2′, S3′ (440) in the same configuration as at capture. Thereafter the system effects cryptographic erasure of the original: each participant device destroys its original share and returns a signed destruction receipt, and the policy server destroys S3 within its HSM or TEE and emits an attested destruction receipt (450), rendering the original ciphertext permanently unrecoverable (460). In a per-segment variant, redaction is effected without producing a full copy, by destroying only the per-segment key material of the designated segments in all shares, which is more efficient for long recordings. All redaction events, including the identity of the designated time ranges but not their content, are written to audit log 170.</p>
-<p>8. Unilateral Cryptographic Destruction</p>
-<p>[0027]   At any time, before or after the time-lock has expired, either participant may unilaterally direct destruction of the recording (470) by destroying that participant&#x27;s own key share and issuing a signed destruction directive. Because the participant shares are jointly necessary under the reconstruction policy described above with reference to FIG. 2, destruction of either share alone renders K permanently unreconstructable by every party, including the other participant and the operator. Upon receiving a destruction directive, the system additionally destroys S3 and instructs the counterpart device to destroy its share, and deletes the ciphertext from store 150; however, the security guarantee does not depend on these additional deletions, because the directive-issuer&#x27;s share destruction is alone sufficient. The operator is technically incapable of overriding, delaying, or reversing a unilateral destruction. This property is intended, among other purposes, to eliminate the possibility of the recording&#x27;s use as an instrument of coercion following the end of the participants&#x27; relationship.</p>
-<p>9. Alternative Embodiments and Variations</p>
-<p>[0028]   The following variations are within the scope of this disclosure, alone and in combination. (a) N-party embodiments: the encounter includes N participants and K is split such that all N participant shares plus the policy share are required, supporting group encounters, ceremonies with witnesses, or family events. (b) In-person capture: the encounter is co-located and recorded by a camera of one or both participant devices or a dedicated capture device, with both-party consent artifacts collected at commencement exactly as in the virtual embodiment. (c) Capture-mode embodiments: the participants jointly elect the capture mode at the consent phase — audio-only, video-only, or audio and video — and the elected mode is recorded in the signed consent artifacts and the audit log; audio-only capture may be elected by participants who consent to an audio record but not a visual record of the encounter. In a further embodiment, during capture either participant may unilaterally downgrade the capture mode (for example, terminating video capture while audio capture continues) or terminate capture entirely, without the concurrence of the other participant; a downgrade or termination takes effect immediately, is recorded in the audit log, and does not affect the encryption or key management of media already captured. (d) Third-party-platform embodiments in which media is obtained through a conferencing platform&#x27;s real-time media interface with in-platform consent, then encrypted and key-split by the system as described. (e) Escrowed-recovery embodiments in which a recovery share is held encrypted such that it can be activated only by fresh joint attestation of both participants, tolerating loss of a participant device without weakening the unanimity requirement. (f) Anniversary-scheduling embodiments in which the release policy exposes to the participants a countdown but not the content. (g) Estate embodiments in which the participants may jointly pre-authorize, by signed policy amendment, release of the recording to a named beneficiary upon proof of death of both participants. (h) Embodiments in which the encounter is a commitment ceremony, an exchange of wedding vows, a proposal, or a message recorded jointly for the participants&#x27; future children, with the same lifecycle. (i) Deployment of the policy server function across multiple independent operators each holding a sub-share of S3, so that no single operator can collude with one participant. (j) Intimate-encounter embodiments: the encounter is an intimate or private encounter between adult partners, designated as such by both participants at capture; in such embodiments, capture is conditioned on a valid age-assurance artifact for every participant as described above, the release policy defaults to requiring co-presence verification for every playback, and the unilateral destruction capability of any participant is non-waivable and may not be disabled by policy amendment. These embodiments are directed to the technical problem that recordings of intimate encounters, consensually created, are conventionally protected only by the continuing goodwill of each custodian, and to providing a technical architecture under which such a recording cannot be viewed, copied, or disclosed by either participant acting alone or by the operator, and can be permanently extinguished by either participant acting alone.</p>
-<p>10. Implementation Details of a Preferred Embodiment</p>
-<p>[0029]   In a preferred embodiment: participant client applications run on iOS, Android, macOS, and the web; identity keys are generated in the platform secure enclave or strongest available keystore; real-time capture uses a WebRTC media server operated by the system with end-to-end-encrypted transport; segments are 10 seconds; per-segment keys are derived by HKDF-SHA-256 from K; segment encryption is XChaCha20-Poly1305; K is 256 bits generated by a cryptographically secure random number generator on the capture server within a TEE; splitting uses Shamir secret sharing over GF(2⁸) with verifiable commitments; shares to participants are encrypted with X25519-based hybrid public-key encryption to each device key; S3 is sealed in a cloud HSM with a policy document evaluated inside an attested confidential-computing enclave; attestations are Ed25519 signatures over a canonical structure containing recording identifier, purpose, timestamp, and nonce; liveness uses the device-native biometric framework with no biometric data leaving the device; co-presence for co-located unlock uses BLE ranging plus a camera-captured visual nonce; the audit log is a hash chain anchored periodically to an external transparency log; and forensic watermarking is applied in the playback path within the enclave.</p>
-<p>[0030]   The disclosed architecture improves the functioning of the underlying computing system and does not merely implement an agreement between the parties on generic hardware: it provides a specific technical mechanism — jointly necessary key shares, hardware-sealed policy shares, attestation-gated reconstruction inside protected execution environments, per-segment keying enabling selective cryptographic erasure, and receipt-verified share destruction — by which confidentiality and destruction guarantees are enforced against every party to the system, including its own operator, a property that conventional access-control and rights-management architectures do not provide.</p>
-<h4>Claims</h4>
-<p>(Included as disclosure; not required in a provisional application.) What is claimed is:</p>
-<p>1.  A computer-implemented method for controlling access to a recording of an encounter between at least a first participant and a second participant, the method comprising: receiving, from each of the first participant and the second participant, a recorded affirmative consent to recording and a cryptographically signed consent artifact; capturing media of the encounter; encrypting the media substantially at capture under a content key to produce a ciphertext; dividing the content key under a threshold secret-sharing scheme into a plurality of shares comprising at least a first share, a second share, and a third share, wherein the threshold secret-sharing scheme is configured such that the first share and the second share are jointly necessary for reconstruction of the content key; delivering the first share exclusively to a protected keystore of a first device associated with the first participant; delivering the second share exclusively to a protected keystore of a second device associated with the second participant; retaining the third share at a policy server subject to a release policy; destroying all assembled copies of the content key such that no single entity possesses key material sufficient to decrypt the ciphertext; and releasing the third share for reconstruction of the content key only upon determining that the release policy is satisfied, wherein the release policy requires at least: expiration of a predetermined time interval measured from capture of the media, and receipt of a first cryptographically signed attestation of present consent from the first participant and a second cryptographically signed attestation of present consent from the second participant, each attestation generated within a predetermined validity window preceding an unlock request.</p>
-<p>2.  The method of claim 1, wherein the release policy further requires verification, at a time of the unlock request, of contemporaneous co-presence and liveness of the first participant and the second participant.</p>
-<p>3.  The method of claim 2, wherein the verification of liveness comprises an on-device biometric liveness determination performed at each of the first device and the second device, and wherein biometric data of the determination is not transmitted from the respective device.</p>
-<p>4.  The method of claim 2, wherein the verification of co-presence comprises at least one of: wireless proximity ranging between the first device and the second device, and capture by one of the first device and the second device of a short-lived nonce presented by the other of the first device and the second device.</p>
-<p>5.  The method of claim 1, further comprising, during a joint decryption session authorized under the release policy: receiving, from both the first participant and the second participant, a joint designation of at least one segment of the recording for redaction; producing a redacted copy of the recording omitting the at least one designated segment; encrypting the redacted copy under a new content key; dividing and distributing the new content key in accordance with the dividing, delivering, and retaining steps of claim 1; and thereafter effecting cryptographic erasure of the recording by verified destruction of all shares of the content key.</p>
-<p>6.  The method of claim 1, wherein encrypting the media comprises encrypting the media as a plurality of time-indexed segments under respective per-segment keys derived from the content key, and further comprising redacting a designated segment by destruction of key material of the designated segment without re-encryption of undesignated segments.</p>
-<p>7.  The method of claim 1, further comprising: receiving, from either one of the first participant and the second participant, unilaterally and without concurrence of the other participant or of an operator of the policy server, a signed destruction directive; and destroying, responsive to the destruction directive, the key share held for the directing participant, whereby the content key is rendered permanently unreconstructable by all parties including the operator of the policy server.</p>
-<p>8.  The method of claim 1, wherein reconstruction of the content key and decryption of the ciphertext occur only within an attested trusted execution environment, wherein reconstructed key material is destroyed upon termination of each playback session, and wherein each playback session requires a separate satisfaction of the release policy.</p>
-<p>9.  The method of claim 8, further comprising applying to decrypted media, during playback, a forensic watermark encoding at least a session identifier of the playback session.</p>
-<p>10.  The method of claim 1, wherein each attestation further comprises an affirmation that a relationship between the first participant and the second participant is continuing.</p>
-<p>11.  The method of claim 1, further comprising recording each consent artifact, each evaluation of the release policy, each release of the third share, each redaction designation, and each destruction receipt in an append-only, hash-chained audit log accessible to the first participant and the second participant.</p>
-<p>12.  The method of claim 1, wherein the encounter comprises a romantic date conducted over a video communication session, and wherein the predetermined time interval is at least thirty days.</p>
-<p>13.  The method of claim 1, wherein the encounter is co-located and the media is captured by a camera and a microphone of at least one of the first device and the second device.</p>
-<p>14.  The method of claim 1, wherein the encounter comprises N participants, N being greater than two, wherein the content key is divided such that a respective participant share delivered to each of the N participants is jointly necessary with every other participant share for reconstruction of the content key.</p>
-<p>15.  The method of claim 1, further comprising retaining an escrowed recovery share activatable, upon loss of the first share or the second share, only upon receipt of fresh cryptographically signed attestations from both the first participant and the second participant.</p>
-<p>16.  A system for controlling access to a recording of an encounter between at least a first participant and a second participant, the system comprising: a session capture service configured to capture media of the encounter following receipt from each participant of a recorded affirmative consent and a cryptographically signed consent artifact; an encryption engine configured to encrypt the media substantially at capture under a content key and to divide the content key under a threshold secret-sharing scheme into at least a first share and a second share that are jointly necessary for reconstruction of the content key and a third share, and to destroy all assembled copies of the content key; a media store configured to persist only ciphertext of the recording; client applications configured to hold the first share exclusively in a protected keystore of a first device of the first participant and the second share exclusively in a protected keystore of a second device of the second participant; and a policy server configured to retain the third share subject to a release policy and to release the third share only upon at least expiration of a predetermined time interval measured from capture and receipt of cryptographically signed attestations of present consent from both the first participant and the second participant, each attestation generated within a predetermined validity window.</p>
-<p>17.  The system of claim 16, wherein the policy server comprises a hardware security module or an attested trusted execution environment within which the third share is sealed and within which the release policy is evaluated, such that an operator of the system is incapable of releasing the third share in violation of the release policy.</p>
-<p>18.  The system of claim 16, wherein the system is configured to receive from either participant, unilaterally, a signed destruction directive and to destroy the directing participant&#x27;s share responsive thereto, whereby the content key is rendered permanently unreconstructable by all parties including an operator of the system, and to issue a cryptographically verifiable destruction receipt.</p>
-<p>19.  The system of claim 16, wherein the client applications and the policy server are further configured to conduct a joint redaction session in which segments jointly designated by both participants are omitted from a re-encrypted redacted copy and the content key of the original recording is destroyed by verified destruction of all of its shares.</p>
-<p>20.  A non-transitory computer-readable medium storing instructions that, when executed by one or more processors of a computing system, cause the computing system to perform operations comprising: receiving, from each of a first participant and a second participant to an encounter, a recorded affirmative consent to recording and a cryptographically signed consent artifact; encrypting media of the encounter substantially at capture under a content key; dividing the content key under a threshold secret-sharing scheme into at least a first share and a second share that are jointly necessary for reconstruction of the content key and a third share; causing the first share to be held exclusively in a protected keystore of a device of the first participant and the second share to be held exclusively in a protected keystore of a device of the second participant; retaining the third share subject to a release policy; destroying all assembled copies of the content key; and releasing the third share only upon at least expiration of a predetermined time interval measured from capture and receipt of cryptographically signed attestations of present consent from both participants, each attestation generated within a predetermined validity window.</p>
-<h4>Abstract</h4>
-<p>A recording of an interpersonal encounter is encrypted at capture under an ephemeral content key that is split into shares held separately by each participant&#x27;s device and by a policy server, with all participant shares jointly necessary for reconstruction. The server share is released only after a time-lock interval and upon fresh signed mutual attestations and verified co-presence and liveness of both participants, with decryption confined to session-bound protected environments and watermarked playback. Participants may jointly redact segments, whereupon a re-encrypted redacted copy replaces the original and the original is destroyed by cryptographic erasure. Either participant may unilaterally and irreversibly destroy the recording by destroying that participant&#x27;s own share, a capability no operator can override. Access thus requires unanimity while destruction requires only one party, providing technically enforced privacy for sensitive recordings.</p>
-<h4>Drawings</h4><p><em>Four figures (system architecture, key splitting, the joint unlock ceremony, and joint redaction) accompanied the filing draft and are omitted here; the text references to FIG. 1 through FIG. 4 are retained.</em></p>
-      </div>
-    </details>
+    <ul class="items">
+      <li id="datelocket-encrypted-before-its-stored">
+        <span class="k"><a class="deep" href="#datelocket-encrypted-before-its-stored">Encrypted before it's stored</a></span>
+        <span class="v">The video is encrypted the instant it's captured, in ten-second pieces, each under its own key derived from one master key. The unencrypted picture exists only in memory during the call and is never written anywhere. Every piece is bound to the recording and to the two of us, so nothing can be cut out and passed off as something else.</span>
+      </li>
+      <li id="datelocket-key-in-three-pieces">
+        <span class="k"><a class="deep" href="#datelocket-key-in-three-pieces">A key in three pieces</a></span>
+        <span class="v">The master key is split three ways: one piece on your phone, one on mine, one held by a policy server and sealed in hardware. The split is arranged so that both of our pieces are always required; the server's piece can never stand in for either of us. Once the pieces are handed out, every assembled copy of the key is wiped. Nobody, including whoever runs the server, holds enough to open the file.</span>
+      </li>
+      <li id="datelocket-thirty-day-lock">
+        <span class="k"><a class="deep" href="#datelocket-thirty-day-lock">A thirty-day lock</a></span>
+        <span class="v">The server's piece cannot be released for thirty days after the date, whoever asks. The lock is enforced by the sealed hardware, or by timed-release encryption whose key does not exist yet, so even the operator can't open it early. A variant sets the lock to a year, so the first viewing lands on the anniversary.</span>
+      </li>
+      <li id="datelocket-opening-it-takes-both-of-us">
+        <span class="k"><a class="deep" href="#datelocket-opening-it-takes-both-of-us">Opening it takes both of us, live</a></span>
+        <span class="v">Each of us signs a fresh yes on our own phone, inside a ten-minute window, and each phone confirms its owner is a live person using its built-in face unlock, so no biometric data ever leaves the device. If we're in the same room, the two phones also confirm they're next to each other. Only then is the key rebuilt, inside a protected environment, for that one viewing; it's destroyed when the viewing ends, and the next viewing starts from scratch. Playback carries an invisible watermark naming the session, so a screen recording could be traced to the sitting that made it.</span>
+      </li>
+      <li id="datelocket-editing-together-deleting-alone">
+        <span class="k"><a class="deep" href="#datelocket-editing-together-deleting-alone">Editing together, deleting alone</a></span>
+        <span class="v">While watching, we can jointly mark any stretch to cut. The system saves a new copy without it, splits a new key the same way, and destroys every piece of the old one, so the original is gone for good rather than filed away somewhere. Deletion needs no agreement at all: either of us can destroy our own piece at any moment, and the whole recording becomes permanently unreadable to everyone, the operator included. Access takes unanimity; destruction takes one.</span>
+      </li>
+      <li id="datelocket-where-it-lives">
+        <span class="k"><a class="deep" href="#datelocket-where-it-lives">Where it lives is up to us</a></span>
+        <span class="v">The encrypted file can sit only on our two phones, each holding a copy in case one is lost; or on the operator's storage under a second layer of encryption the operator can't remove; or both. The rules above are identical in every case, because the rules live in the key, not in the storage.</span>
+      </li>
+      <li id="datelocket-variations">
+        <span class="k"><a class="deep" href="#datelocket-variations">The variations</a></span>
+        <span class="v">Audio only. Either of us switching the camera off mid-date while the sound continues, or stopping the recording outright, without asking. More than two people, for a ceremony with witnesses. A recording made in person on a phone rather than over a call. Vows, a proposal, a message to future children. A jointly signed instruction that lets a named person inherit the recording after we're both gone. And a tamper-evident log, readable by both of us, of every event from the first yes to the last deletion.</span>
+      </li>
+      <li id="datelocket-filing">
+        <span class="k"><a class="deep" href="#datelocket-filing">The filing itself</a></span>
+        <span class="v">The full provisional application, every claim and every embodiment, is at <a href="/prior-art/datelocket/">marrydavid.com/prior-art/datelocket</a>, verbatim, for the curious and for anyone who wants to build one.</span>
+      </li>
+    </ul>
+
     <p class="crosslink">The sibling protocol for everything after the date is Safeword, which I share after a first kiss rather than publish here. Want to try Date Locket? <a href="#transmission">Say so</a>.</p>
   </section>
 
@@ -1878,19 +1845,6 @@
     <p class="crosslink">What I changed my mind about since: <a href="#revisions">Revisions</a>. What a critic would say about all this: <a href="#caseagainst">The Case Against Me</a>.</p>
   </section>
 
-  <!-- ============ VERIFY ME ============ -->
-  <section class="topic" id="verifyme" data-title="Verify Me" data-chapter="Trust, but verify">
-    <h2 class="head">Verify Me</h2>
-    <p class="subhead">Safety logistics, stated up front, because you shouldn't have to ask. Yes, that's my real name. Yes, you can search it. Yes, the patent is boring.</p>
-    <div class="prose">
-      <p id="verifyme-premise"><strong>The premise.</strong><a class="pmark" href="#verifyme-premise" aria-label="Link to this paragraph">#</a> Meeting a stranger from the internet is an asymmetric risk, and you carry more of it than I do. I'd rather engineer that risk down than ask you to accept charm as evidence, so the following is standing policy, no negotiation required.</p>
-      <p id="verifyme-before-we-meet"><strong>Before we meet.</strong><a class="pmark" href="#verifyme-before-we-meet" aria-label="Link to this paragraph">#</a> As many video calls as you want, and you can <a href="#transmission" class="bookcall">request the first one</a> right now. My name is David Clayman; search it, read <a href="https://www.linkedin.com/in/davidvsgoliath/">the LinkedIn profile</a>, look up the rest of the professional footprint, run a background check if it would put you at ease. I'll consider that diligence rather than distrust.</p>
-      <p id="verifyme-when-we-meet"><strong>When we meet.</strong><a class="pmark" href="#verifyme-when-we-meet" aria-label="Link to this paragraph">#</a> First dates in public places, your pick of venue and time, daytime welcome. Tell a friend where you are, share my details, share your live location with someone who loves you, schedule a check-in call. I will never be offended by safety logistics, and my feelings would be beside the point anyway, because the logistics aren't for me.</p>
-      <p id="verifyme-asymmetry-runs-one-way"><strong>The asymmetry runs one way.</strong><a class="pmark" href="#verifyme-asymmetry-runs-one-way" aria-label="Link to this paragraph">#</a> I don't need your address, your workplace, or even your last name until you feel like volunteering them. I go first everywhere else on this site, and I go first here. Nothing about meeting me should require more than the ordinary courage dating already takes.</p>
-    </div>
-    <p class="crosslink">And if you ever want the claims themselves: <a href="#audits">the Audit Ledger</a>, next door.</p>
-  </section>
-
   <!-- ============ SELECTION EFFECTS ============ -->
   <section class="topic" id="selection" data-title="Selection Effects" data-chapter="Trust, but verify">
     <h2 class="head">Selection Effects</h2>
@@ -1902,7 +1856,7 @@
       </li>
       <li id="selection-length">
         <span class="k"><a class="deep" href="#selection-length">The length</a></span>
-        <span class="v">Forty-odd sections is a lot, and the fault is mine, not the reader's. If numbers and debates aren't how you like to meet someone, <a href="#radius">Start Here</a> is the whole profile in one scroll, and the rest can wait for a rainy day or forever. You don't have to read all of me to write to me.</span>
+        <span class="v">Forty-odd sections is a lot, and the fault is mine, not the reader's. If numbers and debates aren't how you like to meet someone, <a href="#radius">Start Here</a> is the whole profile in one scroll, it names the four sections worth reading next, and <a href="#contents">the Contents page</a> shows how long every other one takes, so the rest can wait for a rainy day or forever. You don't have to read all of me to write to me.</span>
       </li>
       <li id="selection-timeline">
         <span class="k"><a class="deep" href="#selection-timeline">The timeline</a></span>
@@ -1936,22 +1890,6 @@
     <p class="crosslink">The rest of the verification stack: <a href="#verifyme">Verify Me</a> and <a href="#audits">the Audit Ledger</a>.</p>
   </section>
 
-  <!-- ============ AUDIT LEDGER ============ -->
-  <section class="topic" id="audits" data-title="Audit Ledger" data-chapter="Trust, but verify">
-    <h2 class="head">The Audit Ledger</h2>
-    <p class="subhead">Every claim on this site, numbered and checkable, for whenever curiosity strikes; none of it is required reading. Expand one, copy its prompt, hand it to any AI assistant. Audit 00 covers the whole site at once. Audits 01–04 cover the physics, 05–11 the life philosophy, 12 travel reach, 13 the feedback clause, 14 the grandparent effect, 15 the money merger, 16 the mortality clock, 17 the age range, 18 the maintenance schedule, 19 the prayer arithmetic, 20 the domestic split, 21 circumcision, 22 whether a name shapes a life, and 23 the Drake equation, run on me.</p>
-    <details class="audit" id="audit-00">
-      <summary><span class="no">AUDIT 00</span><span class="q">The meta-audit: run the whole site past your AI</span><span class="chev">›</span></summary>
-      <div class="body">
-        <p class="claim">One prompt to audit everything at once: hand your AI this entire site and ask for the read a sharp, protective best friend would give. Entirely optional, like every card in this ledger; it's here for the thorough and the curious.</p>
-        <div class="row"><button class="copy" type="button" id="copy00">Copy audit prompt 00</button><span class="copied-note" id="note00"></span></div>
-      </div>
-    </details>
-    <div id="ledger"></div>
-    <p class="hint">Trust, or verify, or both. Dealer's choice.</p>
-    <p class="hint" id="auditRecheck">Every prompt on this ledger was last run in full on <strong>2026-09-03</strong>; the corrections are logged on <a href="#revisions">Revisions</a>. Next full recheck due <strong>2026-12-03</strong>, since flight schedules, prices, and life tables all drift.</p>
-  </section>
-
   <!-- ============ YEAR TEN ============ -->
   <section class="topic" id="yearten" data-title="Year Ten" data-chapter="Trust, but verify">
     <h2 class="head">The Year-Ten Forecast</h2>
@@ -1963,188 +1901,6 @@
       <p>And a ledger showing a decade of the triple bottom line: what we earned, what we built for the kids, and what we did for the community around us. Somewhere in there, at least one audit on this site will have been proven wrong, and I'll have updated in public. That's the target state: year ten of a marriage that course-corrects beats year ten of one that coasts.</p>
       <p>Verify it with me in person, a decade in.</p>
     </div>
-  </section>
-
-  <!-- ============ REVISIONS ============ -->
-  <section class="topic" id="revisions" data-title="Revisions" data-chapter="Trust, but verify">
-    <h2 class="head">Revisions</h2>
-    <p class="subhead">Year Ten promises I'll update in public when I'm wrong. This is the ledger of doing it, positions only; the full history is in the commit log.</p>
-    <ul class="items">
-      <li id="revisions-four-kids-became-two-or-three">
-        <span class="tag">2026-08-29</span>
-        <span class="k"><a class="deep" href="#revisions-four-kids-became-two-or-three">Four kids became two or three</a></span>
-        <span class="v">The first draft wanted four. The arithmetic on the Family page and the fertility numbers in Audit 06 didn't support it at my age without asking too much of anyone, so the plan shrank to what the math can carry.</span>
-      </li>
-      <li id="revisions-radius-doubled">
-        <span class="tag">2026-08-29</span>
-        <span class="k"><a class="deep" href="#revisions-radius-doubled">The radius doubled</a></span>
-        <span class="v">One astronomical second (230 miles) became two, and Travel Reach (then called the Airline Remix) converted the distance into a time budget. The physics didn't change. My willingness did.</span>
-      </li>
-      <li id="revisions-six-months-preferred-twelve-months">
-        <span class="tag">2026-09-01</span>
-        <span class="k"><a class="deep" href="#revisions-six-months-preferred-twelve-months">Six months preferred, twelve months capped</a></span>
-        <span class="v">The budget originally ran to twelve months flat. It now states the stronger preference for deciding on engagement within six, with the second six as contingency.</span>
-      </li>
-      <li id="revisions-divorce-moved-to-the-list-of-things">
-        <span class="tag">2026-09-01</span>
-        <span class="k"><a class="deep" href="#revisions-divorce-moved-to-the-list-of-things">Divorce moved to the list of things that shouldn't disqualify</a></span>
-        <span class="v">Stated as a fact up front, with the policy on when the rest of the story gets told, instead of left for a reader to discover.</span>
-      </li>
-      <li id="revisions-audits-became-optional-explicitly">
-        <span class="tag">2026-09-01</span>
-        <span class="k"><a class="deep" href="#revisions-audits-became-optional-explicitly">The audits became optional, explicitly</a></span>
-        <span class="v">Early drafts read as if running the prompts were the price of admission. Every page now says they're there for whenever curiosity strikes, or never.</span>
-      </li>
-      <li id="revisions-age-range-went-public">
-        <span class="tag">2026-09-01</span>
-        <span class="k"><a class="deep" href="#revisions-age-range-went-public">The age range went public</a></span>
-        <span class="v">Partner age stated as a function of family feasibility, with a live ceiling, instead of left implied by the fertility arithmetic.</span>
-      </li>
-      <li id="revisions-grandparent-clocks-default-moved">
-        <span class="tag">2026-09-02</span>
-        <span class="k"><a class="deep" href="#revisions-grandparent-clocks-default-moved">The grandparent clock's default moved from 35 to 32</a></span>
-        <span class="v">The age at which our kids finish having their own kids now defaults to 32. Every dependent number on the Family page and in Audit 16 moved with it.</span>
-      </li>
-      <li id="revisions-lines-that-cost-more-than-they">
-        <span class="tag">2026-09-02</span>
-        <span class="k"><a class="deep" href="#revisions-lines-that-cost-more-than-they">Lines that cost more than they bought</a></span>
-        <span class="v">Refusing to buy a drink became buying it under soft protest. A joke about pets, the word "audition," the phrase "bride price," and "stolen" months all came out. The prayer dealbreaker's counter-offer went from a recorded service to one prayed together.</span>
-      </li>
-      <li id="revisions-profile-in-front-of-the-laboratory">
-        <span class="tag">2026-09-02</span>
-        <span class="k"><a class="deep" href="#revisions-profile-in-front-of-the-laboratory">A profile in front of the laboratory</a></span>
-        <span class="v">The site used to open on physics and reach me four tabs later. It now opens on Start Here: photo, introduction, Tuesdays, what I'm looking for, three filters, and a first message priced at an hour of curiosity. The long arguments on Home, Matching, and the Shelf moved one click down. Nothing was deleted.</span>
-      </li>
-      <li id="revisions-budget-leads-with-the-promise-not">
-        <span class="tag">2026-09-02</span>
-        <span class="k"><a class="deep" href="#revisions-budget-leads-with-the-promise-not">The budget leads with the promise, not the number</a></span>
-        <span class="v">"$10,000 or 12 months" became "I won't waste your time," with the dollar cap demoted to a second paragraph. Matching now opens on my own imperfection rather than on anyone's declining options.</span>
-      </li>
-      <li id="revisions-reading-redefined">
-        <span class="tag">2026-09-02</span>
-        <span class="k"><a class="deep" href="#revisions-reading-redefined">Reading, redefined</a></span>
-        <span class="v">The reader dealbreaker no longer means books. It means deep thought and relentless curiosity about the world, fed on purpose, in whatever form that takes.</span>
-      </li>
-      <li id="revisions-all-twenty-four-audits-run-at-once">
-        <span class="tag">2026-09-03</span>
-        <span class="k"><a class="deep" href="#revisions-all-twenty-four-audits-run-at-once">All twenty-four audits, run at once</a></span>
-        <span class="v">I ran every prompt on the ledger against the site with web-checking AIs and fixed what they found. The physics, the patent, and most of the studies held. What didn't: the airline map (Seattle is inside the radius from Cleveland; San Francisco and Los Angeles were mis-timed), the ketubah figure (100 zuz for a widow, divorcée, or convert), the ring study (modest rings beat the cheapest), the grandparent-longevity number (it was never "three years"), the household statistics, the grandparent clock's default row and its word "expected," several fertility and paternal-age figures, three audit cards testing sentences the site no longer made, and a dozen overstatements now hedged to what the evidence supports. The airport chain also grew from 45 minutes to an hour for security, which pulled Phoenix, Las Vegas, and Los Angeles just outside the line. Section by section, the site is now what the ledger claimed it was.</span>
-      </li>
-      <li id="revisions-corrected-by-an-audit-the-same-day">
-        <span class="tag">2026-09-02</span>
-        <span class="k"><a class="deep" href="#revisions-corrected-by-an-audit-the-same-day">Corrected by an audit, the same day</a></span>
-        <span class="v">A reader ran Audit 21 and the brit milah item lost two claims: that the foreskin is "among the most biologically conserved tissues in the body," which is a true premise dressed as a superlative that no such ranking supports, and the Ishmael citation, which Genesis itself uses as the contrast case to the covenant. The item now defers the decision to adulthood rather than bar mitzvah age, which the audit called the worst possible timing, states the communal cost honestly, offers a medicalized brit at eight days as a real middle if the timing matters to her, and says a later surgery is harder rather than pretending otherwise. First audit to change the site. It won't be the last.</span>
-      </li>
-      <li id="revisions-five-pages-the-site-didnt-have">
-        <span class="tag">2026-09-02</span>
-        <span class="k"><a class="deep" href="#revisions-five-pages-the-site-didnt-have">Five pages the site didn't have</a></span>
-        <span class="v">Referrals, with a matchmaker prize paid after a first child. Date Locket, an optional mutual-consent recording of a first video date, with its patent application released as prior art instead of filed. Life Didn't Go As Planned, with the 2019 wedding spreadsheet and the marriage that lasted under a year. What I Don't Care About, which switches off the silent filters and gives an honest paragraph on health. And Before the Chuppah, where the brit milah decision is left to the son.</span>
-      </li>
-      <li id="revisions-counting-visits-with-permission">
-        <span class="tag">2026-09-02</span>
-        <span class="k"><a class="deep" href="#revisions-counting-visits-with-permission">Counting visits, with permission</a></span>
-        <span class="v">Google Analytics was added and then gated behind a consent banner the same day; nothing loads until you say yes. The fonts moved off Google's servers onto this site, and a Privacy page now says exactly what is and isn't collected.</span>
-      </li>
-      <li id="revisions-clock-grew-by-an-hour-of-charging">
-        <span class="tag">2026-09-03</span>
-        <span class="k"><a class="deep" href="#revisions-clock-grew-by-an-hour-of-charging">The clock grew by an hour of charging</a></span>
-        <span class="v">The time budget was benchmarked on a seven-hour drive in a car that never stops. I drive a 2025 Chevy Equinox EV, and 460 miles in it means two fast-charging stops, about an hour. The physics didn't change and neither did the miles; the car did, so the flight budget grew from 5:19 to 6:19, which pulled Phoenix, Las Vegas, and Los Angeles back inside the line.</span>
-      </li>
-      <li id="revisions-twelve-month-ceiling-became-a">
-        <span class="tag">2026-09-03</span>
-        <span class="k"><a class="deep" href="#revisions-twelve-month-ceiling-became-a">The twelve-month ceiling became a preference</a></span>
-        <span class="v">The Budget page called twelve months to a proposal a hard cap. It now says six months is my hope, about a year is my own clock, and twelve or fifteen is welcome for the right person. The speed was always meant to come from being upfront, not from a stopwatch, and the page now says so.</span>
-      </li>
-      <li id="revisions-canada-joined-the-map">
-        <span class="tag">2026-09-03</span>
-        <span class="k"><a class="deep" href="#revisions-canada-joined-the-map">Canada joined the map</a></span>
-        <span class="v">The travel rule said "any city in the United States." The clock never cared about the border, so the rule now says so: Toronto is inside the driving radius from Cleveland, Montreal and Ottawa are short flights, and someone in Canada would be very welcome. The section was renamed from the Airline Remix to Travel Reach at the same time.</span>
-      </li>
-      <li id="revisions-status-line-at-the-foot-of-every">
-        <span class="tag">2026-09-04</span>
-        <span class="k"><a class="deep" href="#revisions-status-line-at-the-foot-of-every">A status line at the foot of every page</a></span>
-        <span class="v">Four stages, from Square 1 to Engaged, with the current one filled in gold and the future steps in a pulldown, each with a one-line note. It starts at Square 1: nobody past a first date. Engaged is the last step listed, because what follows it is implied. Every change of stage gets a line here, dated.</span>
-      </li>
-      <li id="revisions-date-david-became-marry-david">
-        <span class="tag">2026-09-06</span>
-        <span class="k"><a class="deep" href="#revisions-date-david-became-marry-david">Date David became Marry David</a></span>
-        <span class="v">The site moved from datedavid.org to marrydavid.com, and the name followed. The old address forwards here. The goal was never a date; it's stated in the first line of Start Here, and now the domain says it too.</span>
-      </li>
-      <li id="revisions-video-call-became-a-booking">
-        <span class="tag">2026-09-06</span>
-        <span class="k"><a class="deep" href="#revisions-video-call-became-a-booking">Requesting a video call became booking one</a></span>
-        <span class="v">Every "Request a video call" button now opens a Google Calendar booking page for a twelve-minute intro call, Meet link included, instead of an email asking for three times. The email stays as the fallback for anyone the calendar doesn't fit.</span>
-      </li>
-      <li id="revisions-200-third-date-prize-joined-the-5">
-        <span class="tag">2026-09-06</span>
-        <span class="k"><a class="deep" href="#revisions-200-third-date-prize-joined-the-5">A $200 third-date prize joined the $5,000 one</a></span>
-        <span class="v">A smaller seal beside the big one: $200, paid when a referred match and I have had three dates and a fourth is on the calendar, as judged by me. Sooner, smaller, and separate from the main prize, so a good introduction is rewarded before anyone has to wait for a child.</span>
-      </li>
-      <li id="revisions-safeword-left-the-site">
-        <span class="tag">2026-09-06</span>
-        <span class="k"><a class="deep" href="#revisions-safeword-left-the-site">Safeword left the site</a></span>
-        <span class="v">The intimacy chapter and its audit moved to an unlisted page that I share after a first kiss. The site still names the app, since it's part of the work and the patent is public; it no longer explains it. The audits after it renumbered down by one.</span>
-      </li>
-      <li id="revisions-matchmaker-prize-went-from-2-000-to">
-        <span class="tag">2026-09-06</span>
-        <span class="k"><a class="deep" href="#revisions-matchmaker-prize-went-from-2-000-to">The matchmaker prize went from $2,000 to $5,000</a></span>
-        <span class="v">Still September 2026 dollars, still indexed to the consumer price index, still paid at our first child, and now also, if she brings children, at three years of marriage as their stepparent or at my adopting them, whichever comes first. The ribbon that used to appear after a second section is now a seal on every page, because the introduction is the outcome this whole site is for and the price should say so.</span>
-      </li>
-      <li id="revisions-party-loyalty-left-the-dealbreakers">
-        <span class="tag">2026-09-06</span>
-        <span class="k"><a class="deep" href="#revisions-party-loyalty-left-the-dealbreakers">Party loyalty left the dealbreakers</a></span>
-        <span class="v">It was one of eleven. It now sits on Don't Care as Political Party Loyalty/Identification, where it belonged: I'm an independent, I'd happily marry a partisan, and the only thing the old entry filtered was a woman who needs her husband in the jersey, which the conflict rule already covers. Ten dealbreakers remain.</span>
-      </li>
-      <li id="revisions-consent-banner-came-down">
-        <span class="tag">2026-09-06</span>
-        <span class="k"><a class="deep" href="#revisions-consent-banner-came-down">The consent banner came down</a></span>
-        <span class="v">Four days after it went up, readers said the question got in the way of the reading. So it's gone: counting is on by default, off with one click on the Privacy page or with a Global Privacy Control signal, and the Privacy page now says legitimate interest where it used to say consent, with the reasoning under "Why there's no cookie banner."</span>
-      </li>
-    </ul>
-    <p class="crosslink">The receipts, edit by edit: <a href="https://github.com/davidclayman/marrydavid.com/commits/main">the commit log</a>. The promise this keeps: <a href="#yearten">Year Ten</a>.</p>
-  </section>
-
-  <!-- ============ ACKNOWLEDGMENTS ============ -->
-  <section class="topic" id="acknowledgments" data-title="Acknowledgments" data-chapter="Trust, but verify">
-    <h2 class="head">Acknowledgments</h2>
-    <p class="subhead">Nothing here was built alone. The positions are mine; the shoulders are other people's.</p>
-    <div class="prose">
-      <p id="acknowledgments-giants"><strong>The giants.</strong><a class="pmark" href="#acknowledgments-giants" aria-label="Link to this paragraph">#</a> This site stands on the available research and scholarly literature, and the Audit Ledger is mostly a list of the people whose work it borrows: Gale and Shapley on stable matching and the optimal-stopping mathematicians who followed them; the economists behind the wedding-spending study and the courtship-length data; the reproductive-medicine societies whose fertility tables set the Family page's clock; the actuaries at the Social Security Administration whose life tables run the grandparent clock; the geneticists who measured how paternal age writes itself into a child's genome; the psychologists who studied pooled finances, housework, feedback, and the transition to parenthood; the cosmologists who measured our motion against the microwave background and gave the whole thing its radius; and Peter Backus, the economist whose 2010 paper on why he had no girlfriend gave <a href="#drake">Why I Don't Have a Wife</a> its method and its nerve. Where I've summarized them fairly, the credit is theirs. Where I haven't, the audits exist so you'll catch it.</p>
-      <p id="acknowledgments-people"><strong>The people.</strong><a class="pmark" href="#acknowledgments-people" aria-label="Link to this paragraph">#</a> My parents and grandparents, who showed me what a lifelong marriage looks like from the inside. The teachers named on <a href="#shelf">The Shelf</a>, who made a science teacher out of me. And the role models listed there, most of whom will never know they're on it.</p>
-      <p id="acknowledgments-editor"><strong>The editor.</strong><a class="pmark" href="#acknowledgments-editor" aria-label="Link to this paragraph">#</a> This site benefited enormously from production and editorial assistance from Anthropic's Claude, in its Fable 5.0 and 5.1 versions: drafting and tightening prose from my positions, building the live widgets, the map, the integrity tests, and the audit prompts, checking the numbers against one another, and telling me, more than once, which sentence a protective best friend would quote back at me. Every position, preference, dealbreaker, and number is mine and was decided by me. The AI helped me say it clearly and check it honestly. It seemed only fair to disclose that on a site that asks you to hand its claims to an AI of your own.</p>
-      <p id="acknowledgments-bill"><strong>The bill.</strong><a class="pmark" href="#acknowledgments-bill" aria-label="Link to this paragraph">#</a> Since a site this transparent should also disclose what it cost to make: about <span class="num">$13.50</span>. The build took roughly two days' worth of loving labor on a <span class="num">$200</span>-a-month Claude Max plan, and two days of a month is $13.50. For the curious, the session transcripts add up to about <span class="num">3,800</span> model replies, <span class="num">3.7 million</span> tokens written, <span class="num">29 million</span> tokens stored in the prompt cache, and <span class="num">1.05 billion</span> tokens read back from it, across the two build sessions and the two dozen independent agents that ran the Audit Ledger. At <a href="https://platform.claude.com/docs/en/about-claude/pricing">Anthropic's published API list prices</a> for Fable 5 and 5.1 as of September 2026 ($10 per million tokens in, $50 per million out, $0.25 to $1 per million cache reads, $12.50 to $20 per million cache writes), the same work would have billed somewhere between <span class="num">$1,000</span> and <span class="num">$1,250</span>, most of it cache. I am emphatically not paying API prices, and I mention the number only so the $13.50 lands. The best deal on this site remains the <a href="#referrals">referral prize</a>. The line the bill leaves out is my own time: the chat record's timestamps put it at about <span class="num">22 hours</span> of hands-on work across <span class="num">313</span> messages, most of it in three long days, on top of the years of thinking the positions themselves took. That time is expensive and, at the moment, unquantifiable; getting this as close to exactly right as I could is what I chose to spend it on.</p>
-      <p id="acknowledgments-tools"><strong>The tools.</strong><a class="pmark" href="#acknowledgments-tools" aria-label="Link to this paragraph">#</a> Fraunces, Space Grotesk, and IBM Plex Mono, self-hosted so nobody's browser has to phone Google to read this. GitHub Pages, which hosts a single file for free. And the open commit log, which does the remembering so I don't have to.</p>
-    </div>
-    <p class="crosslink">The claims themselves: <a href="#audits">the Audit Ledger</a>. The revisions the editor helped make: <a href="#revisions">Revisions</a>.</p>
-  </section>
-
-  <!-- ============ GLOSSARY ============ -->
-  <section class="topic" id="glossary" data-title="Glossary" data-chapter="Trust, but verify">
-    <h2 class="head">Glossary</h2>
-    <p class="subhead">The site leans on words it never defines. Here they are, briefly, for the reader who didn't grow up with them and the friend a yente forwarded this to.</p>
-    <ul class="items">
-      <li id="glossary-ketubah"><span class="k"><a class="deep" href="#glossary-ketubah">Ketubah</a></span><span class="v">The Jewish marriage contract, read and signed at the wedding. Among other things it records the husband's financial obligation to his wife if the marriage ends by divorce or his death: 200 zuz for a first marriage, 100 for a widow, divorcée, or convert. Zuz is an ancient silver coin; the sum is symbolic today but the document is binding in a Jewish court.</span></li>
-      <li id="glossary-kashrut-kosher-glatt"><span class="k"><a class="deep" href="#glossary-kashrut-kosher-glatt">Kashrut, kosher, glatt</a></span><span class="v">Kashrut is the body of Jewish dietary law; kosher food follows it. No pork or shellfish, meat and dairy kept apart, meat slaughtered and inspected in a prescribed way. Glatt is a stricter standard for kosher meat. "Kosher-style" means keeping the broad rules without certification.</span></li>
-      <li id="glossary-shabbat-havdalah"><span class="k"><a class="deep" href="#glossary-shabbat-havdalah">Shabbat, havdalah</a></span><span class="v">The Sabbath, from Friday sundown to Saturday nightfall: a day of rest with traditional prohibitions on work, and in observant homes on electricity, driving, and screens. Havdalah is the short ceremony that ends it.</span></li>
-      <li id="glossary-minyan-the-three-daily-services"><span class="k"><a class="deep" href="#glossary-minyan-the-three-daily-services">Minyan, the three daily services</a></span><span class="v">A minyan is the quorum of ten adults required for communal prayer. Observant Jewish men pray three fixed services a day, morning, afternoon, and evening; the Dealbreakers page is about those three.</span></li>
-      <li id="glossary-halacha"><span class="k"><a class="deep" href="#glossary-halacha">Halacha</a></span><span class="v">Jewish law: the accumulated rulings on how to live, drawn from the Torah, the Talmud, and later authorities. "Halachic" means according to that law.</span></li>
-      <li id="glossary-streams"><span class="k"><a class="deep" href="#glossary-streams">The streams</a></span><span class="v">Reform, Conservative, and Orthodox are the main American denominations, in roughly rising order of traditional observance; Modern Orthodox is the wing of Orthodoxy engaged with secular life; Haredi or ultra-Orthodox communities sit beyond it. "Traditional" and "Just Jewish" are what people call themselves when they'd rather not pick a stream.</span></li>
-      <li id="glossary-ashkenazi-sephardi-mizrahi"><span class="k"><a class="deep" href="#glossary-ashkenazi-sephardi-mizrahi">Ashkenazi, Sephardi, Mizrahi</a></span><span class="v">Jewish communities by heritage: Ashkenazi from Central and Eastern Europe, Sephardi from Spain and Portugal and their diaspora, Mizrahi from the Middle East and North Africa. Customs differ, including whether a child may be named after a living relative. My father's side is Ashkenazi; my mother was born in Morocco.</span></li>
-      <li id="glossary-brit-milah-mohel-metzitzah-bpeh"><span class="k"><a class="deep" href="#glossary-brit-milah-mohel-metzitzah-bpeh">Brit milah, mohel, metzitzah b'peh</a></span><span class="v">Brit milah is ritual circumcision, traditionally on a boy's eighth day, performed by a mohel. Metzitzah b'peh is a rare and controversial step in which the mohel uses his mouth; it has caused infections and is avoided by medicalized practice. The Before the Chuppah page explains my position.</span></li>
-      <li id="glossary-bar-mitzvah-bat-mitzvah"><span class="k"><a class="deep" href="#glossary-bar-mitzvah-bat-mitzvah">Bar mitzvah, bat mitzvah</a></span><span class="v">The coming of age at thirteen (twelve for girls in some communities), when a child becomes responsible for the commandments, usually marked by reading from the Torah in synagogue and, often, a party.</span></li>
-      <li id="glossary-chuppah"><span class="k"><a class="deep" href="#glossary-chuppah">Chuppah</a></span><span class="v">The canopy a Jewish couple marries under, and by extension the wedding itself. "Before the Chuppah" means before the wedding.</span></li>
-      <li id="glossary-get-agunah-halachic-prenup"><span class="k"><a class="deep" href="#glossary-get-agunah-halachic-prenup">Get, agunah, halachic prenup</a></span><span class="v">A get is a Jewish bill of divorce, which under Jewish law only the husband can grant. A woman refused one is an agunah, "chained," unable to remarry within the tradition. A halachic prenuptial agreement makes refusal costly enough that it doesn't happen; I commit to signing one on Before the Chuppah.</span></li>
-      <li id="glossary-pikuach-nefesh"><span class="k"><a class="deep" href="#glossary-pikuach-nefesh">Pikuach nefesh</a></span><span class="v">The principle that saving a life overrides nearly every other commandment. It is why an observant doctor works on Shabbat, and it appears on the Shelf as one root of my civil-disobedience streak.</span></li>
-      <li id="glossary-beth-din"><span class="k"><a class="deep" href="#glossary-beth-din">Beth Din</a></span><span class="v">A Jewish religious court, of three judges, which handles divorces, conversions, and disputes among people who accept its authority. The Beth Din of America publishes the standard halachic prenup.</span></li>
-      <li id="glossary-hebrew-school-day-school"><span class="k"><a class="deep" href="#glossary-hebrew-school-day-school">Hebrew school, day school</a></span><span class="v">Hebrew school is part-time Jewish education, typically afternoons or Sundays, alongside public school. A Jewish day school is a full-time private school teaching secular and Jewish subjects; the Education page weighs its cost.</span></li>
-      <li id="glossary-yente"><span class="k"><a class="deep" href="#glossary-yente">Yente</a></span><span class="v">Yiddish for a busybody, softened over time into "matchmaker," the sense the Referrals page uses. Amateurs welcome.</span></li>
-      <li id="glossary-jscreen-carrier-screening"><span class="k"><a class="deep" href="#glossary-jscreen-carrier-screening">JScreen, carrier screening</a></span><span class="v">Carrier screening is a genetic test for recessive conditions a healthy person can pass to children if the other parent carries the same one. JScreen is a nonprofit program that offers it, with a panel weighted toward conditions common in Jewish populations. My results are on the Family page.</span></li>
-      <li id="glossary-529"><span class="k"><a class="deep" href="#glossary-529">529</a></span><span class="v">An American tax-advantaged savings account for education, named for its section of the tax code. Growth is untaxed when spent on tuition and related costs; the beneficiary can be changed within a family.</span></li>
-      <li id="glossary-fire"><span class="k"><a class="deep" href="#glossary-fire">FIRE</a></span><span class="v">"Financial independence, retire early": a community and a body of arithmetic about saving enough that work becomes optional. The Work page uses its math to describe semi-retirement.</span></li>
-      <li id="glossary-stable-matching"><span class="k"><a class="deep" href="#glossary-stable-matching">Stable matching</a></span><span class="v">A pairing of everyone in a market such that no two people would both rather be with each other than with their assigned partners. The idea won a Nobel Prize in economics in 2012 and organizes the Matching page.</span></li>
-      <li id="glossary-cosmic-microwave-background"><span class="k"><a class="deep" href="#glossary-cosmic-microwave-background">The cosmic microwave background</a></span><span class="v">The faint afterglow of the early universe, filling the sky in every direction. Because it is nearly the same everywhere, our motion through it can be measured, about 370 kilometers a second; that speed times two seconds is the radius on the front page.</span></li>
-    </ul>
-    <p class="crosslink">A term I've missed? <a href="#feedback">The Feedback Clause</a> covers vocabulary too.</p>
   </section>
 
   <!-- ============ PRIVACY ============ -->
@@ -2314,6 +2070,227 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     </div>
   </section>
 
+  <!-- ============ VERIFY ME ============ -->
+  <section class="topic" id="verifyme" data-title="Verify Me" data-chapter="The appendix">
+    <h2 class="head">Verify Me</h2>
+    <p class="subhead">Safety logistics, stated up front, because you shouldn't have to ask. Yes, that's my real name. Yes, you can search it. Yes, the patent is boring.</p>
+    <div class="prose">
+      <p id="verifyme-premise"><strong>The premise.</strong><a class="pmark" href="#verifyme-premise" aria-label="Link to this paragraph">#</a> Meeting a stranger from the internet is an asymmetric risk, and you carry more of it than I do. I'd rather engineer that risk down than ask you to accept charm as evidence, so the following is standing policy, no negotiation required.</p>
+      <p id="verifyme-before-we-meet"><strong>Before we meet.</strong><a class="pmark" href="#verifyme-before-we-meet" aria-label="Link to this paragraph">#</a> As many video calls as you want, and you can <a href="#transmission" class="bookcall">request the first one</a> right now. My name is David Clayman; search it, read <a href="https://www.linkedin.com/in/davidvsgoliath/">the LinkedIn profile</a>, look up the rest of the professional footprint, run a background check if it would put you at ease. I'll consider that diligence rather than distrust.</p>
+      <p id="verifyme-when-we-meet"><strong>When we meet.</strong><a class="pmark" href="#verifyme-when-we-meet" aria-label="Link to this paragraph">#</a> First dates in public places, your pick of venue and time, daytime welcome. Tell a friend where you are, share my details, share your live location with someone who loves you, schedule a check-in call. I will never be offended by safety logistics, and my feelings would be beside the point anyway, because the logistics aren't for me.</p>
+      <p id="verifyme-asymmetry-runs-one-way"><strong>The asymmetry runs one way.</strong><a class="pmark" href="#verifyme-asymmetry-runs-one-way" aria-label="Link to this paragraph">#</a> I don't need your address, your workplace, or even your last name until you feel like volunteering them. I go first everywhere else on this site, and I go first here. Nothing about meeting me should require more than the ordinary courage dating already takes.</p>
+    </div>
+    <p class="crosslink">And if you ever want the claims themselves: <a href="#audits">the Audit Ledger</a>, next door.</p>
+  </section>
+
+  <!-- ============ AUDIT LEDGER ============ -->
+  <section class="topic" id="audits" data-title="Audit Ledger" data-chapter="The appendix">
+    <h2 class="head">The Audit Ledger</h2>
+    <p class="subhead">Every claim on this site, numbered and checkable, for whenever curiosity strikes; none of it is required reading. Expand one, copy its prompt, hand it to any AI assistant. Audit 00 covers the whole site at once. Audits 01–04 cover the physics, 05–11 the life philosophy, 12 travel reach, 13 the feedback clause, 14 the grandparent effect, 15 the money merger, 16 the mortality clock, 17 the age range, 18 the maintenance schedule, 19 the prayer arithmetic, 20 the domestic split, 21 circumcision, 22 whether a name shapes a life, and 23 the Drake equation, run on me.</p>
+    <details class="audit" id="audit-00">
+      <summary><span class="no">AUDIT 00</span><span class="q">The meta-audit: run the whole site past your AI</span><span class="chev">›</span></summary>
+      <div class="body">
+        <p class="claim">One prompt to audit everything at once: hand your AI this entire site and ask for the read a sharp, protective best friend would give. Entirely optional, like every card in this ledger; it's here for the thorough and the curious.</p>
+        <div class="row"><button class="copy" type="button" id="copy00">Copy audit prompt 00</button><span class="copied-note" id="note00"></span></div>
+      </div>
+    </details>
+    <div id="ledger"></div>
+    <p class="hint">Trust, or verify, or both. Dealer's choice.</p>
+    <p class="hint" id="auditRecheck">Every prompt on this ledger was last run in full on <strong>2026-09-03</strong>; the corrections are logged on <a href="#revisions">Revisions</a>. Next full recheck due <strong>2026-12-03</strong>, since flight schedules, prices, and life tables all drift.</p>
+  </section>
+
+  <!-- ============ REVISIONS ============ -->
+  <section class="topic" id="revisions" data-title="Revisions" data-chapter="The appendix">
+    <h2 class="head">Revisions</h2>
+    <p class="subhead">Year Ten promises I'll update in public when I'm wrong. This is the ledger of doing it, positions only; the full history is in the commit log.</p>
+    <ul class="items">
+      <li id="revisions-four-kids-became-two-or-three">
+        <span class="tag">2026-08-29</span>
+        <span class="k"><a class="deep" href="#revisions-four-kids-became-two-or-three">Four kids became two or three</a></span>
+        <span class="v">The first draft wanted four. The arithmetic on the Family page and the fertility numbers in Audit 06 didn't support it at my age without asking too much of anyone, so the plan shrank to what the math can carry.</span>
+      </li>
+      <li id="revisions-radius-doubled">
+        <span class="tag">2026-08-29</span>
+        <span class="k"><a class="deep" href="#revisions-radius-doubled">The radius doubled</a></span>
+        <span class="v">One astronomical second (230 miles) became two, and Travel Reach (then called the Airline Remix) converted the distance into a time budget. The physics didn't change. My willingness did.</span>
+      </li>
+      <li id="revisions-six-months-preferred-twelve-months">
+        <span class="tag">2026-09-01</span>
+        <span class="k"><a class="deep" href="#revisions-six-months-preferred-twelve-months">Six months preferred, twelve months capped</a></span>
+        <span class="v">The budget originally ran to twelve months flat. It now states the stronger preference for deciding on engagement within six, with the second six as contingency.</span>
+      </li>
+      <li id="revisions-divorce-moved-to-the-list-of-things">
+        <span class="tag">2026-09-01</span>
+        <span class="k"><a class="deep" href="#revisions-divorce-moved-to-the-list-of-things">Divorce moved to the list of things that shouldn't disqualify</a></span>
+        <span class="v">Stated as a fact up front, with the policy on when the rest of the story gets told, instead of left for a reader to discover.</span>
+      </li>
+      <li id="revisions-audits-became-optional-explicitly">
+        <span class="tag">2026-09-01</span>
+        <span class="k"><a class="deep" href="#revisions-audits-became-optional-explicitly">The audits became optional, explicitly</a></span>
+        <span class="v">Early drafts read as if running the prompts were the price of admission. Every page now says they're there for whenever curiosity strikes, or never.</span>
+      </li>
+      <li id="revisions-age-range-went-public">
+        <span class="tag">2026-09-01</span>
+        <span class="k"><a class="deep" href="#revisions-age-range-went-public">The age range went public</a></span>
+        <span class="v">Partner age stated as a function of family feasibility, with a live ceiling, instead of left implied by the fertility arithmetic.</span>
+      </li>
+      <li id="revisions-grandparent-clocks-default-moved">
+        <span class="tag">2026-09-02</span>
+        <span class="k"><a class="deep" href="#revisions-grandparent-clocks-default-moved">The grandparent clock's default moved from 35 to 32</a></span>
+        <span class="v">The age at which our kids finish having their own kids now defaults to 32. Every dependent number on the Family page and in Audit 16 moved with it.</span>
+      </li>
+      <li id="revisions-lines-that-cost-more-than-they">
+        <span class="tag">2026-09-02</span>
+        <span class="k"><a class="deep" href="#revisions-lines-that-cost-more-than-they">Lines that cost more than they bought</a></span>
+        <span class="v">Refusing to buy a drink became buying it under soft protest. A joke about pets, the word "audition," the phrase "bride price," and "stolen" months all came out. The prayer dealbreaker's counter-offer went from a recorded service to one prayed together.</span>
+      </li>
+      <li id="revisions-profile-in-front-of-the-laboratory">
+        <span class="tag">2026-09-02</span>
+        <span class="k"><a class="deep" href="#revisions-profile-in-front-of-the-laboratory">A profile in front of the laboratory</a></span>
+        <span class="v">The site used to open on physics and reach me four tabs later. It now opens on Start Here: photo, introduction, Tuesdays, what I'm looking for, three filters, and a first message priced at an hour of curiosity. The long arguments on Home, Matching, and the Shelf moved one click down. Nothing was deleted.</span>
+      </li>
+      <li id="revisions-budget-leads-with-the-promise-not">
+        <span class="tag">2026-09-02</span>
+        <span class="k"><a class="deep" href="#revisions-budget-leads-with-the-promise-not">The budget leads with the promise, not the number</a></span>
+        <span class="v">"$10,000 or 12 months" became "I won't waste your time," with the dollar cap demoted to a second paragraph. Matching now opens on my own imperfection rather than on anyone's declining options.</span>
+      </li>
+      <li id="revisions-reading-redefined">
+        <span class="tag">2026-09-02</span>
+        <span class="k"><a class="deep" href="#revisions-reading-redefined">Reading, redefined</a></span>
+        <span class="v">The reader dealbreaker no longer means books. It means deep thought and relentless curiosity about the world, fed on purpose, in whatever form that takes.</span>
+      </li>
+      <li id="revisions-all-twenty-four-audits-run-at-once">
+        <span class="tag">2026-09-03</span>
+        <span class="k"><a class="deep" href="#revisions-all-twenty-four-audits-run-at-once">All twenty-four audits, run at once</a></span>
+        <span class="v">I ran every prompt on the ledger against the site with web-checking AIs and fixed what they found. The physics, the patent, and most of the studies held. What didn't: the airline map (Seattle is inside the radius from Cleveland; San Francisco and Los Angeles were mis-timed), the ketubah figure (100 zuz for a widow, divorcée, or convert), the ring study (modest rings beat the cheapest), the grandparent-longevity number (it was never "three years"), the household statistics, the grandparent clock's default row and its word "expected," several fertility and paternal-age figures, three audit cards testing sentences the site no longer made, and a dozen overstatements now hedged to what the evidence supports. The airport chain also grew from 45 minutes to an hour for security, which pulled Phoenix, Las Vegas, and Los Angeles just outside the line. Section by section, the site is now what the ledger claimed it was.</span>
+      </li>
+      <li id="revisions-corrected-by-an-audit-the-same-day">
+        <span class="tag">2026-09-02</span>
+        <span class="k"><a class="deep" href="#revisions-corrected-by-an-audit-the-same-day">Corrected by an audit, the same day</a></span>
+        <span class="v">A reader ran Audit 21 and the brit milah item lost two claims: that the foreskin is "among the most biologically conserved tissues in the body," which is a true premise dressed as a superlative that no such ranking supports, and the Ishmael citation, which Genesis itself uses as the contrast case to the covenant. The item now defers the decision to adulthood rather than bar mitzvah age, which the audit called the worst possible timing, states the communal cost honestly, offers a medicalized brit at eight days as a real middle if the timing matters to her, and says a later surgery is harder rather than pretending otherwise. First audit to change the site. It won't be the last.</span>
+      </li>
+      <li id="revisions-five-pages-the-site-didnt-have">
+        <span class="tag">2026-09-02</span>
+        <span class="k"><a class="deep" href="#revisions-five-pages-the-site-didnt-have">Five pages the site didn't have</a></span>
+        <span class="v">Referrals, with a matchmaker prize paid after a first child. Date Locket, an optional mutual-consent recording of a first video date, with its patent application released as prior art instead of filed. Life Didn't Go As Planned, with the 2019 wedding spreadsheet and the marriage that lasted under a year. What I Don't Care About, which switches off the silent filters and gives an honest paragraph on health. And Before the Chuppah, where the brit milah decision is left to the son.</span>
+      </li>
+      <li id="revisions-counting-visits-with-permission">
+        <span class="tag">2026-09-02</span>
+        <span class="k"><a class="deep" href="#revisions-counting-visits-with-permission">Counting visits, with permission</a></span>
+        <span class="v">Google Analytics was added and then gated behind a consent banner the same day; nothing loads until you say yes. The fonts moved off Google's servers onto this site, and a Privacy page now says exactly what is and isn't collected.</span>
+      </li>
+      <li id="revisions-clock-grew-by-an-hour-of-charging">
+        <span class="tag">2026-09-03</span>
+        <span class="k"><a class="deep" href="#revisions-clock-grew-by-an-hour-of-charging">The clock grew by an hour of charging</a></span>
+        <span class="v">The time budget was benchmarked on a seven-hour drive in a car that never stops. I drive a 2025 Chevy Equinox EV, and 460 miles in it means two fast-charging stops, about an hour. The physics didn't change and neither did the miles; the car did, so the flight budget grew from 5:19 to 6:19, which pulled Phoenix, Las Vegas, and Los Angeles back inside the line.</span>
+      </li>
+      <li id="revisions-twelve-month-ceiling-became-a">
+        <span class="tag">2026-09-03</span>
+        <span class="k"><a class="deep" href="#revisions-twelve-month-ceiling-became-a">The twelve-month ceiling became a preference</a></span>
+        <span class="v">The Budget page called twelve months to a proposal a hard cap. It now says six months is my hope, about a year is my own clock, and twelve or fifteen is welcome for the right person. The speed was always meant to come from being upfront, not from a stopwatch, and the page now says so.</span>
+      </li>
+      <li id="revisions-canada-joined-the-map">
+        <span class="tag">2026-09-03</span>
+        <span class="k"><a class="deep" href="#revisions-canada-joined-the-map">Canada joined the map</a></span>
+        <span class="v">The travel rule said "any city in the United States." The clock never cared about the border, so the rule now says so: Toronto is inside the driving radius from Cleveland, Montreal and Ottawa are short flights, and someone in Canada would be very welcome. The section was renamed from the Airline Remix to Travel Reach at the same time.</span>
+      </li>
+      <li id="revisions-status-line-at-the-foot-of-every">
+        <span class="tag">2026-09-04</span>
+        <span class="k"><a class="deep" href="#revisions-status-line-at-the-foot-of-every">A status line at the foot of every page</a></span>
+        <span class="v">Four stages, from Square 1 to Engaged, with the current one filled in gold and the future steps in a pulldown, each with a one-line note. It starts at Square 1: nobody past a first date. Engaged is the last step listed, because what follows it is implied. Every change of stage gets a line here, dated.</span>
+      </li>
+      <li id="revisions-date-david-became-marry-david">
+        <span class="tag">2026-09-06</span>
+        <span class="k"><a class="deep" href="#revisions-date-david-became-marry-david">Date David became Marry David</a></span>
+        <span class="v">The site moved from datedavid.org to marrydavid.com, and the name followed. The old address forwards here. The goal was never a date; it's stated in the first line of Start Here, and now the domain says it too.</span>
+      </li>
+      <li id="revisions-video-call-became-a-booking">
+        <span class="tag">2026-09-06</span>
+        <span class="k"><a class="deep" href="#revisions-video-call-became-a-booking">Requesting a video call became booking one</a></span>
+        <span class="v">Every "Request a video call" button now opens a Google Calendar booking page for a twelve-minute intro call, Meet link included, instead of an email asking for three times. The email stays as the fallback for anyone the calendar doesn't fit.</span>
+      </li>
+      <li id="revisions-200-third-date-prize-joined-the-5">
+        <span class="tag">2026-09-06</span>
+        <span class="k"><a class="deep" href="#revisions-200-third-date-prize-joined-the-5">A $200 third-date prize joined the $5,000 one</a></span>
+        <span class="v">A smaller seal beside the big one: $200, paid when a referred match and I have had three dates and a fourth is on the calendar, as judged by me. Sooner, smaller, and separate from the main prize, so a good introduction is rewarded before anyone has to wait for a child.</span>
+      </li>
+      <li id="revisions-safeword-left-the-site">
+        <span class="tag">2026-09-06</span>
+        <span class="k"><a class="deep" href="#revisions-safeword-left-the-site">Safeword left the site</a></span>
+        <span class="v">The intimacy chapter and its audit moved to an unlisted page that I share after a first kiss. The site still names the app, since it's part of the work and the patent is public; it no longer explains it. The audits after it renumbered down by one.</span>
+      </li>
+      <li id="revisions-matchmaker-prize-went-from-2-000-to">
+        <span class="tag">2026-09-06</span>
+        <span class="k"><a class="deep" href="#revisions-matchmaker-prize-went-from-2-000-to">The matchmaker prize went from $2,000 to $5,000</a></span>
+        <span class="v">Still September 2026 dollars, still indexed to the consumer price index, still paid at our first child, and now also, if she brings children, at three years of marriage as their stepparent or at my adopting them, whichever comes first. The ribbon that used to appear after a second section is now a seal on every page, because the introduction is the outcome this whole site is for and the price should say so.</span>
+      </li>
+      <li id="revisions-party-loyalty-left-the-dealbreakers">
+        <span class="tag">2026-09-06</span>
+        <span class="k"><a class="deep" href="#revisions-party-loyalty-left-the-dealbreakers">Party loyalty left the dealbreakers</a></span>
+        <span class="v">It was one of eleven. It now sits on Don't Care as Political Party Loyalty/Identification, where it belonged: I'm an independent, I'd happily marry a partisan, and the only thing the old entry filtered was a woman who needs her husband in the jersey, which the conflict rule already covers. Ten dealbreakers remain.</span>
+      </li>
+      <li id="revisions-consent-banner-came-down">
+        <span class="tag">2026-09-06</span>
+        <span class="k"><a class="deep" href="#revisions-consent-banner-came-down">The consent banner came down</a></span>
+        <span class="v">Four days after it went up, readers said the question got in the way of the reading. So it's gone: counting is on by default, off with one click on the Privacy page or with a Global Privacy Control signal, and the Privacy page now says legitimate interest where it used to say consent, with the reasoning under "Why there's no cookie banner."</span>
+      </li>
+      <li id="revisions-reading-order-and-an-appendix">
+        <span class="tag">2026-09-07</span>
+        <span class="k"><a class="deep" href="#revisions-reading-order-and-an-appendix">A reading order, reading times, and an appendix</a></span>
+        <span class="v">A word count put the site at forty-one thousand words of prose, close to three hours at the pace the Contents page uses, which is a short book rather than a profile. So Start Here now names the four sections a first coffee needs after it, with the minutes each one takes; the Contents page shows a reading time beside every entry and every chapter; and Verify Me, the Audit Ledger, Revisions, Acknowledgments, and the Glossary moved into an appendix after the last page, where reference material belongs. Nothing was cut. The front door got shorter.</span>
+      </li>
+      <li id="revisions-date-locket-filing-moved-to-its-own">
+        <span class="tag">2026-09-07</span>
+        <span class="k"><a class="deep" href="#revisions-date-locket-filing-moved-to-its-own">The Date Locket filing moved to its own page</a></span>
+        <span class="v">The provisional application was six thousand words inside a collapsed card, about a sixth of the whole site on one page. Date Locket now carries the design in plain language, about fifteen hundred words in all, and the filing lives verbatim at its own address, still dated 2026-09-02, still CC0, still in the commit log.</span>
+      </li>
+    </ul>
+    <p class="crosslink">The receipts, edit by edit: <a href="https://github.com/davidclayman/marrydavid.com/commits/main">the commit log</a>. The promise this keeps: <a href="#yearten">Year Ten</a>.</p>
+  </section>
+
+  <!-- ============ ACKNOWLEDGMENTS ============ -->
+  <section class="topic" id="acknowledgments" data-title="Acknowledgments" data-chapter="The appendix">
+    <h2 class="head">Acknowledgments</h2>
+    <p class="subhead">Nothing here was built alone. The positions are mine; the shoulders are other people's.</p>
+    <div class="prose">
+      <p id="acknowledgments-giants"><strong>The giants.</strong><a class="pmark" href="#acknowledgments-giants" aria-label="Link to this paragraph">#</a> This site stands on the available research and scholarly literature, and the Audit Ledger is mostly a list of the people whose work it borrows: Gale and Shapley on stable matching and the optimal-stopping mathematicians who followed them; the economists behind the wedding-spending study and the courtship-length data; the reproductive-medicine societies whose fertility tables set the Family page's clock; the actuaries at the Social Security Administration whose life tables run the grandparent clock; the geneticists who measured how paternal age writes itself into a child's genome; the psychologists who studied pooled finances, housework, feedback, and the transition to parenthood; the cosmologists who measured our motion against the microwave background and gave the whole thing its radius; and Peter Backus, the economist whose 2010 paper on why he had no girlfriend gave <a href="#drake">Why I Don't Have a Wife</a> its method and its nerve. Where I've summarized them fairly, the credit is theirs. Where I haven't, the audits exist so you'll catch it.</p>
+      <p id="acknowledgments-people"><strong>The people.</strong><a class="pmark" href="#acknowledgments-people" aria-label="Link to this paragraph">#</a> My parents and grandparents, who showed me what a lifelong marriage looks like from the inside. The teachers named on <a href="#shelf">The Shelf</a>, who made a science teacher out of me. And the role models listed there, most of whom will never know they're on it.</p>
+      <p id="acknowledgments-editor"><strong>The editor.</strong><a class="pmark" href="#acknowledgments-editor" aria-label="Link to this paragraph">#</a> This site benefited enormously from production and editorial assistance from Anthropic's Claude, in its Fable 5.0 and 5.1 versions: drafting and tightening prose from my positions, building the live widgets, the map, the integrity tests, and the audit prompts, checking the numbers against one another, and telling me, more than once, which sentence a protective best friend would quote back at me. Every position, preference, dealbreaker, and number is mine and was decided by me. The AI helped me say it clearly and check it honestly. It seemed only fair to disclose that on a site that asks you to hand its claims to an AI of your own.</p>
+      <p id="acknowledgments-bill"><strong>The bill.</strong><a class="pmark" href="#acknowledgments-bill" aria-label="Link to this paragraph">#</a> Since a site this transparent should also disclose what it cost to make: about <span class="num">$13.50</span>. The build took roughly two days' worth of loving labor on a <span class="num">$200</span>-a-month Claude Max plan, and two days of a month is $13.50. For the curious, the session transcripts add up to about <span class="num">3,800</span> model replies, <span class="num">3.7 million</span> tokens written, <span class="num">29 million</span> tokens stored in the prompt cache, and <span class="num">1.05 billion</span> tokens read back from it, across the two build sessions and the two dozen independent agents that ran the Audit Ledger. At <a href="https://platform.claude.com/docs/en/about-claude/pricing">Anthropic's published API list prices</a> for Fable 5 and 5.1 as of September 2026 ($10 per million tokens in, $50 per million out, $0.25 to $1 per million cache reads, $12.50 to $20 per million cache writes), the same work would have billed somewhere between <span class="num">$1,000</span> and <span class="num">$1,250</span>, most of it cache. I am emphatically not paying API prices, and I mention the number only so the $13.50 lands. The best deal on this site remains the <a href="#referrals">referral prize</a>. The line the bill leaves out is my own time: the chat record's timestamps put it at about <span class="num">22 hours</span> of hands-on work across <span class="num">313</span> messages, most of it in three long days, on top of the years of thinking the positions themselves took. That time is expensive and, at the moment, unquantifiable; getting this as close to exactly right as I could is what I chose to spend it on.</p>
+      <p id="acknowledgments-tools"><strong>The tools.</strong><a class="pmark" href="#acknowledgments-tools" aria-label="Link to this paragraph">#</a> Fraunces, Space Grotesk, and IBM Plex Mono, self-hosted so nobody's browser has to phone Google to read this. GitHub Pages, which hosts a single file for free. And the open commit log, which does the remembering so I don't have to.</p>
+    </div>
+    <p class="crosslink">The claims themselves: <a href="#audits">the Audit Ledger</a>. The revisions the editor helped make: <a href="#revisions">Revisions</a>.</p>
+  </section>
+
+  <!-- ============ GLOSSARY ============ -->
+  <section class="topic" id="glossary" data-title="Glossary" data-chapter="The appendix">
+    <h2 class="head">Glossary</h2>
+    <p class="subhead">The site leans on words it never defines. Here they are, briefly, for the reader who didn't grow up with them and the friend a yente forwarded this to.</p>
+    <ul class="items">
+      <li id="glossary-ketubah"><span class="k"><a class="deep" href="#glossary-ketubah">Ketubah</a></span><span class="v">The Jewish marriage contract, read and signed at the wedding. Among other things it records the husband's financial obligation to his wife if the marriage ends by divorce or his death: 200 zuz for a first marriage, 100 for a widow, divorcée, or convert. Zuz is an ancient silver coin; the sum is symbolic today but the document is binding in a Jewish court.</span></li>
+      <li id="glossary-kashrut-kosher-glatt"><span class="k"><a class="deep" href="#glossary-kashrut-kosher-glatt">Kashrut, kosher, glatt</a></span><span class="v">Kashrut is the body of Jewish dietary law; kosher food follows it. No pork or shellfish, meat and dairy kept apart, meat slaughtered and inspected in a prescribed way. Glatt is a stricter standard for kosher meat. "Kosher-style" means keeping the broad rules without certification.</span></li>
+      <li id="glossary-shabbat-havdalah"><span class="k"><a class="deep" href="#glossary-shabbat-havdalah">Shabbat, havdalah</a></span><span class="v">The Sabbath, from Friday sundown to Saturday nightfall: a day of rest with traditional prohibitions on work, and in observant homes on electricity, driving, and screens. Havdalah is the short ceremony that ends it.</span></li>
+      <li id="glossary-minyan-the-three-daily-services"><span class="k"><a class="deep" href="#glossary-minyan-the-three-daily-services">Minyan, the three daily services</a></span><span class="v">A minyan is the quorum of ten adults required for communal prayer. Observant Jewish men pray three fixed services a day, morning, afternoon, and evening; the Dealbreakers page is about those three.</span></li>
+      <li id="glossary-halacha"><span class="k"><a class="deep" href="#glossary-halacha">Halacha</a></span><span class="v">Jewish law: the accumulated rulings on how to live, drawn from the Torah, the Talmud, and later authorities. "Halachic" means according to that law.</span></li>
+      <li id="glossary-streams"><span class="k"><a class="deep" href="#glossary-streams">The streams</a></span><span class="v">Reform, Conservative, and Orthodox are the main American denominations, in roughly rising order of traditional observance; Modern Orthodox is the wing of Orthodoxy engaged with secular life; Haredi or ultra-Orthodox communities sit beyond it. "Traditional" and "Just Jewish" are what people call themselves when they'd rather not pick a stream.</span></li>
+      <li id="glossary-ashkenazi-sephardi-mizrahi"><span class="k"><a class="deep" href="#glossary-ashkenazi-sephardi-mizrahi">Ashkenazi, Sephardi, Mizrahi</a></span><span class="v">Jewish communities by heritage: Ashkenazi from Central and Eastern Europe, Sephardi from Spain and Portugal and their diaspora, Mizrahi from the Middle East and North Africa. Customs differ, including whether a child may be named after a living relative. My father's side is Ashkenazi; my mother was born in Morocco.</span></li>
+      <li id="glossary-brit-milah-mohel-metzitzah-bpeh"><span class="k"><a class="deep" href="#glossary-brit-milah-mohel-metzitzah-bpeh">Brit milah, mohel, metzitzah b'peh</a></span><span class="v">Brit milah is ritual circumcision, traditionally on a boy's eighth day, performed by a mohel. Metzitzah b'peh is a rare and controversial step in which the mohel uses his mouth; it has caused infections and is avoided by medicalized practice. The Before the Chuppah page explains my position.</span></li>
+      <li id="glossary-bar-mitzvah-bat-mitzvah"><span class="k"><a class="deep" href="#glossary-bar-mitzvah-bat-mitzvah">Bar mitzvah, bat mitzvah</a></span><span class="v">The coming of age at thirteen (twelve for girls in some communities), when a child becomes responsible for the commandments, usually marked by reading from the Torah in synagogue and, often, a party.</span></li>
+      <li id="glossary-chuppah"><span class="k"><a class="deep" href="#glossary-chuppah">Chuppah</a></span><span class="v">The canopy a Jewish couple marries under, and by extension the wedding itself. "Before the Chuppah" means before the wedding.</span></li>
+      <li id="glossary-get-agunah-halachic-prenup"><span class="k"><a class="deep" href="#glossary-get-agunah-halachic-prenup">Get, agunah, halachic prenup</a></span><span class="v">A get is a Jewish bill of divorce, which under Jewish law only the husband can grant. A woman refused one is an agunah, "chained," unable to remarry within the tradition. A halachic prenuptial agreement makes refusal costly enough that it doesn't happen; I commit to signing one on Before the Chuppah.</span></li>
+      <li id="glossary-pikuach-nefesh"><span class="k"><a class="deep" href="#glossary-pikuach-nefesh">Pikuach nefesh</a></span><span class="v">The principle that saving a life overrides nearly every other commandment. It is why an observant doctor works on Shabbat, and it appears on the Shelf as one root of my civil-disobedience streak.</span></li>
+      <li id="glossary-beth-din"><span class="k"><a class="deep" href="#glossary-beth-din">Beth Din</a></span><span class="v">A Jewish religious court, of three judges, which handles divorces, conversions, and disputes among people who accept its authority. The Beth Din of America publishes the standard halachic prenup.</span></li>
+      <li id="glossary-hebrew-school-day-school"><span class="k"><a class="deep" href="#glossary-hebrew-school-day-school">Hebrew school, day school</a></span><span class="v">Hebrew school is part-time Jewish education, typically afternoons or Sundays, alongside public school. A Jewish day school is a full-time private school teaching secular and Jewish subjects; the Education page weighs its cost.</span></li>
+      <li id="glossary-yente"><span class="k"><a class="deep" href="#glossary-yente">Yente</a></span><span class="v">Yiddish for a busybody, softened over time into "matchmaker," the sense the Referrals page uses. Amateurs welcome.</span></li>
+      <li id="glossary-jscreen-carrier-screening"><span class="k"><a class="deep" href="#glossary-jscreen-carrier-screening">JScreen, carrier screening</a></span><span class="v">Carrier screening is a genetic test for recessive conditions a healthy person can pass to children if the other parent carries the same one. JScreen is a nonprofit program that offers it, with a panel weighted toward conditions common in Jewish populations. My results are on the Family page.</span></li>
+      <li id="glossary-529"><span class="k"><a class="deep" href="#glossary-529">529</a></span><span class="v">An American tax-advantaged savings account for education, named for its section of the tax code. Growth is untaxed when spent on tuition and related costs; the beneficiary can be changed within a family.</span></li>
+      <li id="glossary-fire"><span class="k"><a class="deep" href="#glossary-fire">FIRE</a></span><span class="v">"Financial independence, retire early": a community and a body of arithmetic about saving enough that work becomes optional. The Work page uses its math to describe semi-retirement.</span></li>
+      <li id="glossary-stable-matching"><span class="k"><a class="deep" href="#glossary-stable-matching">Stable matching</a></span><span class="v">A pairing of everyone in a market such that no two people would both rather be with each other than with their assigned partners. The idea won a Nobel Prize in economics in 2012 and organizes the Matching page.</span></li>
+      <li id="glossary-cosmic-microwave-background"><span class="k"><a class="deep" href="#glossary-cosmic-microwave-background">The cosmic microwave background</a></span><span class="v">The faint afterglow of the early universe, filling the sky in every direction. Because it is nearly the same everywhere, our motion through it can be measured, about 370 kilometers a second; that speed times two seconds is the radius on the front page.</span></li>
+    </ul>
+    <p class="crosslink">A term I've missed? <a href="#feedback">The Feedback Clause</a> covers vocabulary too.</p>
+  </section>
+
 
 <div class="seals">
 <a class="seal" id="seal" href="#referrals" aria-label="Amateur Matchmaker Prize: $5,000, indexed to inflation, for the introduction that leads to our first child. Read the Referrals page.">
@@ -2455,6 +2432,8 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     groups.forEach((secs, ch) => {
       const box = document.createElement('div');
       const h = document.createElement('h3'); h.textContent = ch;
+      const chMins = document.createElement('span'); chMins.className = 'mins'; chMins.dataset.minsSum = secs.map(s => s.id).join(',');
+      h.append(chMins);
       const ol = document.createElement('ol');
       ol.style.counterReset = 'toc ' + n;
       secs.forEach(sec => {
@@ -2464,7 +2443,8 @@ He's clear about what he wants, which is to marry and raise two or three kids so
         a.href = '#' + sec.id; a.textContent = sec.dataset.title;
         const sub = sec.querySelector('h2.head');
         if (sub && sub.textContent.trim() !== sec.dataset.title) a.title = sub.textContent.trim();
-        li.append(a); ol.append(li);
+        const mins = document.createElement('span'); mins.className = 'mins'; mins.dataset.mins = sec.id;
+        li.append(a, mins); ol.append(li);
       });
       box.append(h, ol); toc.append(box);
     });
@@ -3689,6 +3669,26 @@ Be honest rather than kind. The author wrote this prompt himself and published i
   } else {
     (function tick(){ fmt(); requestAnimationFrame(tick); })();
   }
+
+  // ============================================================
+  // READING TIMES — counted from the rendered text of each section at a comfortable 250 words a
+  // minute, so the Contents page and the reading order on Start Here stay honest as the copy changes.
+  // Runs last, after the ledger has rendered, so the Audit Ledger counts its claims (the prompts
+  // never enter the DOM). Fills every [data-mins] (one section), [data-mins-sum] (a list of
+  // sections, as "N min"), [data-mins-n] (the same, digits only), #pathMins, and #pathRest.
+  // ============================================================
+  const WPM = 250;
+  const wordsIn = {};
+  sections.forEach(sec => { wordsIn[sec.id] = (sec.textContent || '').trim().split(/\s+/).filter(Boolean).length; });
+  const minutesFor = ids => Math.max(1, Math.round(ids.reduce((sum, id) => sum + (wordsIn[id] || 0), 0) / WPM));
+  document.querySelectorAll('[data-mins]').forEach(el => { el.textContent = minutesFor([el.dataset.mins]) + ' min'; });
+  document.querySelectorAll('[data-mins-sum]').forEach(el => { el.textContent = minutesFor(el.dataset.minsSum.split(',')) + ' min'; });
+  document.querySelectorAll('[data-mins-n]').forEach(el => { el.textContent = String(minutesFor(el.dataset.minsN.split(','))); });
+  const PATH = ['radius', 'offer', 'family', 'dealbreakers', 'agerange'];
+  const pathMins = document.getElementById('pathMins');
+  if (pathMins) pathMins.textContent = 'ABOUT ' + minutesFor(PATH) + ' MINUTES';
+  const pathRest = document.getElementById('pathRest');
+  if (pathRest) pathRest.textContent = String(sections.length - PATH.length);
 
 </script>
 </body>

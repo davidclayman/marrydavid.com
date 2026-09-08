@@ -44,11 +44,32 @@ behind it. Long arguments inside a section (the family-property math, the
 optimal-stopping models, the full Shelf) sit in collapsed cards so the page
 reads short first and deep on request.
 
+**A reading order, with times.** The site runs to about forty thousand words
+of prose, so Start Here names the four sections worth reading next (What You
+Get, Family, Dealbreakers, Age Range) and the minutes the five take together.
+The Contents page shows a reading time beside every entry and every chapter.
+The times are computed in the browser from each section's rendered text at
+250 words a minute (`WPM` in the script; `[data-mins]`, `[data-mins-sum]`,
+`[data-mins-n]`, `#pathMins`, `#pathRest` are the fill points), after the
+ledger renders, so they stay honest as the copy changes. Reference material
+(Verify Me, the Audit Ledger, Revisions, Acknowledgments, the Glossary) sits
+in a final chapter, "The appendix", after the last essay.
+
+**The prior-art page.** `/prior-art/datelocket/` holds the full provisional
+application for Date Locket, verbatim, published as prior art and dedicated
+under CC0 instead of filed. Unlike the follow-up pages above it is listed in
+the sitemap and indexable; the Date Locket section carries the plain-language
+version and links to it. The first path segment has a hyphen on purpose, so
+`404.html`'s section redirect never sees it.
+
 **Sections and navigation.** Each topic is a
 `<section class="topic" id="..." data-title="..." data-chapter="...">`. A hash
 router shows one section per `#id` and builds the nav rail from DOM order. The
 Contents page groups the sections into chapters from the `data-chapter`
-attribute. Add a section, tag its chapter, and both update themselves.
+attribute. Add a section, tag its chapter, and both update themselves, reading
+time included. The chapters run Start here, The strategy, The plan, The
+filters, Trust, but verify, Your turn, and The appendix; the tests insist the
+appendix stays last.
 
 **Recheck cadence.** The Audit Ledger states when every prompt was last run in
 full and when the next full recheck is due (quarterly). The test suite prints a

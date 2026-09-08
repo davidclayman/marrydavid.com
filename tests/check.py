@@ -184,6 +184,27 @@ for slug in ('coronacrush', 'shabbat', 'justmatched', 'safeword'):
     bad = [i for i in deep if i not in valid]
     check(f'{slug} links into the main page resolve', not bad, str(bad))
 
+# --- the prior-art page: listed, indexable, the Date Locket filing verbatim -
+pa = os.path.join(ROOT, 'prior-art', 'datelocket', 'index.html')
+check('prior-art page exists', os.path.exists(pa))
+if os.path.exists(pa):
+    src = open(pa, encoding='utf-8').read()
+    check('prior-art page is indexable', 'noindex' not in src and 'rel="canonical" href="https://marrydavid.com/prior-art/datelocket/"' in src)
+    check('prior-art page email never in source', 'david@' not in src and 'mailto:' not in src)
+    check('prior-art page carries the CC0 dedication and the disclosure date', 'creativecommons.org/publicdomain/zero/1.0/' in src and '2026-09-02' in src)
+    check('prior-art page holds the full filing', 'What is claimed is:' in src and src.count('<p>20.') == 1 and '<h4>Abstract</h4>' in src)
+    check('prior-art page analytics honors the opt-out and Global Privacy Control', 'src="https://www.googletagmanager.com' not in src and "localStorage.getItem('consent') !== 'denied'" in src and 'navigator.globalPrivacyControl' in src)
+    check('prior-art page links back into the main page', 'href="/#datelocket"' in src and 'href="/#privacy"' in src)
+    check('prior-art page is linked from Date Locket and listed in the sitemap', 'href="/prior-art/datelocket/"' in s and '<loc>https://marrydavid.com/prior-art/datelocket/</loc>' in sm)
+check('the filing left the main page', '<div class="body patent">' not in s)
+
+# --- reading order, reading times, appendix ------------------------------
+path_block = s.split('id="radius-read-this-first"', 1)[1].split('</ol>', 1)[0] if 'id="radius-read-this-first"' in s else ''
+check('Start Here names the reading order', bool(path_block) and all(f'href="#{x}"' in path_block for x in ('offer', 'family', 'dealbreakers', 'agerange')))
+check('reading times are computed from the page', 'const WPM' in s and 'data-mins' in s and 'minsSum' in s and 'id="pathMins"' in s)
+check('the appendix comes last', ids[-5:] == ['verifyme', 'audits', 'revisions', 'acknowledgments', 'glossary'], str(ids[-5:]))
+check('the appendix is its own chapter', all(re.search(rf'id="{i}" data-title="[^"]*" data-chapter="The appendix"', s) for i in ids[-5:]))
+
 # --- audit recheck schedule (warns, never fails) --------------------------
 m = re.search(r'Next full recheck due <strong>(\d{4}-\d{2}-\d{2})</strong>', s)
 check('ledger states a recheck date', bool(m))
